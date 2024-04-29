@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="{{url_for('static', filename='fonts/icomoon/style.css')}}" />
+  <link rel="stylesheet" href="{{url_for('static', filename='css/owl.carousel.min.css')}}" />
+  <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}" />
+  <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" />
+  <link rel="stylesheet" href="{{url_for('static', filename='css/font.css')}}" />
+  <link rel="stylesheet" href="{{url_for('static', filename='css/footer.css')}}" />
+  <link rel="stylesheet" href="{{url_for('static', filename='css/top.css')}}" />
+
+  <title>검색 결과</title>
+
+</head>
+
+<body class="main-content">
+  <!--Top Side Bar -->
+  {% include 'user/navbar/navbar_header.html' %}
+
+  <main role="main">
+    <div class="album py-5 bg-light">
+      <div class="container">
+        <span style="font-size: 24px;"><span class="icon-clipboard"></span> 총 {{ searchProducts|length }} 건</span>
+        <p></p>
+        <div class="row">
+          <!-- Test div -->
+          {% for searchProduct in searchProducts %}
+          <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
+                role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <title>Placeholder</title>
+                <rect width="100%" height="100%" fill="#55595c" />
+                <image xlink:href="{{ searchProduct['product_image'] }}" width="100%" height="100%"
+                  preserveAspectRatio="none" />
+              </svg>
+
+              <div class="card-body">
+                <p class="card-text">{{ searchProduct['product_name'] }}</p>
+                <p class="card-text">{{ searchProduct['product_description'] }}</p>
+                <p class="card-text" style="font-weight: bold;">{{ '{:,.0f}'.format(searchProduct['product_price']) }}원</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <small class="text-muted">재고 {{ searchProduct['product_stock'] }}</small>
+                  <div class="btn-group">
+                    
+                    <a href=""  
+                    class="btn btn-sm btn-outline-secondary add-to-cart" 
+                    data-cart-product-code="{{ searchProduct['product_code'] }}" data-cart-user-id="{{ userInfo['user_id'] }}">
+                    <span data-feather="shopping-cart"></span> 담기
+                    </a>
+                    
+                    <a href="#" class="btn btn-sm btn-outline-secondary delete-product-btn">예비
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </main>
+
+  {% include 'user/navbar/navbar_footer.html' %}
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+  <script src="/static/js/bootstrap.min.js"></script>
+  <script src="/static/js/jquery-3.3.1.min.js"></script>
+  <script src="/static/js/popper.min.js"></script>
+  <script src="/static/js/main.js"></script>
+  <script src="/static/js/dashboard.js"></script>
+  <script src="/static/js/ajax.js"></script>
+  <script src="/static/js/navbarActive.js"></script>
+  <script src="/static/js/validation.js"></script>
+  <script src="/static/js/alert.js"></script>
+  <script>
+    $(function(){
+      const searchQuery = '{{ searchQuery }}';
+      $('.searchQuery').val(searchQuery)
+    })
+  </script>
+</body>
+
+</html>

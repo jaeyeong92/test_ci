@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="{{url_for('static', filename='fonts/icomoon/style.css')}}" />
+  <link rel="stylesheet" href="{{url_for('static', filename='css/owl.carousel.min.css')}}" />
+  <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}" />
+  <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" />
+  <link rel="stylesheet" href="{{url_for('static', filename='css/font.css')}}" />
+  <link rel="stylesheet" href="{{url_for('static', filename='css/footer.css')}}" />
+  <link rel="stylesheet" href="{{url_for('static', filename='css/top.css')}}" />
+  <title>장바구니</title>
+  <style>
+    /* 결제정보 CSS */
+    .fixed-card {
+      position: fixed;
+      width: 250px;
+      top: 200px;
+      right: 20px;
+      text-align: center;
+      z-index: 10;
+    }
+  </style>
+</head>
+
+<body class="main-content">
+  <!--Top Navbar -->
+  {% include 'user/navbar/navbar_header.html' %}
+
+  <!-- 결제 금액 -->
+  <form action="/user/pay" method="POST">
+    <main role="main">
+      <div class="fixed-card">
+        <div class="card mb-4 shadow">
+          <div class="card-body">
+            <span class="icon-gift" style="font-size: 32px; color: black;"></span><h5 class="card-title" style="color: red;">[ 결제 내역 ]</h5>
+            <p class="card-text" id="productPrice"></p>
+            <p class="card-text">배송비 3,500원</p><br>
+            <p class="card-text" style="font-weight: bold;" id="resultProductPrice">결제예정금액 533500원</p>
+            <button type="submit" class="btn btn-block bg-danger" style="color: white;">결제하기</button>
+          </div>
+        </div>
+      </div>
+    
+      <div class="album py-5 mt-3">
+        <div class="container">
+          <span style="font-size: 24px;">
+            <span data-feather="shopping-cart" style="color: black; width: 24px; height: 24px;" class="mb-1"></span> 장바구니
+          </span><br><br>
+          
+          <div class="row">
+            {% for cart in carts %}
+            <div class="col-md-12">
+              <div class="card mb-4 shadow-sm">
+                <div class="d-flex justify-content-between">
+                  <div style="width: 220px; height: 170px; overflow: hidden;" class="mt-4 ml-4  mb-4">
+                    <svg class="bd-placeholder-img card-img-top" width="220px" height="170px" xmlns="http://www.w3.org/2000/svg"
+                      role="img" preserveAspectRatio="xMidYMid slice" focusable="false">
+                      <rect width="100%" height="100%" fill="#55595c" />
+                      <image xlink:href="{{ cart['product_image'] }}" width="100%" height="100%" preserveAspectRatio="none" />
+                    </svg>
+                  </div>
+                  <div class="ml-4 align-self-center">
+                    <p class="card-text" style="font-weight: bold; font-size: 20px;">{{ cart['product_name'] }}</p>
+                  </div>  
+                  <div class="ml-auto align-self-center" style="margin-right: 300px;">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <button class="btn btn-outline-secondary minusBtn" type="button">-</button>
+                      </div>
+                      <input type="text" class="form-control text-center quantityInput" value="{{ cart['product_count'] }}" style="width:50px; background-color: white; border: 1px solid;" readonly>
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-secondary plusBtn" type="button">+</button>
+                      </div>
+                      <input type="hidden" name="priceInput" value="{{ cart['product_price'] }}">
+                      <span class="text-center mt-2 totalPrice" style="width: 150px; margin-left: 50px;">{{ '{:,.0f}'.format(cart['product_price'] * cart['product_count']) }}원</span>
+                      <a href="" class="btn btn-sm delete-cart-product-btn" data-cart-product-code="{{ cart['product_code'] }}">
+                      <span data-feather="x-square" style="color: black;"></span> 삭제
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /user/pay 결제API 전송용 hidden form  -->
+              <input type="hidden" name="product_code[]" value="{{ cart['product_code'] }}">
+              <input type="hidden" name="product_count[]" value="{{ cart['product_count'] }}">
+              <input type="hidden" name="product_price[]" value="{{ cart['product_price'] * cart['product_count'] }}">
+              <input type="hidden" name="product_userId[]" value="{{ cart['user_id'] }}">
+              <input type="hidden" name="product_userName[]" value="{{ userInfo['user_name'] }}">
+              <input type="hidden" name="product_userAddress[]" value="{{ userInfo['user_address'] }}">
+              <input type="hidden" name="product_userPhone[]" value="{{ userInfo['user_phone'] }}">
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </main>
+  </form>
+
+  {% include 'user/navbar/navbar_footer.html' %}
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+  <script src="/static/js/bootstrap.min.js"></script>
+  <script src="/static/js/jquery-3.3.1.min.js"></script>
+  <script src="/static/js/popper.min.js"></script>
+  <script src="/static/js/main.js"></script>
+  <script src="/static/js/dashboard.js"></script>
+  <script src="/static/js/ajax.js"></script>
+  <script src="/static/js/navbarActive.js"></script>
+  <script src="/static/js/validation.js"></script>
+  <script src="/static/js/alert.js"></script>
+  <script src="/static/js/cartList.js"></script>
+</body>
+
+</html>
