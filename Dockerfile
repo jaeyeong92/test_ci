@@ -1,10 +1,10 @@
 FROM python:3.12.3-slim
 
-COPY . /app
+COPY . /
 
 RUN pip install flask
 
-WORKDIR /app
+WORKDIR /
 
 RUN pip install -r requirements.txt
 
