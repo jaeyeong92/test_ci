@@ -6,8 +6,8 @@ on:
       - main
       
 env:
-  AWS_REGION: ap-northeast-2        # set this to your preferred AWS region, e.g. us-west-1
-  ECR_REPOSITORY: nadeuri           # set this to your Amazon ECR repository name
+  AWS_REGION: ap-northeast-1        # set this to your preferred AWS region, e.g. us-west-1
+  ECR_REPOSITORY: aws-ecr-ssgpang           # set this to your Amazon ECR repository name
   
 
 jobs:
@@ -18,18 +18,18 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout
 
     - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
+      uses: aws-actions/configure-aws-credentials
       with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}          # 나의 ECR 정보
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ${{ env.AWS_REGION }}
+        aws-region: ${{ secrets.AWS_REGION }}
 
     - name: Login to Amazon ECR
       id: login-ecr
-      uses: aws-actions/amazon-ecr-login@v1
+      uses: aws-actions/amazon-ecr-login
 
     - name: Build, tag, and push image to Amazon ECR
       id: build-image
