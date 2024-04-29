@@ -60,7 +60,8 @@ def logout() :
         session.pop('loginSessionInfo', None)
         return redirect(url_for('login'))
     else :
-        return '<h2>User already logged out <a href="/login">Click here</a></h2>'
+        #return '<h2>User already logged out <a href="/login">Click here</a></h2>'
+        return '<h2>User already logged out !! <a href="/login">Click here</a></h2>'
         
 # main
 if __name__ == '__main__' :
