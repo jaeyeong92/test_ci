@@ -1,10 +1,10 @@
 FROM python:3.12.3
 
-COPY . /
+COPY . /app
 
 RUN pip install flask
 
-WORKDIR /
+WORKDIR /app
 
 RUN pip install -r requirements.txt
 
