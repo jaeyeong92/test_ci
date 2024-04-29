@@ -8,4 +8,4 @@ WORKDIR /
 
 RUN pip install -r requirements.txt
 
-CMD ["python", "app.py"]
+ENTRYPOINT ["flask", "run"]
