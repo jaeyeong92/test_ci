@@ -17,11 +17,6 @@ jobs:
     environment: production
 
     steps:
-    - name: Setup Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '20.9'
-
     - name: Checkout
       uses: actions/checkout@v2
 
