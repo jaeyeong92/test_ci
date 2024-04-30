@@ -7,8 +7,8 @@ import uuid
 bp = Blueprint("user", __name__, url_prefix="/user")
 
 # AWS 자격 증명 및 S3 클라이언트 생성
-session = boto3.Session()
-s3_client = session.client('s3')
+session2 = boto3.Session()
+s3_client = session2.client('s3')
 S3_BUCKET = 'final-koupang-bucket'
 
 # def get_public_url(bucket_name, key) :
@@ -138,8 +138,8 @@ def product() :
 
             for product in products :
                 imageName = product['product_image'][61:]
-                newImageName = get_public_url(S3_BUCKET, imageName)
-                product['product_image'] = newImageName
+                # newImageName = get_public_url(S3_BUCKET, imageName)
+                # product['product_image'] = newImageName
 
             return render_template('user/product.html', products = products, userInfo = userInfo)
 
