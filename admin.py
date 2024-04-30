@@ -9,17 +9,20 @@ bp = Blueprint("admin", __name__, url_prefix="/admin")
 
 # AWS 자격 증명 및 S3 클라이언트 생성
 session = boto3.Session()
-s3 = session.client('s3')
+s3_client = session.client('s3')
 S3_BUCKET = 'final-koupang-bucket'
 
-def get_public_url(bucket_name, key) :
-    # S3 객체에 대한 공개적인 URL 생성
-    url = s3.generate_presigned_url(
-        ClientMethod='get_object',
-        Params={'Bucket': bucket_name, 'Key': key},
-        ExpiresIn=3600  # URL의 유효기간 설정 (초 단위)
-    )
-    return url
+# def get_public_url(bucket_name, key) :
+#     # S3 객체에 대한 공개적인 URL 생성
+#     url = s3.generate_presigned_url(
+#         ClientMethod='get_object',
+#         Params={'Bucket': bucket_name, 'Key': key},
+#         ExpiresIn=3600  # URL의 유효기간 설정 (초 단위)
+#     )
+#     return url
+
+response = s3_client.get_object(Bucket='final-koupang-bucket', Key='furtniture/202404261456_test8.jpg')
+
 
 # main 관리 페이지
 @bp.route('/home')
