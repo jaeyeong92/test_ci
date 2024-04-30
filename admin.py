@@ -12,16 +12,16 @@ session2 = boto3.Session()
 s3_client = session2.client('s3')
 S3_BUCKET = 'final-koupang-bucket'
 
-# def get_public_url(bucket_name, key) :
-#     # S3 객체에 대한 공개적인 URL 생성
-#     url = s3.generate_presigned_url(
-#         ClientMethod='get_object',
-#         Params={'Bucket': bucket_name, 'Key': key},
-#         ExpiresIn=3600  # URL의 유효기간 설정 (초 단위)
-#     )
-#     return url
+def get_public_url(bucket_name, key) :
+    # S3 객체에 대한 공개적인 URL 생성
+    url = s3_client.generate_presigned_url(
+        ClientMethod='get_object',
+        Params={'Bucket': bucket_name, 'Key': key},
+        ExpiresIn=3600  # URL의 유효기간 설정 (초 단위)
+    )
+    return url
 
-response = s3_client.get_object(Bucket='final-koupang-bucket', Key='furtniture/202404261456_test8.jpg')
+# response = s3_client.get_object(Bucket='final-koupang-bucket', Key='furtniture/202404261456_test8.jpg')
 
 
 # main 관리 페이지
@@ -54,8 +54,8 @@ def product() :
 
             for product in products :
                 imageName = product['product_image'][61:]
-                # newImageName = get_public_url(S3_BUCKET, imageName)
-                # product['product_image'] = newImageName
+                newImageName = get_public_url(S3_BUCKET, imageName)
+                product['product_image'] = newImageName
 
             return render_template('admin/product.html', products=products)
         
