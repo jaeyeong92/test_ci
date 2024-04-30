@@ -22,7 +22,7 @@ def get_public_url(bucket_name, key) :
     return url
 
 # response = s3_client.get_object(Bucket='final-koupang-bucket', Key='furtniture/202404261456_test8.jpg')
-
+# print('admin response', response)
 
 # main 관리 페이지
 @bp.route('/home')
@@ -56,6 +56,7 @@ def product() :
                 imageName = product['product_image'][61:]
                 newImageName = get_public_url(S3_BUCKET, imageName)
                 product['product_image'] = newImageName
+                print('newImageName', newImageName)
 
             return render_template('admin/product.html', products=products)
         
