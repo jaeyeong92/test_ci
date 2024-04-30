@@ -21,8 +21,9 @@ def get_public_url(bucket_name, key) :
     )
     return url
 
-# response = s3_client.get_object(Bucket='final-koupang-bucket', Key='furtniture/202404261456_test8.jpg')
-# print('admin response', response)
+response = s3_client.get_object(Bucket='final-koupang-bucket', Key='furtniture/202404261456_test8.jpg')
+print('admin response', response)
+print('body', response['Body'].read())
 
 # main 관리 페이지
 @bp.route('/home')
