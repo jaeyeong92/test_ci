@@ -20,8 +20,6 @@ def get_public_url(bucket_name, key) :
     )
     return url
 
-# response = s3_client.get_object(Bucket='final-koupang-bucket', Key='furtniture/202404261456_test8.jpg')
-
 @bp.route('/home')
 def home() :
     
