@@ -110,7 +110,7 @@ def register() :
             admin_DAO.saveToDatabase(productName, productPrice, productStock, productDescription, s3_url)
 
             # S3에 업로드
-            s3.upload_fileobj(file, S3_BUCKET,'furtniture/'+filename)
+            s3_client.upload_fileobj(file, S3_BUCKET,'furtniture/'+filename)
 
             # DB to JSON
             result = admin_DAO.dbToJson()
@@ -178,7 +178,7 @@ def edit(num) :
             admin_DAO.updateProductByCode(productName, productPrice, productStock, productDescription, s3_url, num)
 
             # S3에 업로드
-            s3.upload_fileobj(file, S3_BUCKET,'furtniture/'+filename)
+            s3_client.upload_fileobj(file, S3_BUCKET,'furtniture/'+filename)
 
             # DB to JSON
             result = admin_DAO.dbToJson()
