@@ -3,6 +3,7 @@ from datetime import datetime
 import admin
 import user
 import login_DAO
+import pymysql
 
 app = Flask(__name__)
 app.secret_key = 'secret_key'
@@ -11,7 +12,6 @@ app.secret_key = 'secret_key'
 app.register_blueprint(admin.bp)
 app.register_blueprint(user.bp)
 
-            
 # index 페이지
 @app.route('/')
 def home() :

@@ -1,7 +1,6 @@
 from flask import *
 import admin_DAO
 import boto3
-import requests
 from datetime import datetime
 import json
 
@@ -105,6 +104,7 @@ def register() :
             
             # DB 저장
             admin_DAO.saveToDatabase(productName, productPrice, productStock, productDescription, s3_url)
+            admin_DAO.saveToDatabaseAzure(productName, productPrice, productStock, productDescription, s3_url)
 
             # S3에 업로드
             s3_client.upload_fileobj(file, S3_BUCKET,'furtniture/'+filename)
