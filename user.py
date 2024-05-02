@@ -20,9 +20,7 @@ def get_public_url(bucket_name, key) :
     )
     return url
 
-response = s3_client.get_object(Bucket='final-koupang-bucket', Key='furtniture/202404261456_test8.jpg')
-print('user response', response)
-response22 = response['Body'].read()
+# response = s3_client.get_object(Bucket='final-koupang-bucket', Key='furtniture/202404261456_test8.jpg')
 
 @bp.route('/home')
 def home() :
@@ -141,10 +139,12 @@ def product() :
             for product in products :
                 imageName = product['product_image'][61:]
                 newImageName = get_public_url(S3_BUCKET, imageName)
+                print('test1' , get_public_url(S3_BUCKET, imageName))
+                print('test2' , imageName)
                 product['product_image'] = newImageName
                 print('user newImageName', newImageName)
 
-            return render_template('user/product.html', products = products, userInfo = userInfo, response22 = response22)
+            return render_template('user/product.html', products = products, userInfo = userInfo)
 
         else :
             return render_template('user/home.html')
@@ -295,9 +295,7 @@ def updateCartList():
 
                 product_code = request.form['productCode']
                 new_quantity = request.form['newQuantity']
-                
-                print('product_code',product_code)
-                print('newquantity', new_quantity)
+
                 # 장바구니 업데이트 로직 수행
                 # 예: user_DAO.updateCart(product_code, new_quantity)
                 user_DAO.updateCartList(product_code, new_quantity, userId)
