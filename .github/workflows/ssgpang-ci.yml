@@ -8,7 +8,7 @@ on:
 env:
   # AWS_REGION: ap-northeast-1        # set this to your preferred AWS region, e.g. us-west-1
   # ECR_REPOSITORY: aws-ecr-ssgpang           # set this to your Amazon ECR repository name
-  DOCKER_HUB_USERNAME: jjy4041  # Docker Hub 사용자 이름
+  DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}  # Docker Hub 사용자 이름
   DOCKER_HUB_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}  # Docker Hub 비밀번호
   
 
@@ -27,8 +27,8 @@ jobs:
 
     - name: Build and push image to Docker Hub
       run: |
-        docker build -t $DOCKER_HUB_USERNAME/ssgpang:${{ github.sha }} .
-        docker push $DOCKER_HUB_USERNAME/ssgpang:${{ github.sha }}
+        docker build -t ${{ env.DOCKER_HUB_USERNAME }}/ssgpang:${{ github.sha }} .
+        docker push ${{ env.DOCKER_HUB_USERNAME}}/ssgpang:${{ github.sha }}
 
     # - name: Configure AWS credentials
     #   uses: aws-actions/configure-aws-credentials@v1
