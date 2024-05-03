@@ -49,7 +49,7 @@ def product() :
             products = admin_DAO.selectProductAll()
 
             for product in products :
-                imageName = product['product_image'][61:]
+                imageName = product['product_image'][55:]
                 newImageName = get_public_url(S3_BUCKET, imageName)
                 product['product_image'] = newImageName
 
