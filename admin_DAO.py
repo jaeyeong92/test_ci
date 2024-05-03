@@ -5,7 +5,7 @@ def db_connect() :
     db = pymysql.connect(
         user = 'root',
         password = 'admin12345',
-        host = 'coupangdb.cwshg6arkkpy.ap-northeast-1.rds.amazonaws.com',
+        host = 'final-rds.cwshg6arkkpy.ap-northeast-1.rds.amazonaws.com',
         db = 'coupang',
         charset = 'utf8',
         autocommit = True
@@ -14,17 +14,17 @@ def db_connect() :
     return db
 
 # DB 연결
-def db_connect_azure() :
-    db = pymysql.connect(
-        user = 'ssgpangroot',
-        password = 'admin12345!!',
-        host = 'ssgpang-db.mysql.database.azure.com',
-        db = 'ssgpang',
-        charset = 'utf8',
-        autocommit = True
-    )
+# def db_connect_azure() :
+#     db = pymysql.connect(
+#         user = 'ssgpangroot',
+#         password = 'admin12345!!',
+#         host = 'ssgpang-db.mysql.database.azure.com',
+#         db = 'ssgpang',
+#         charset = 'utf8',
+#         autocommit = True
+#     )
 
-    return db
+#     return db
 
 # S3 Image URL을 DB에 저장
 def saveToDatabase(productName, productPrice, productStock, productDescription, s3_url):
@@ -44,21 +44,21 @@ def saveToDatabase(productName, productPrice, productStock, productDescription, 
     con.close()
 
 # S3 Image URL을 DB에 저장
-def saveToDatabaseAzure(productName, productPrice, productStock, productDescription, s3_url):
-    # MySQL 데이터베이스에 연결
-    con = db_connect_azure()
-    cursor = con.cursor()
+# def saveToDatabaseAzure(productName, productPrice, productStock, productDescription, s3_url):
+#     # MySQL 데이터베이스에 연결
+#     con = db_connect_azure()
+#     cursor = con.cursor()
 
-    # S3 URL을 데이터베이스에 저장하는 쿼리 실행
-    sql_insert = "INSERT INTO product (product_name, product_price, product_stock, product_description, product_image) VALUES (%s, %s, %s, %s, %s)"
-    result_num = cursor.execute(sql_insert, (productName, productPrice, productStock, productDescription, s3_url))
+#     # S3 URL을 데이터베이스에 저장하는 쿼리 실행
+#     sql_insert = "INSERT INTO product (product_name, product_price, product_stock, product_description, product_image) VALUES (%s, %s, %s, %s, %s)"
+#     result_num = cursor.execute(sql_insert, (productName, productPrice, productStock, productDescription, s3_url))
     
-    # 변경 사항 커밋
-    con.commit()
+#     # 변경 사항 커밋
+#     con.commit()
     
-    # 연결 종료
-    cursor.close()
-    con.close()
+#     # 연결 종료
+#     cursor.close()
+#     con.close()
 
 # DB to JSON
 def dbToJson():

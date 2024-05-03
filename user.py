@@ -9,7 +9,7 @@ bp = Blueprint("user", __name__, url_prefix="/user")
 # AWS 자격 증명 및 S3 클라이언트 생성
 session2 = boto3.Session()
 s3_client = session2.client('s3')
-S3_BUCKET = 'final-koupang-bucket'
+S3_BUCKET = 'ssgpang-bucket'
 
 def get_public_url(bucket_name, key) :
     # S3 객체에 대한 공개적인 URL 생성

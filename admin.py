@@ -9,7 +9,7 @@ bp = Blueprint("admin", __name__, url_prefix="/admin")
 # AWS 자격 증명 및 S3 클라이언트 생성
 session2 = boto3.Session()
 s3_client = session2.client('s3')
-S3_BUCKET = 'final-koupang-bucket'
+S3_BUCKET = 'ssgpang-bucket'
 
 def get_public_url(bucket_name, key) :
     # S3 객체에 대한 공개적인 URL 생성
@@ -100,14 +100,14 @@ def register() :
             filename = today_datetime + '_' + file.filename
 
             # 업로드된 이미지의 S3 URL 생성
-            s3_url = f"https://{S3_BUCKET}.s3.ap-northeast-1.amazonaws.com/furtniture/{filename}"
+            s3_url = f"https://{S3_BUCKET}.s3.ap-northeast-1.amazonaws.com/ssgproduct/{filename}"
             
             # DB 저장
             admin_DAO.saveToDatabase(productName, productPrice, productStock, productDescription, s3_url)
-            admin_DAO.saveToDatabaseAzure(productName, productPrice, productStock, productDescription, s3_url)
+            # admin_DAO.saveToDatabaseAzure(productName, productPrice, productStock, productDescription, s3_url)
 
             # S3에 업로드
-            s3_client.upload_fileobj(file, S3_BUCKET,'furtniture/'+filename)
+            s3_client.upload_fileobj(file, S3_BUCKET,'ssgproduct/'+filename)
 
             # DB to JSON
             result = admin_DAO.dbToJson()
@@ -169,13 +169,13 @@ def edit(num) :
             filename = today_datetime + '_' + file.filename
 
             # 업로드된 이미지의 S3 URL 생성
-            s3_url = f"https://{S3_BUCKET}.s3.ap-northeast-1.amazonaws.com/furtniture/{filename}"
+            s3_url = f"https://{S3_BUCKET}.s3.ap-northeast-1.amazonaws.com/ssgproduct/{filename}"
             
             # DB 저장
             admin_DAO.updateProductByCode(productName, productPrice, productStock, productDescription, s3_url, num)
 
             # S3에 업로드
-            s3_client.upload_fileobj(file, S3_BUCKET,'furtniture/'+filename)
+            s3_client.upload_fileobj(file, S3_BUCKET,'ssgproduct/'+filename)
 
             # DB to JSON
             result = admin_DAO.dbToJson()
