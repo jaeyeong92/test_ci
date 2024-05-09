@@ -20,7 +20,7 @@ def selectUserById(userId) :
     con = db_connect()
 
     cursor = con.cursor(cursor=pymysql.cursors.DictCursor)
-    sql_select = 'SELECT * FROM user WHERE user_id = %s'
+    sql_select = 'SELECT * FROM users WHERE user_id = %s'
     cursor.execute(sql_select, userId)
     result = cursor.fetchone()
 

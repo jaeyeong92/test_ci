@@ -18,7 +18,7 @@ def updateUserById(userId, userPw, userName, userEmail, userPhone, userAddress) 
 
     con = db_connect()
     cursor = con.cursor()
-    sql_update = 'UPDATE user SET user_pw = %s, user_name = %s, user_email = %s, user_phone = %s, user_address = %s WHERE user_id = %s'
+    sql_update = 'UPDATE users SET user_pw = %s, user_name = %s, user_email = %s, user_phone = %s, user_address = %s WHERE user_id = %s'
 
     result_num = cursor.execute(sql_update, (userPw, userName, userEmail, userPhone, userAddress, userId))
     
@@ -34,7 +34,7 @@ def checkUserId(userId) :
     con = db_connect()
 
     cursor = con.cursor(cursor=pymysql.cursors.DictCursor)
-    sql_select = 'SELECT user_id FROM user WHERE user_id = %s'
+    sql_select = 'SELECT user_id FROM users WHERE user_id = %s'
     cursor.execute(sql_select, userId)
     result = cursor.fetchone()
 
@@ -51,7 +51,7 @@ def checkUserEmail(userEmail) :
     con = db_connect()
 
     cursor = con.cursor(cursor=pymysql.cursors.DictCursor)
-    sql_select = 'SELECT user_email FROM user WHERE user_email = %s'
+    sql_select = 'SELECT user_email FROM users WHERE user_email = %s'
     cursor.execute(sql_select, userEmail)
     result = cursor.fetchone()
 
@@ -68,7 +68,7 @@ def checkUserPhoneNumber(userPhone) :
     con = db_connect()
 
     cursor = con.cursor(cursor=pymysql.cursors.DictCursor)
-    sql_select = 'SELECT user_phone FROM user WHERE user_phone = %s'
+    sql_select = 'SELECT user_phone FROM users WHERE user_phone = %s'
     cursor.execute(sql_select, userPhone)
     result = cursor.fetchone()
 
@@ -83,7 +83,7 @@ def insertUser(userId, userPw, userName, userEmail, userPhone, userAddress) :
     
     con = db_connect()
     cursor = con.cursor()
-    sql_insert = 'INSERT INTO user (user_id, user_pw, user_name, user_email, user_phone, user_address) VALUES (%s, %s, %s, %s, %s, %s)'
+    sql_insert = 'INSERT INTO users (user_id, user_pw, user_name, user_email, user_phone, user_address) VALUES (%s, %s, %s, %s, %s, %s)'
 
     result_num = cursor.execute(sql_insert, (userId, userPw, userName, userEmail, userPhone, userAddress))
     
