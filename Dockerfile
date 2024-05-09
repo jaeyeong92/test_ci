@@ -15,4 +15,4 @@ ENV FLASK_ENV=production
 
 EXPOSE 80
 
-# ENTRYPOINT ["flask", "run"]
+ENTRYPOINT ["flask", "run"]
