@@ -5,7 +5,7 @@ def db_connect() :
     db = pymysql.connect(
         user = 'root',
         password = 'admin12345',
-        host = 'ssgpangdb.cwshg6arkkpy.ap-northeast-1.rds.amazonaws.com',
+        host = 'db-svc',
         db = 'ssgpang',
         charset = 'utf8',
         autocommit = True

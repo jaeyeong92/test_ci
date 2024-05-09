@@ -10,6 +10,8 @@ env:
   # ECR_REPOSITORY: aws-ecr-ssgpang           # set this to your Amazon ECR repository name
   DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}  # Docker Hub 사용자 이름
   DOCKER_HUB_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}  # Docker Hub 비밀번호
+  AZURE_CONNECTION_STRING: ${{ secrets.AZURE_CONNECTION_STRING }}  # Azure 연결 문자열 시크릿
+  GIST_TOKEN: ${{ secrets.GIST_TOKEN }}  # Github Token
   
 
 jobs:

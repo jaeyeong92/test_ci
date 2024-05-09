@@ -5,6 +5,7 @@ from datetime import datetime
 import json
 from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient
 import requests
+import os
 
 bp = Blueprint("admin", __name__, url_prefix="/admin")
 
@@ -14,7 +15,7 @@ s3_client = session2.client('s3')
 S3_BUCKET = 'ssgpang-bucket'
 
 # Azure Blob Storage 연결 설정
-CONNECTION_STRING = ""
+CONNECTION_STRING = os.environ.get("AZURE_CONNECTION_STRING")
 CONTAINER_NAME = "ssgpang-container"
 
 # Blob 서비스 클라이언트 생성
@@ -23,7 +24,7 @@ container_client = blob_service_client.get_container_client(CONTAINER_NAME)
 
 # Git
 GIST_ID = "a9d6acbaf78e4d82a4dcf858ba3652ea"
-GITHUB_TOKEN = ""
+GITHUB_TOKEN = os.environ.get("GIST_TOKEN")
 
 def get_public_url(bucket_name, key) :
     # S3 객체에 대한 공개적인 URL 생성
