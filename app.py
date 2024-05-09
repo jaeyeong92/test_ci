@@ -5,9 +5,9 @@ import user
 import login_DAO
 import logging
 
-
 app = Flask(__name__)
 app.secret_key = 'secret_key'
+
 logging.basicConfig(filename='error.log', level=logging.ERROR)
 
 # Blueprint
@@ -46,7 +46,7 @@ def login() :
                 if userInfo.get('user_role') == 'role_admin' :
                     return redirect(url_for('admin.home'))
                 else :
-                    return redirect(url_for('user.home'))
+                    return redirect(url_for('user.product'))
             else :
                 return render_template('member/login_fail.html')
         else :

@@ -4,14 +4,28 @@ import login_DAO
 import boto3
 import uuid
 import logging
-
+from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient
+import os
 
 bp = Blueprint("user", __name__, url_prefix="/user")
 logging.basicConfig(filename='error.log', level=logging.ERROR)
+
 # AWS 자격 증명 및 S3 클라이언트 생성
 session2 = boto3.Session()
 s3_client = session2.client('s3')
 S3_BUCKET = 'ssgpang-bucket'
+
+# Azure Blob Storage 연결 설정
+CONNECTION_STRING = os.environ.get("AZURE_CONNECTION_STRING")
+CONTAINER_NAME = "ssgpang-container"
+
+# Blob 서비스 클라이언트 생성
+blob_service_client = BlobServiceClient.from_connection_string(CONNECTION_STRING)
+container_client = blob_service_client.get_container_client(CONTAINER_NAME)
+
+# Git
+GIST_ID = "a9d6acbaf78e4d82a4dcf858ba3652ea"
+GITHUB_TOKEN = os.environ.get("GIST_TOKEN")
 
 def get_public_url(bucket_name, key) :
     # S3 객체에 대한 공개적인 URL 생성
@@ -20,6 +34,14 @@ def get_public_url(bucket_name, key) :
         Params={'Bucket': bucket_name, 'Key': key},
         ExpiresIn=3600  # URL의 유효기간 설정 (초 단위)
     )
+    return url
+
+def get_public_url_azure(container_name, blob_name):
+    blob_client = BlobClient.from_connection_string(
+        CONNECTION_STRING, container_name, blob_name
+    )
+    # Blob의 URL을 가져옵니다.
+    url = blob_client.url
     return url
 
 @bp.route('/home')
@@ -137,8 +159,12 @@ def product() :
             products = user_DAO.selectProductAll()
 
             for product in products :
-                newImageName = get_public_url(S3_BUCKET, product['product_image_aws'])
-                product['product_image_aws'] = newImageName
+                # newImageName = get_public_url(S3_BUCKET, product['product_image_aws'])
+                # product['product_image_aws'] = newImageName
+                
+                # Azure Blob Storage에서 이미지 URL 가져오기
+                newImageName = get_public_url_azure(CONTAINER_NAME, product['product_image_azure'])
+                product['product_image_azure'] = newImageName
 
             return render_template('user/product.html', products = products, userInfo = userInfo)
 
@@ -173,8 +199,11 @@ def cartList() :
             carts = user_DAO.selectCartListByUserId(userId)
 
             for cart in carts :
-                newImageName = get_public_url(S3_BUCKET, cart['product_image_aws'])
-                cart['product_image_aws'] = newImageName
+                # newImageName = get_public_url(S3_BUCKET, cart['product_image_aws'])
+                # cart['product_image_aws'] = newImageName
+                # Azure Blob Storage에서 이미지 URL 가져오기
+                newImageName = get_public_url_azure(CONTAINER_NAME, product['product_image_azure'])
+                product['product_image_azure'] = newImageName
 
             return render_template('user/cartList.html', carts = carts, userInfo = userInfo)
 
@@ -224,8 +253,11 @@ def searchProduct() :
             searchProducts = user_DAO.selectProductForSearch(searchQuery)
 
             for searchProduct in searchProducts :
-                newImageName = get_public_url(S3_BUCKET, searchProduct['product_image_aws'])
-                searchProduct['product_image_aws'] = newImageName
+                # newImageName = get_public_url(S3_BUCKET, searchProduct['product_image_aws'])
+                # searchProduct['product_image_aws'] = newImageName
+                # Azure Blob Storage에서 이미지 URL 가져오기
+                newImageName = get_public_url_azure(CONTAINER_NAME, product['product_image_azure'])
+                product['product_image_azure'] = newImageName
 
             return render_template('user/productBySearch.html', searchProducts = searchProducts, userInfo = userInfo, searchQuery = searchQuery)
         
@@ -271,6 +303,7 @@ def pay():
                 # 예: 주문 생성 및 데이터베이스에 저장
                 user_DAO.insertOrdersList(order_number, code, stock, price, userid, username, useraddress, userphone)
                 user_DAO.deleteCartListAll(userId)
+
             # 결제 완료 후 처리
             return redirect(url_for('user.product'))
         

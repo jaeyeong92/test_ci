@@ -6,11 +6,10 @@ import json
 from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient
 import requests
 import os
-import base64
 import logging
 
-
 bp = Blueprint("admin", __name__, url_prefix="/admin")
+
 logging.basicConfig(filename='error.log', level=logging.ERROR)
 
 # AWS 자격 증명 및 S3 클라이언트 생성
@@ -19,26 +18,16 @@ s3_client = session2.client('s3')
 S3_BUCKET = 'ssgpang-bucket'
 
 # Azure Blob Storage 연결 설정
-try:
-    CONNECTION_STRING = os.environ.get("AZURE_CONNECTION_STRING")
-
-except Exception as e:
-    print(e)
-
-
-print('test1번', CONNECTION_STRING)
-# print('test1번 디코딩', base64.b64decode(CONNECTION_STRING).decode('utf-8'))
+CONNECTION_STRING = os.environ.get("AZURE_CONNECTION_STRING")
 CONTAINER_NAME = "ssgpang-container"
 
 # Blob 서비스 클라이언트 생성
-# blob_service_client = BlobServiceClient.from_connection_string(CONNECTION_STRING)
-# container_client = blob_service_client.get_container_client(CONTAINER_NAME)
+blob_service_client = BlobServiceClient.from_connection_string(CONNECTION_STRING)
+container_client = blob_service_client.get_container_client(CONTAINER_NAME)
 
 # Git
 GIST_ID = "a9d6acbaf78e4d82a4dcf858ba3652ea"
 GITHUB_TOKEN = os.environ.get("GIST_TOKEN")
-print('test2번', GITHUB_TOKEN)
-# print('test2번 디코딩', base64.b64decode(GITHUB_TOKEN).decode('utf-8'))
 
 def get_public_url(bucket_name, key) :
     # S3 객체에 대한 공개적인 URL 생성
@@ -47,6 +36,14 @@ def get_public_url(bucket_name, key) :
         Params={'Bucket': bucket_name, 'Key': key},
         ExpiresIn=3600  # URL의 유효기간 설정 (초 단위)
     )
+    return url
+
+def get_public_url_azure(container_name, blob_name):
+    blob_client = BlobClient.from_connection_string(
+        CONNECTION_STRING, container_name, blob_name
+    )
+    # Blob의 URL을 가져옵니다.
+    url = blob_client.url
     return url
 
 # main 관리 페이지
@@ -78,9 +75,12 @@ def product() :
             products = admin_DAO.selectProductAll()
 
             for product in products :
-                imageName = product['product_image_aws']
-                newImageName = get_public_url(S3_BUCKET, imageName)
-                product['product_image_aws'] = newImageName
+                # imageName = product['product_image_aws']
+                # newImageName = get_public_url(S3_BUCKET, imageName)
+                # product['product_image_aws'] = newImageName
+                imageName = product['product_image_azure']
+                newImageName = get_public_url_azure(CONTAINER_NAME, imageName)
+                product['product_image_azure'] = newImageName
 
             return render_template('admin/product.html', products=products)
         
@@ -135,14 +135,13 @@ def register() :
             
             # DB 저장
             admin_DAO.saveToDatabase(productName, productPrice, productStock, productDescription, s3_filename, azure_filename)
-            # admin_DAO.saveToDatabaseAzure(productName, productPrice, productStock, productDescription, s3_url)
 
             # S3에 업로드
             s3_client.upload_fileobj(s3_file, S3_BUCKET,'ssgproduct/' + s3_filename)
 
             # Azure Blob Storage에 파일 업로드
-            # blob_service_client = BlobServiceClient.from_connection_string(CONNECTION_STRING)
-            # container_client = blob_service_client.get_container_client(CONTAINER_NAME)
+            blob_service_client = BlobServiceClient.from_connection_string(CONNECTION_STRING)
+            container_client = blob_service_client.get_container_client(CONTAINER_NAME)
 
             # S3 객체 "전체"를 Azure Blob Storage에 복사    
             # s3_objects = s3_client.list_objects_v2(Bucket=S3_BUCKET, Prefix='ssgproduct/')
@@ -161,17 +160,17 @@ def register() :
             #         print(f"Error uploading {file_key}: {e}")
 
             # 현재 AWS S3에 업로드 한 파일을 Azure Blob Storage에 똑같이 복사
-            # try:
-            #     # S3 객체 다운로드
-            #     s3_obj = s3_client.get_object(Bucket=S3_BUCKET, Key=f'ssgproduct/{s3_filename}')
-            #     file_content = s3_obj['Body'].read()
+            try:
+                # S3 객체 다운로드
+                s3_obj = s3_client.get_object(Bucket=S3_BUCKET, Key=f'ssgproduct/{s3_filename}')
+                file_content = s3_obj['Body'].read()
 
-            #     # Azure Blob에 업로드
-            #     blob_client = container_client.get_blob_client(azure_filename)
-            #     blob_client.upload_blob(file_content)
-            #     print(f"{s3_filename} uploaded to Azure Blob Storage.")
-            # except Exception as e:
-            #     print(f"Error uploading {s3_filename}: {e}")
+                # Azure Blob에 업로드
+                blob_client = container_client.get_blob_client(azure_filename)
+                blob_client.upload_blob(file_content)
+                print(f"{s3_filename} uploaded to Azure Blob Storage.")
+            except Exception as e:
+                print(f"Error uploading {s3_filename}: {e}")
 
             # DB to JSON
             result = admin_DAO.dbToJson()
@@ -195,8 +194,6 @@ def register() :
 
             # JSON 파일을 읽어옵니다.
             file_content = read_json(FILE_NAME)
-            # GIST에 업로드
-            # uploadJsonToGist(GIST_ID, FILE_NAME, FILE_CONTENT, GITHUB_TOKEN)
 
             # GitHub Gist를 업데이트합니다.
             if uploadJsonToGist(GIST_ID, "db_data.json", str(file_content), GITHUB_TOKEN):
@@ -256,8 +253,8 @@ def edit(num) :
             s3_client.upload_fileobj(s3_file, S3_BUCKET,'ssgproduct/'+ s3_filename)
 
             # Azure Blob Storage에 파일 업로드
-            # blob_service_client = BlobServiceClient.from_connection_string(CONNECTION_STRING)
-            # container_client = blob_service_client.get_container_client(CONTAINER_NAME)
+            blob_service_client = BlobServiceClient.from_connection_string(CONNECTION_STRING)
+            container_client = blob_service_client.get_container_client(CONTAINER_NAME)
 
             # S3 객체 "전체"를 Azure Blob Storage에 복사    
             # s3_objects = s3_client.list_objects_v2(Bucket=S3_BUCKET, Prefix='ssgproduct/')
@@ -276,17 +273,17 @@ def edit(num) :
             #         print(f"Error uploading {file_key}: {e}")
 
             # 현재 AWS S3에 업로드 한 파일을 Azure Blob Storage에 똑같이 복사
-            # try:
-            #     # S3 객체 다운로드
-            #     s3_obj = s3_client.get_object(Bucket=S3_BUCKET, Key=f'ssgproduct/{s3_filename}')
-            #     file_content = s3_obj['Body'].read()
+            try:
+                # S3 객체 다운로드
+                s3_obj = s3_client.get_object(Bucket=S3_BUCKET, Key=f'ssgproduct/{s3_filename}')
+                file_content = s3_obj['Body'].read()
 
-            #     # Azure Blob에 업로드
-            #     blob_client = container_client.get_blob_client(azure_filename)
-            #     blob_client.upload_blob(file_content)
-            #     print(f"{s3_filename} uploaded to Azure Blob Storage.")
-            # except Exception as e:
-            #     print(f"Error uploading {s3_filename}: {e}")
+                # Azure Blob에 업로드
+                blob_client = container_client.get_blob_client(azure_filename)
+                blob_client.upload_blob(file_content)
+                print(f"{s3_filename} uploaded to Azure Blob Storage.")
+            except Exception as e:
+                print(f"Error uploading {s3_filename}: {e}")
 
             # DB to JSON
             result = admin_DAO.dbToJson()
@@ -346,7 +343,14 @@ def delete(num) :
             f.write(json.dumps(objects, ensure_ascii=False))
             f.close()
 
-            
+            # JSON 파일을 읽어옵니다.
+            file_content = read_json(FILE_NAME)
+
+            # GitHub Gist를 업데이트합니다.
+            if uploadJsonToGist(GIST_ID, "db_data.json", str(file_content), GITHUB_TOKEN):
+                print("Updated GitHub Gist successfully.")
+            else:
+                print("Failed to update GitHub Gist.")
 
             if result:
                 return jsonify({'message': '상품이 성공적으로 삭제되었습니다.'}), 200
