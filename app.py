@@ -3,9 +3,12 @@ from datetime import datetime
 import admin
 import user
 import login_DAO
+import logging
+
 
 app = Flask(__name__)
 app.secret_key = 'secret_key'
+logging.basicConfig(filename='error.log', level=logging.ERROR)
 
 # Blueprint
 app.register_blueprint(admin.bp)

@@ -7,8 +7,11 @@ from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient
 import requests
 import os
 import base64
+import logging
+
 
 bp = Blueprint("admin", __name__, url_prefix="/admin")
+logging.basicConfig(filename='error.log', level=logging.ERROR)
 
 # AWS 자격 증명 및 S3 클라이언트 생성
 session2 = boto3.Session()

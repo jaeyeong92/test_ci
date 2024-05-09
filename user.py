@@ -3,9 +3,11 @@ import user_DAO
 import login_DAO
 import boto3
 import uuid
+import logging
+
 
 bp = Blueprint("user", __name__, url_prefix="/user")
-
+logging.basicConfig(filename='error.log', level=logging.ERROR)
 # AWS 자격 증명 및 S3 클라이언트 생성
 session2 = boto3.Session()
 s3_client = session2.client('s3')
