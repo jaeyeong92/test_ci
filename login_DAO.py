@@ -5,8 +5,8 @@ def db_connect() :
     db = pymysql.connect(
         user = 'root',
         password = 'admin12345',
-        host = 'final-rds.cwshg6arkkpy.ap-northeast-1.rds.amazonaws.com',
-        db = 'coupang',
+        host = 'ssgpangdb.cwshg6arkkpy.ap-northeast-1.rds.amazonaws.com',
+        db = 'ssgpang',
         charset = 'utf8',
         autocommit = True
     )

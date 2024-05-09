@@ -5,8 +5,8 @@ def db_connect() :
     db = pymysql.connect(
         user = 'root',
         password = 'admin12345',
-        host = 'final-rds.cwshg6arkkpy.ap-northeast-1.rds.amazonaws.com',
-        db = 'coupang',
+        host = 'ssgpangdb.cwshg6arkkpy.ap-northeast-1.rds.amazonaws.com',
+        db = 'ssgpang',
         charset = 'utf8',
         autocommit = True
     )
@@ -27,14 +27,14 @@ def db_connect() :
 #     return db
 
 # S3 Image URL을 DB에 저장
-def saveToDatabase(productName, productPrice, productStock, productDescription, s3_url):
+def saveToDatabase(productName, productPrice, productStock, productDescription, s3_filename, azure_filename):
     # MySQL 데이터베이스에 연결
     con = db_connect()
     cursor = con.cursor()
 
     # S3 URL을 데이터베이스에 저장하는 쿼리 실행
-    sql_insert = "INSERT INTO product (product_name, product_price, product_stock, product_description, product_image) VALUES (%s, %s, %s, %s, %s)"
-    result_num = cursor.execute(sql_insert, (productName, productPrice, productStock, productDescription, s3_url))
+    sql_insert = "INSERT INTO product (product_name, product_price, product_stock, product_description, product_image_aws, product_image_azure) VALUES (%s, %s, %s, %s, %s, %s)"
+    result_num = cursor.execute(sql_insert, (productName, productPrice, productStock, productDescription, 'ssgproduct/'+ s3_filename, azure_filename))
     
     # 변경 사항 커밋
     con.commit()
@@ -67,10 +67,9 @@ def dbToJson():
     cursor = con.cursor()
 
     # S3 URL을 데이터베이스에 저장하는 쿼리 실행
-    sql_select = "SELECT product_name, product_price, product_stock, product_description, product_image FROM product"
+    sql_select = "SELECT product_name, product_price, product_stock, product_description, product_image_aws, product_image_azure FROM product"
     cursor.execute(sql_select)
     result = cursor.fetchall()
-    print(result)
     
     # 연결 종료
     cursor.close()
@@ -114,14 +113,14 @@ def selectProductByCode(num) :
     return result
 
 # 상품정보 수정 UPDATE
-def updateProductByCode(productName, productPrice, productStock, productDescription, s3_url, num) :
+def updateProductByCode(productName, productPrice, productStock, productDescription, s3_filename, azure_filename, num) :
     # MySQL 데이터베이스에 연결
     con = db_connect()
     cursor = con.cursor()
 
     # S3 URL을 데이터베이스에 저장하는 쿼리 실행
-    sql_update = "UPDATE product SET product_name = %s, product_price = %s, product_stock = %s, product_description = %s, product_image = %s WHERE product_code = %s"
-    result_num = cursor.execute(sql_update, (productName, productPrice, productStock, productDescription, s3_url, num))
+    sql_update = "UPDATE product SET product_name = %s, product_price = %s, product_stock = %s, product_description = %s, product_image_aws = %s, product_image_azure = %s WHERE product_code = %s"
+    result_num = cursor.execute(sql_update, (productName, productPrice, productStock, productDescription, 'ssgproduct/'+ s3_filename, azure_filename, num))
     
     # 연결 종료
     cursor.close()

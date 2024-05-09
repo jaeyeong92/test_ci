@@ -135,12 +135,8 @@ def product() :
             products = user_DAO.selectProductAll()
 
             for product in products :
-                imageName = product['product_image'][55:]
-                newImageName = get_public_url(S3_BUCKET, imageName)
-                print('test1' , get_public_url(S3_BUCKET, imageName))
-                print('test2' , imageName)
-                product['product_image'] = newImageName
-                print('user newImageName', newImageName)
+                newImageName = get_public_url(S3_BUCKET, product['product_image_aws'])
+                product['product_image_aws'] = newImageName
 
             return render_template('user/product.html', products = products, userInfo = userInfo)
 
@@ -175,9 +171,8 @@ def cartList() :
             carts = user_DAO.selectCartListByUserId(userId)
 
             for cart in carts :
-                imageName = cart['product_image'][55:]
-                newImageName = get_public_url(S3_BUCKET, imageName)
-                cart['product_image'] = newImageName
+                newImageName = get_public_url(S3_BUCKET, cart['product_image_aws'])
+                cart['product_image_aws'] = newImageName
 
             return render_template('user/cartList.html', carts = carts, userInfo = userInfo)
 
@@ -227,9 +222,8 @@ def searchProduct() :
             searchProducts = user_DAO.selectProductForSearch(searchQuery)
 
             for searchProduct in searchProducts :
-                imageName = searchProduct['product_image'][55:]
-                newImageName = get_public_url(S3_BUCKET, imageName)
-                searchProduct['product_image'] = newImageName
+                newImageName = get_public_url(S3_BUCKET, searchProduct['product_image_aws'])
+                searchProduct['product_image_aws'] = newImageName
 
             return render_template('user/productBySearch.html', searchProducts = searchProducts, userInfo = userInfo, searchQuery = searchQuery)
         

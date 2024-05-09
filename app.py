@@ -3,7 +3,6 @@ from datetime import datetime
 import admin
 import user
 import login_DAO
-import pymysql
 
 app = Flask(__name__)
 app.secret_key = 'secret_key'
