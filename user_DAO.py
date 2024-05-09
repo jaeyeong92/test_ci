@@ -13,10 +13,23 @@ def db_connect() :
 
     return db
 
+# DB 연결
+def db_connect_azure() :
+    db = pymysql.connect(
+        user = 'azureroot',
+        password = 'admin12345!!',
+        host = '10.1.10.10',
+        db = 'ssgpang',
+        charset = 'utf8',
+        autocommit = True
+    )
+
+    return db
+
 # 회원 정보 UPDATE
 def updateUserById(userId, userPw, userName, userEmail, userPhone, userAddress) :
 
-    con = db_connect()
+    con = db_connect_azure()
     cursor = con.cursor()
     sql_update = 'UPDATE users SET user_pw = %s, user_name = %s, user_email = %s, user_phone = %s, user_address = %s WHERE user_id = %s'
 
@@ -31,7 +44,7 @@ def updateUserById(userId, userPw, userName, userEmail, userPhone, userAddress) 
 def checkUserId(userId) :
 
     result = []
-    con = db_connect()
+    con = db_connect_azure()
 
     cursor = con.cursor(cursor=pymysql.cursors.DictCursor)
     sql_select = 'SELECT user_id FROM users WHERE user_id = %s'
@@ -48,7 +61,7 @@ def checkUserId(userId) :
 def checkUserEmail(userEmail) :
 
     result = []
-    con = db_connect()
+    con = db_connect_azure()
 
     cursor = con.cursor(cursor=pymysql.cursors.DictCursor)
     sql_select = 'SELECT user_email FROM users WHERE user_email = %s'
@@ -65,7 +78,7 @@ def checkUserEmail(userEmail) :
 def checkUserPhoneNumber(userPhone) :
 
     result = []
-    con = db_connect()
+    con = db_connect_azure()
 
     cursor = con.cursor(cursor=pymysql.cursors.DictCursor)
     sql_select = 'SELECT user_phone FROM users WHERE user_phone = %s'
@@ -81,7 +94,7 @@ def checkUserPhoneNumber(userPhone) :
 # 회원 정보 INSERT (회원가입)
 def insertUser(userId, userPw, userName, userEmail, userPhone, userAddress) :
     
-    con = db_connect()
+    con = db_connect_azure()
     cursor = con.cursor()
     sql_insert = 'INSERT INTO users (user_id, user_pw, user_name, user_email, user_phone, user_address) VALUES (%s, %s, %s, %s, %s, %s)'
 
@@ -95,7 +108,7 @@ def insertUser(userId, userPw, userName, userEmail, userPhone, userAddress) :
 # 상품 등록 페이지 SELECT
 def selectProductAll():
     # MySQL 데이터베이스에 연결
-    con = db_connect()
+    con = db_connect_azure()
     cursor = con.cursor(cursor=pymysql.cursors.DictCursor)
 
     # S3 URL을 데이터베이스에 저장하는 쿼리 실행
@@ -114,7 +127,7 @@ def selectProductAll():
 # 장바구니 Cart INSERT
 def insertCartList(cartUserId, cartProductCode) :
     
-    con = db_connect()
+    con = db_connect_azure()
     cursor = con.cursor()
     # 해당 상품이 장바구니에 있는지 확인
     sql_select = 'SELECT product_count FROM cart WHERE user_id = %s AND product_code = %s'
@@ -144,7 +157,7 @@ def insertCartList(cartUserId, cartProductCode) :
 
 # 장바구니(Cart) 정보 SELECT
 def selectCartListByUserId(userId):
-    con = db_connect()
+    con = db_connect_azure()
     cursor = con.cursor(cursor=pymysql.cursors.DictCursor)
 
     sql_select = """
@@ -163,7 +176,7 @@ def selectCartListByUserId(userId):
 
 # 장바구니(Cart) 상품 삭제
 def deleteCartListByCode(num) :
-    con = db_connect()
+    con = db_connect_azure()
     cursor = con.cursor()
 
     sql_delete = 'DELETE FROM cart WHERE product_code = %s'
@@ -178,7 +191,7 @@ def deleteCartListByCode(num) :
 def selectProductForSearch(searchQuery) :
 
     result = []
-    con = db_connect()
+    con = db_connect_azure()
     cursor = con.cursor(cursor=pymysql.cursors.DictCursor)
 
     sql_select = 'SELECT * FROM product WHERE product_name LIKE %s;'
@@ -197,7 +210,7 @@ def insertOrdersList(order_number, order_product_code,
                      order_user_id, order_user_name,
                      order_user_address, order_user_phone) :
     
-    con = db_connect()
+    con = db_connect_azure()
     cursor = con.cursor()
 
     # 장바구니에 새 상품 추가
@@ -216,7 +229,7 @@ def insertOrdersList(order_number, order_product_code,
 
 # 결제 후 장바구니(Cart) 상품 전체 비우기
 def deleteCartListAll(userId) :
-    con = db_connect()
+    con = db_connect_azure()
     cursor = con.cursor()
 
     sql_delete = 'DELETE FROM cart WHERE user_id = %s'
@@ -230,7 +243,7 @@ def deleteCartListAll(userId) :
 # 장바구니 Cart List 상품수량 변경 시 UPDATE
 def updateCartList(product_code, new_quantity, userId) :
 
-    con = db_connect()
+    con = db_connect_azure()
     cursor = con.cursor()
     sql_update = 'UPDATE cart SET product_count = %s WHERE user_id = %s AND product_code = %s'
 

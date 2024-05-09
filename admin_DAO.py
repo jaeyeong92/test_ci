@@ -14,22 +14,22 @@ def db_connect() :
     return db
 
 # DB 연결
-# def db_connect_azure() :
-#     db = pymysql.connect(
-#         user = 'ssgpangroot',
-#         password = 'admin12345!!',
-#         host = 'ssgpang-db.mysql.database.azure.com',
-#         db = 'ssgpang',
-#         charset = 'utf8',
-#         autocommit = True
-#     )
+def db_connect_azure() :
+    db = pymysql.connect(
+        user = 'azureroot',
+        password = 'admin12345!!',
+        host = '10.1.10.10',
+        db = 'ssgpang',
+        charset = 'utf8',
+        autocommit = True
+    )
 
-#     return db
+    return db
 
 # S3 Image URL을 DB에 저장
 def saveToDatabase(productName, productPrice, productStock, productDescription, s3_filename, azure_filename):
     # MySQL 데이터베이스에 연결
-    con = db_connect()
+    con = db_connect_azure()
     cursor = con.cursor()
 
     # S3 URL을 데이터베이스에 저장하는 쿼리 실행
@@ -63,7 +63,7 @@ def saveToDatabase(productName, productPrice, productStock, productDescription, 
 # DB to JSON
 def dbToJson():
     # MySQL 데이터베이스에 연결
-    con = db_connect()
+    con = db_connect_azure()
     cursor = con.cursor()
 
     # S3 URL을 데이터베이스에 저장하는 쿼리 실행
@@ -80,7 +80,7 @@ def dbToJson():
 # 상품 등록 페이지 SELECT
 def selectProductAll():
     # MySQL 데이터베이스에 연결
-    con = db_connect()
+    con = db_connect_azure()
     cursor = con.cursor(cursor=pymysql.cursors.DictCursor)
 
     # S3 URL을 데이터베이스에 저장하는 쿼리 실행
@@ -100,7 +100,7 @@ def selectProductAll():
 def selectProductByCode(num) :
 
     result = []
-    con = db_connect()
+    con = db_connect_azure()
     cursor = con.cursor(cursor=pymysql.cursors.DictCursor)
 
     sql_select = 'SELECT * FROM product WHERE product_code = %s'
@@ -115,7 +115,7 @@ def selectProductByCode(num) :
 # 상품정보 수정 UPDATE
 def updateProductByCode(productName, productPrice, productStock, productDescription, s3_filename, azure_filename, num) :
     # MySQL 데이터베이스에 연결
-    con = db_connect()
+    con = db_connect_azure()
     cursor = con.cursor()
 
     # S3 URL을 데이터베이스에 저장하는 쿼리 실행
@@ -130,7 +130,7 @@ def updateProductByCode(productName, productPrice, productStock, productDescript
 
 # 상품 삭제
 def deleteProductByCode(num) :
-    con = db_connect()
+    con = db_connect_azure()
     cursor = con.cursor()
 
     sql_delete = 'DELETE FROM product WHERE product_code = %s'
