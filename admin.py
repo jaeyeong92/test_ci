@@ -17,11 +17,11 @@ S3_BUCKET = 'ssgpang-bucket'
 
 # Azure Blob Storage 연결 설정
 encoded_connection_string = os.environ.get("AZURE_CONNECTION_STRING")
-# AZURE_CONNECTION_STRING = base64.b64decode(encoded_connection_string).decode('utf-8')
+AZURE_CONNECTION_STRING = base64.b64decode(encoded_connection_string).decode('utf-8')
 
 
 print('test1번', encoded_connection_string)
-print('test1번 decoding ', base64.b64decode(encoded_connection_string).decode('utf-8'))
+print('test1번 decoding ', AZURE_CONNECTION_STRING)
 CONTAINER_NAME = "ssgpang-container"
 
 # Blob 서비스 클라이언트 생성
@@ -31,10 +31,10 @@ CONTAINER_NAME = "ssgpang-container"
 # Git
 GIST_ID = "a9d6acbaf78e4d82a4dcf858ba3652ea"
 encoded_github_token = os.environ.get("GITHUB_TOKEN")
-# GITHUB_TOKEN = base64.b64decode(encoded_github_token).decode('utf-8')
+GITHUB_TOKEN = base64.b64decode(encoded_github_token).decode('utf-8')
 
 print('test2번', encoded_github_token)
-print('test2번 decoding', base64.b64decode(encoded_github_token).decode('utf-8'))
+print('test2번 decoding', GITHUB_TOKEN)
 
 def get_public_url(bucket_name, key) :
     # S3 객체에 대한 공개적인 URL 생성
