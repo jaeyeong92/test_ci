@@ -18,7 +18,7 @@ def db_connect_azure() :
     db = pymysql.connect(
         user = 'azureroot',
         password = 'admin12345!!',
-        host = '10.1.10.10',
+        host = 'db-svcdb-svc',
         db = 'ssgpang',
         charset = 'utf8',
         autocommit = True
