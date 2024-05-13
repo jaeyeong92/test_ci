@@ -33,7 +33,6 @@ function userRegisterCheck(event){
         url : "/user/userIdCheck",
         type : "get",
         data : {"userId" : userId}
-
     }).done(function(result) {
         if(result === '1') {
             alert('사용 가능한 ID입니다')
@@ -44,7 +43,6 @@ function userRegisterCheck(event){
             $('#idCheckHidden').val('0');
             checkSubmitForm()
         }
-        
     }).fail(function(error){
         console.error('There has been a problem with your AJAX request:', error);
     });
@@ -58,7 +56,6 @@ function userEmailCheck(event){
         url : "/user/userEmailCheck",
         type : "get",
         data : {"userEmail" : userEmail}
-
     }).done(function(result) {
         if(result === '1') {
             alert('사용 가능한 E-mail입니다')
@@ -69,7 +66,6 @@ function userEmailCheck(event){
             $('#emailCheckHidden').val('0');
             checkSubmitForm()
         }
-        
     }).fail(function(error){
         console.error('There has been a problem with your AJAX request:', error);
     });
@@ -83,7 +79,6 @@ function userPhoneNumberCheck(event){
         url : "/user/userPhoneNumberCheck",
         type : "get",
         data : {"userPhone" : userPhone}
-
     }).done(function(result) {
         if(result === '1') {
             alert('사용 가능한 전화번호입니다')
@@ -94,12 +89,10 @@ function userPhoneNumberCheck(event){
             $('#phoneNumberCheckHidden').val('0');
             checkSubmitForm()
         }
-        
     }).fail(function(error){
         console.error('There has been a problem with your AJAX request:', error);
     });
 }
-
 
 // 회원가입 Submit 활성화
 function checkSubmitForm(){
@@ -136,4 +129,5 @@ $(function(){
         });
     });
 });
+
 

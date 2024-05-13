@@ -8,17 +8,20 @@ import requests
 import os
 import logging
 
+# Blueprint 설정
 bp = Blueprint("admin", __name__, url_prefix="/admin")
 
+# Logging 설정
 logging.basicConfig(filename='error.log', level=logging.ERROR)
 
-# AWS 자격 증명 및 S3 클라이언트 생성
+# AWS Role 및 S3 클라이언트 생성
 session2 = boto3.Session()
 s3_client = session2.client('s3')
 S3_BUCKET = 'ssgpang-bucket'
 
 # Azure Blob Storage 연결 설정
 CONNECTION_STRING = os.environ.get("AZURE_CONNECTION_STRING")
+# CONNECTION_STRING = ""
 CONTAINER_NAME = "ssgpang-container"
 
 # Blob 서비스 클라이언트 생성
@@ -28,7 +31,9 @@ container_client = blob_service_client.get_container_client(CONTAINER_NAME)
 # Git
 GIST_ID = "a9d6acbaf78e4d82a4dcf858ba3652ea"
 GITHUB_TOKEN = os.environ.get("GIST_TOKEN")
+# GITHUB_TOKEN = ""
 
+# AWS S3 Image URL
 def get_public_url(bucket_name, key) :
     # S3 객체에 대한 공개적인 URL 생성
     url = s3_client.generate_presigned_url(
@@ -38,23 +43,38 @@ def get_public_url(bucket_name, key) :
     )
     return url
 
+# Azure Blob Storage Image URL
 def get_public_url_azure(container_name, blob_name):
     blob_client = BlobClient.from_connection_string(
         CONNECTION_STRING, container_name, blob_name
     )
-    # Blob의 URL을 가져옵니다.
     url = blob_client.url
     return url
+
+# 실행 환경 식별 ( AWS / Azure )
+
+# cloud_provider = os.environ.get("CLOUD_PROVIDER")
+# cloud_provider = "AWS"
+# cloud_provider = "AZURE"
+
+# AWS Metadata Service의 URL
+AWS_METADATA_URL = 'http://169.254.169.254/latest/meta-data/'
+# Azure Metadata Service의 URL
+# AZURE_METADATA_URL = 'http://169.254.169.254/metadata/instance?api-version=2019-06-01'
+response_aws = requests.get(AWS_METADATA_URL + 'instance-id', timeout=0.1)
+if response_aws.status_code == 200 :
+    cloud_provider = "AWS"
+else :
+    cloud_provider = "AZURE"
 
 # main 관리 페이지
 @bp.route('/home')
 def home() :
-
     # 관리자가 아닐 경우 user/home으로 redirect
     if 'loginSessionInfo' in session :
         userInfo = session.get('loginSessionInfo')
         if userInfo.get('user_role') != 'role_admin' :
-            return redirect(url_for('user.home'))
+            return redirect(url_for('user.product'))
         return render_template('admin/home.html')
     else :
         return redirect(url_for('login'))
@@ -62,39 +82,29 @@ def home() :
 # 상품정보
 @bp.route('/product', methods=['POST', 'GET'])
 def product() :
-
     if 'loginSessionInfo' in session :
-        # 관리자가 아닐 경우 user/home으로 redirect
         userInfo = session.get('loginSessionInfo')
+        # 관리자가 아닐 경우 user/home으로 redirect
         if userInfo.get('user_role') != 'role_admin' :
-            return redirect(url_for('user.home'))
+            return redirect(url_for('user.product'))
         
-        if request.method == 'GET' :
+        products = []
+        products = admin_DAO.selectProductAll(cloud_provider)
 
-            products = []
-            products = admin_DAO.selectProductAll()
-
-            for product in products :
-                # imageName = product['product_image_aws']
-                # newImageName = get_public_url(S3_BUCKET, imageName)
-                # product['product_image_aws'] = newImageName
+        for product in products :
+            # AWS
+            if cloud_provider == "AWS":
+                imageName = product['product_image_aws']
+                newImageName = get_public_url(S3_BUCKET, imageName)
+                product['product_image_aws'] = newImageName
+            # Azure
+            else :
                 imageName = product['product_image_azure']
                 newImageName = get_public_url_azure(CONTAINER_NAME, imageName)
                 product['product_image_azure'] = newImageName
 
-            return render_template('admin/product.html', products=products)
-        
-        elif request.method == 'POST' :
-            # Form에서 입력한 id
-            userId = request.form['userId']
-            # Form에서 입력한 password
-            userPw = request.form['userPw']
+        return render_template('admin/product.html', products = products, cloud_provider = cloud_provider)
 
-            # Form에서 입력한 id를 기반으로 DB 검색
-            userResult = admin_DAO.selectMemberById(userId)
-
-        else :
-            return render_template('index.html')
     else :
         return redirect(url_for('login'))
 
@@ -102,8 +112,8 @@ def product() :
 @bp.route('/register', methods=['POST', 'GET'])
 def register() :
     if 'loginSessionInfo' in session :
-        # 관리자가 아닐 경우 user/home으로 redirect
         userInfo = session.get('loginSessionInfo')
+        # 관리자가 아닐 경우 user/home으로 redirect
         if userInfo.get('user_role') != 'role_admin' :
             return redirect(url_for('user.home'))
         
@@ -130,37 +140,19 @@ def register() :
             azure_file = request.files['productImage']
             azure_filename = today_datetime + '_' + azure_file.filename
             
-            # 업로드된 이미지의 S3 URL 생성
-            # s3_url = f"https://{S3_BUCKET}.s3.ap-northeast-1.amazonaws.com/ssgproduct/{s3_filename}"
-            
             # DB 저장
-            admin_DAO.saveToDatabase(productName, productPrice, productStock, productDescription, s3_filename, azure_filename)
-
+            admin_DAO.insertProduct(productName, productPrice, 
+                                    productStock, productDescription, 
+                                    s3_filename, azure_filename, cloud_provider)
+            # # AWS - Azure에서 일반업로드 테스트 완료 후 다시.
+            # if cloud_provider == "AWS" :
             # S3에 업로드
             s3_client.upload_fileobj(s3_file, S3_BUCKET,'ssgproduct/' + s3_filename)
 
-            # Azure Blob Storage에 파일 업로드
-            blob_service_client = BlobServiceClient.from_connection_string(CONNECTION_STRING)
-            container_client = blob_service_client.get_container_client(CONTAINER_NAME)
-
-            # S3 객체 "전체"를 Azure Blob Storage에 복사    
-            # s3_objects = s3_client.list_objects_v2(Bucket=S3_BUCKET, Prefix='ssgproduct/')
-            # for obj in s3_objects.get('Contents', []):
-            #     file_key = obj['Key']
-            #     try:
-            #         # S3 객체 다운로드
-            #         file_obj = s3_client.get_object(Bucket=S3_BUCKET, Key=file_key)
-            #         file_content = file_obj['Body'].read()
-
-            #         # Azure Blob에 업로드
-            #         blob_client = container_client.get_blob_client(file_key.split('/')[-1])
-            #         blob_client.upload_blob(file_content)
-            #         print(f"{file_key} uploaded to Azure Blob Storage.")
-            #     except Exception as e:
-            #         print(f"Error uploading {file_key}: {e}")
-
-            # 현재 AWS S3에 업로드 한 파일을 Azure Blob Storage에 똑같이 복사
-            try:
+            # AWS & AZURE
+            if cloud_provider in ["AWS", "AZURE"] :
+                # Azure Blob Storage에 파일 업로드
+                # 현재 AWS S3에 업로드 한 파일을 Azure Blob Storage에 똑같이 복사
                 # S3 객체 다운로드
                 s3_obj = s3_client.get_object(Bucket=S3_BUCKET, Key=f'ssgproduct/{s3_filename}')
                 file_content = s3_obj['Body'].read()
@@ -169,11 +161,9 @@ def register() :
                 blob_client = container_client.get_blob_client(azure_filename)
                 blob_client.upload_blob(file_content)
                 print(f"{s3_filename} uploaded to Azure Blob Storage.")
-            except Exception as e:
-                print(f"Error uploading {s3_filename}: {e}")
 
-            # DB to JSON
-            result = admin_DAO.dbToJson()
+            # DB 백업서버를 위한 DB Data JSON화
+            result = admin_DAO.dbToJson(cloud_provider)
             objects = []
             for item in result:
                 obj = {
@@ -192,10 +182,8 @@ def register() :
             f.write(json.dumps(objects, ensure_ascii=False))
             f.close()
 
-            # JSON 파일을 읽어옵니다.
-            file_content = read_json(FILE_NAME)
-
             # GitHub Gist를 업데이트합니다.
+            file_content = read_json(FILE_NAME)
             if uploadJsonToGist(GIST_ID, "db_data.json", str(file_content), GITHUB_TOKEN):
                 print("Updated GitHub Gist successfully.")
             else:
@@ -204,23 +192,21 @@ def register() :
             return redirect(url_for('admin.product'))
 
         else :
-            return render_template('index.html')
+            return redirect(url_for('login'))
     else :
         return redirect(url_for('login'))
     
 # 상품 수정
-@bp.route('/edit/<int:num>', methods=['POST', 'GET'])
+@bp.route('/edit/<int:num>', methods=['GET', 'POST'])
 def edit(num) :
-
     if 'loginSessionInfo' in session :
-
-        # 관리자가 아닐 경우 user/home으로 redirect
         userInfo = session.get('loginSessionInfo')
+        # 관리자가 아닐 경우 user/home으로 redirect
         if userInfo.get('user_role') != 'role_admin' :
             return redirect(url_for('user.home'))
         
         if request.method == 'GET' :
-            selectResult = admin_DAO.selectProductByCode(num)
+            selectResult = admin_DAO.selectProductByCode(num, cloud_provider)
             return render_template('admin/edit.html', selectResult = selectResult)
         
         elif request.method == 'POST' :
@@ -242,38 +228,19 @@ def edit(num) :
             s3_filename = today_datetime + '_' + s3_file.filename
             azure_file = request.files['productImage']
             azure_filename = today_datetime + '_' + azure_file.filename
-
-            # 업로드된 이미지의 S3 URL 생성
-            # s3_url = f"https://{S3_BUCKET}.s3.ap-northeast-1.amazonaws.com/ssgproduct/{s3_filename}"
             
             # DB 저장
-            admin_DAO.updateProductByCode(productName, productPrice, productStock, productDescription, s3_filename, azure_filename, num)
+            admin_DAO.updateProductByCode(productName, productPrice, 
+                                          productStock, productDescription, 
+                                          s3_filename, azure_filename, num, cloud_provider)
 
             # S3에 업로드
             s3_client.upload_fileobj(s3_file, S3_BUCKET,'ssgproduct/'+ s3_filename)
 
-            # Azure Blob Storage에 파일 업로드
-            blob_service_client = BlobServiceClient.from_connection_string(CONNECTION_STRING)
-            container_client = blob_service_client.get_container_client(CONTAINER_NAME)
-
-            # S3 객체 "전체"를 Azure Blob Storage에 복사    
-            # s3_objects = s3_client.list_objects_v2(Bucket=S3_BUCKET, Prefix='ssgproduct/')
-            # for obj in s3_objects.get('Contents', []):
-            #     file_key = obj['Key']
-            #     try:
-            #         # S3 객체 다운로드
-            #         file_obj = s3_client.get_object(Bucket=S3_BUCKET, Key=file_key)
-            #         file_content = file_obj['Body'].read()
-
-            #         # Azure Blob에 업로드
-            #         blob_client = container_client.get_blob_client(file_key.split('/')[-1])
-            #         blob_client.upload_blob(file_content)
-            #         print(f"{file_key} uploaded to Azure Blob Storage.")
-            #     except Exception as e:
-            #         print(f"Error uploading {file_key}: {e}")
-
-            # 현재 AWS S3에 업로드 한 파일을 Azure Blob Storage에 똑같이 복사
-            try:
+            # AWS & AZURE
+            if cloud_provider in ["AWS", "AZURE"] :
+                # Azure Blob Storage에 파일 업로드
+                # 현재 AWS S3에 업로드 한 파일을 Azure Blob Storage에 똑같이 복사
                 # S3 객체 다운로드
                 s3_obj = s3_client.get_object(Bucket=S3_BUCKET, Key=f'ssgproduct/{s3_filename}')
                 file_content = s3_obj['Body'].read()
@@ -282,11 +249,9 @@ def edit(num) :
                 blob_client = container_client.get_blob_client(azure_filename)
                 blob_client.upload_blob(file_content)
                 print(f"{s3_filename} uploaded to Azure Blob Storage.")
-            except Exception as e:
-                print(f"Error uploading {s3_filename}: {e}")
 
-            # DB to JSON
-            result = admin_DAO.dbToJson()
+            # DB 백업서버를 위한 DB Data JSON화
+            result = admin_DAO.dbToJson(cloud_provider)
             objects = []
             for item in result:
                 obj = {
@@ -305,26 +270,32 @@ def edit(num) :
             f.write(json.dumps(objects, ensure_ascii=False))
             f.close()
 
+            # GitHub Gist를 업데이트합니다.
+            file_content = read_json(FILE_NAME)
+            if uploadJsonToGist(GIST_ID, "db_data.json", str(file_content), GITHUB_TOKEN):
+                print("Updated GitHub Gist successfully.")
+            else:
+                print("Failed to update GitHub Gist.")
+
             return redirect(url_for('admin.product'))
 
         else :
-            return render_template('index.html')
+            return redirect(url_for('login'))
     else :
         return redirect(url_for('login'))
     
 # 상품 삭제
 @bp.route('/delete/<int:num>', methods=['POST'])
 def delete(num) :
-
     if 'loginSessionInfo' in session :
         # 관리자일 경우에만 상품 삭제 가능
         userInfo = session.get('loginSessionInfo')
         if userInfo.get('user_role') == 'role_admin' :
 
-            admin_DAO.deleteProductByCode(num)
-            # return redirect(url_for('product'))
-            # DB to JSON
-            result = admin_DAO.dbToJson()
+            admin_DAO.deleteProductByCode(num, cloud_provider)
+
+            # DB 백업서버를 위한 DB Data JSON화
+            result = admin_DAO.dbToJson(cloud_provider)
             objects = []
             for item in result:
                 obj = {
@@ -343,10 +314,8 @@ def delete(num) :
             f.write(json.dumps(objects, ensure_ascii=False))
             f.close()
 
-            # JSON 파일을 읽어옵니다.
-            file_content = read_json(FILE_NAME)
-
             # GitHub Gist를 업데이트합니다.
+            file_content = read_json(FILE_NAME)
             if uploadJsonToGist(GIST_ID, "db_data.json", str(file_content), GITHUB_TOKEN):
                 print("Updated GitHub Gist successfully.")
             else:
@@ -356,6 +325,9 @@ def delete(num) :
                 return jsonify({'message': '상품이 성공적으로 삭제되었습니다.'}), 200
             else:
                 return jsonify({'message': '상품 삭제에 실패했습니다.'}), 500
+        # 관리자가 아닐 경우    
+        else :
+            return redirect(url_for('login'))
     else :
         return redirect(url_for('login'))
     
@@ -379,7 +351,6 @@ def uploadJsonToGist(gist_id, file_name, file_content, github_token):
         headers={"Authorization": f"token {github_token}"},
         json=data
     )
-    print(response.content)
 
     # 요청이 성공하면 True를 반환합니다.
     if response.status_code == 200:
@@ -389,7 +360,7 @@ def uploadJsonToGist(gist_id, file_name, file_content, github_token):
         print("Failed to update GitHub Gist.")
         return False
 
-# JSON 파일을 읽어옵니다.
+# JSON 파일 읽기
 def read_json(file_path):
     with open(file_path, 'r', encoding='utf-8') as f:
         data = json.load(f)

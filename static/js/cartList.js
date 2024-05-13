@@ -46,7 +46,6 @@ $(function () {
                 productElement.remove();
                 updateProductPrice();
             }
-            
         }).fail(function(error){
             console.error('There has been a problem with your AJAX request:', error);
         });

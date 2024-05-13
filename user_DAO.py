@@ -1,6 +1,6 @@
 import pymysql
 
-# DB 연결
+# DB 연결 - AWS
 def db_connect() :
     db = pymysql.connect(
         user = 'root',
@@ -10,26 +10,29 @@ def db_connect() :
         charset = 'utf8',
         autocommit = True
     )
-
     return db
 
-# DB 연결
+# DB 연결 - Azure
 def db_connect_azure() :
     db = pymysql.connect(
         user = 'azureroot',
         password = 'admin12345!!',
-        host = '10.1.2.101',
+        host = 'db-svc',
         db = 'ssgpang',
         charset = 'utf8',
         autocommit = True
     )
-
     return db
 
 # 회원 정보 UPDATE
-def updateUserById(userId, userPw, userName, userEmail, userPhone, userAddress) :
+def updateUserById(userId, userPw, userName, userEmail, userPhone, userAddress, cloud_provider) :
+    # AWS
+    if cloud_provider == 'AWS' :
+        con = db_connect()
+    # AZURE    
+    else :
+        con = db_connect_azure()
 
-    con = db_connect_azure()
     cursor = con.cursor()
     sql_update = 'UPDATE users SET user_pw = %s, user_name = %s, user_email = %s, user_phone = %s, user_address = %s WHERE user_id = %s'
 
@@ -41,63 +44,80 @@ def updateUserById(userId, userPw, userName, userEmail, userPhone, userAddress) 
     return result_num
 
 # 회원가입 시 ID 중복확인
-def checkUserId(userId) :
+def checkUserId(userId, cloud_provider) :
+    # AWS
+    if cloud_provider == 'AWS' :
+        con = db_connect()
+    # AZURE    
+    else :
+        con = db_connect_azure()
 
     result = []
-    con = db_connect_azure()
 
     cursor = con.cursor(cursor=pymysql.cursors.DictCursor)
     sql_select = 'SELECT user_id FROM users WHERE user_id = %s'
     cursor.execute(sql_select, userId)
     result = cursor.fetchone()
 
-    # 연결 종료
     cursor.close()
     con.close()
 
     return result
 
 # 회원가입 시 E-mail 중복확인
-def checkUserEmail(userEmail) :
+def checkUserEmail(userEmail, cloud_provider) :
+    # AWS
+    if cloud_provider == 'AWS' :
+        con = db_connect()
+    # AZURE    
+    else :
+        con = db_connect_azure()
 
     result = []
-    con = db_connect_azure()
 
     cursor = con.cursor(cursor=pymysql.cursors.DictCursor)
     sql_select = 'SELECT user_email FROM users WHERE user_email = %s'
     cursor.execute(sql_select, userEmail)
     result = cursor.fetchone()
 
-    # 연결 종료
     cursor.close()
     con.close()
 
     return result
 
 # 회원가입 시 PhoneNumber 중복확인
-def checkUserPhoneNumber(userPhone) :
+def checkUserPhoneNumber(userPhone, cloud_provider) :
+    # AWS
+    if cloud_provider == 'AWS' :
+        con = db_connect()
+    # AZURE    
+    else :
+        con = db_connect_azure()
 
     result = []
-    con = db_connect_azure()
 
     cursor = con.cursor(cursor=pymysql.cursors.DictCursor)
     sql_select = 'SELECT user_phone FROM users WHERE user_phone = %s'
     cursor.execute(sql_select, userPhone)
     result = cursor.fetchone()
 
-    # 연결 종료
     cursor.close()
     con.close()
 
     return result
 
 # 회원 정보 INSERT (회원가입)
-def insertUser(userId, userPw, userName, userEmail, userPhone, userAddress) :
-    
-    con = db_connect_azure()
+def insertUser(userId, userPw, userName, 
+               userEmail, userPhone, userAddress, cloud_provider) :
+    # AWS
+    if cloud_provider == 'AWS' :
+        con = db_connect()
+    # AZURE    
+    else :
+        con = db_connect_azure()
+
     cursor = con.cursor()
     sql_insert = 'INSERT INTO users (user_id, user_pw, user_name, user_email, user_phone, user_address) VALUES (%s, %s, %s, %s, %s, %s)'
-
     result_num = cursor.execute(sql_insert, (userId, userPw, userName, userEmail, userPhone, userAddress))
     
     cursor.close()
@@ -106,29 +126,37 @@ def insertUser(userId, userPw, userName, userEmail, userPhone, userAddress) :
     return result_num
 
 # 상품 등록 페이지 SELECT
-def selectProductAll():
-    # MySQL 데이터베이스에 연결
-    con = db_connect_azure()
-    cursor = con.cursor(cursor=pymysql.cursors.DictCursor)
+def selectProductAll(cloud_provider):
+    # AWS
+    if cloud_provider == 'AWS' :
+        con = db_connect()
+    # AZURE    
+    else :
+        con = db_connect_azure()
 
-    # S3 URL을 데이터베이스에 저장하는 쿼리 실행
+    cursor = con.cursor(cursor=pymysql.cursors.DictCursor)
     sql_select = "SELECT * FROM product ORDER BY product_date DESC"
     cursor.execute(sql_select)
     
     result = []
     result = cursor.fetchall()
     
-    # 연결 종료
     cursor.close()
     con.close()
 
     return result
 
 # 장바구니 Cart INSERT
-def insertCartList(cartUserId, cartProductCode) :
-    
-    con = db_connect_azure()
+def insertCartList(cartUserId, cartProductCode, cloud_provider) :
+    # AWS
+    if cloud_provider == 'AWS' :
+        con = db_connect()
+    # AZURE    
+    else :
+        con = db_connect_azure()
+
     cursor = con.cursor()
+
     # 해당 상품이 장바구니에 있는지 확인
     sql_select = 'SELECT product_count FROM cart WHERE user_id = %s AND product_code = %s'
     cursor.execute(sql_select, (cartUserId, cartProductCode))
@@ -156,8 +184,14 @@ def insertCartList(cartUserId, cartProductCode) :
     return result_num
 
 # 장바구니(Cart) 정보 SELECT
-def selectCartListByUserId(userId):
-    con = db_connect_azure()
+def selectCartListByUserId(userId, cloud_provider):
+    # AWS
+    if cloud_provider == 'AWS' :
+        con = db_connect()
+    # AZURE    
+    else :
+        con = db_connect_azure()
+
     cursor = con.cursor(cursor=pymysql.cursors.DictCursor)
 
     sql_select = """
@@ -175,8 +209,14 @@ def selectCartListByUserId(userId):
     return result
 
 # 장바구니(Cart) 상품 삭제
-def deleteCartListByCode(num) :
-    con = db_connect_azure()
+def deleteCartListByCode(num, cloud_provider) :
+    # AWS
+    if cloud_provider == 'AWS' :
+        con = db_connect()
+    # AZURE    
+    else :
+        con = db_connect_azure()
+
     cursor = con.cursor()
 
     sql_delete = 'DELETE FROM cart WHERE product_code = %s'
@@ -188,10 +228,15 @@ def deleteCartListByCode(num) :
     return result_num
 
 # 상품 검색
-def selectProductForSearch(searchQuery) :
+def selectProductForSearch(searchQuery, cloud_provider) :
+    # AWS
+    if cloud_provider == 'AWS' :
+        con = db_connect()
+    # AZURE    
+    else :
+        con = db_connect_azure()    
 
     result = []
-    con = db_connect_azure()
     cursor = con.cursor(cursor=pymysql.cursors.DictCursor)
 
     sql_select = 'SELECT * FROM product WHERE product_name LIKE %s;'
@@ -208,9 +253,14 @@ def selectProductForSearch(searchQuery) :
 def insertOrdersList(order_number, order_product_code, 
                      order_product_stock, order_product_price,
                      order_user_id, order_user_name,
-                     order_user_address, order_user_phone) :
+                     order_user_address, order_user_phone, cloud_provider) :
+    # AWS
+    if cloud_provider == 'AWS' :
+        con = db_connect()
+    # AZURE    
+    else :
+        con = db_connect_azure()     
     
-    con = db_connect_azure()
     cursor = con.cursor()
 
     # 장바구니에 새 상품 추가
@@ -228,8 +278,14 @@ def insertOrdersList(order_number, order_product_code,
     con.close()
 
 # 결제 후 장바구니(Cart) 상품 전체 비우기
-def deleteCartListAll(userId) :
-    con = db_connect_azure()
+def deleteCartListAll(userId, cloud_provider) :
+    # AWS
+    if cloud_provider == 'AWS' :
+        con = db_connect()
+    # AZURE    
+    else :
+        con = db_connect_azure()
+
     cursor = con.cursor()
 
     sql_delete = 'DELETE FROM cart WHERE user_id = %s'
@@ -241,12 +297,16 @@ def deleteCartListAll(userId) :
     return result_num
 
 # 장바구니 Cart List 상품수량 변경 시 UPDATE
-def updateCartList(product_code, new_quantity, userId) :
+def updateCartList(product_code, new_quantity, userId, cloud_provider) :
+    # AWS
+    if cloud_provider == 'AWS' :
+        con = db_connect()
+    # AZURE    
+    else :
+        con = db_connect_azure()
 
-    con = db_connect_azure()
     cursor = con.cursor()
     sql_update = 'UPDATE cart SET product_count = %s WHERE user_id = %s AND product_code = %s'
-
     result_num = cursor.execute(sql_update, (new_quantity, userId, product_code))
     
     cursor.close()
