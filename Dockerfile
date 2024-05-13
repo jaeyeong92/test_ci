@@ -3,12 +3,12 @@ FROM python:3.12.3
 COPY . /app
 
 RUN pip install flask
-RUN apt update
-RUN apt install mariadb-server-10.5
 
 WORKDIR /app
 
 RUN pip install -r requirements.txt
+RUN apt update
+RUN apt install mariadb-server-10.5
 
 ENV FLASK_APP=app.py
 ENV FLASK_RUN_HOST=0.0.0.0
