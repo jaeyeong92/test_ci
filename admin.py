@@ -20,8 +20,8 @@ s3_client = session2.client('s3')
 S3_BUCKET = 'ssgpang-bucket'
 
 # Azure Blob Storage 연결 설정
-CONNECTION_STRING = os.environ.get("AZURE_CONNECTION_STRING")
-# CONNECTION_STRING = ""
+# CONNECTION_STRING = os.environ.get("AZURE_CONNECTION_STRING")
+CONNECTION_STRING = ""
 CONTAINER_NAME = "ssgpang-container"
 
 # Blob 서비스 클라이언트 생성
@@ -30,8 +30,8 @@ container_client = blob_service_client.get_container_client(CONTAINER_NAME)
 
 # Git
 GIST_ID = "a9d6acbaf78e4d82a4dcf858ba3652ea"
-GITHUB_TOKEN = os.environ.get("GIST_TOKEN")
-# GITHUB_TOKEN = ""
+# GITHUB_TOKEN = os.environ.get("GIST_TOKEN")
+GITHUB_TOKEN = ""
 
 # AWS S3 Image URL
 def get_public_url(bucket_name, key) :
@@ -52,10 +52,12 @@ def get_public_url_azure(container_name, blob_name):
     return url
 
 # 실행 환경 식별 ( AWS / Azure )
-cloud_provider = os.environ.get("CLOUD_PROVIDER")
-print('정답은 ', cloud_provider)
-# cloud_provider = "AWS"
+# cloud_provider = os.environ.get("CLOUD_PROVIDER")
+cloud_provider = "AWS"
 # cloud_provider = "AZURE"
+
+# AWS/Azure DB 동기화
+AWS_AZURE_INSERT_FLAG = True
 
 # main 관리 페이지
 @bp.route('/home')
@@ -133,7 +135,7 @@ def register() :
             # DB 저장
             admin_DAO.insertProduct(productName, productPrice, 
                                     productStock, productDescription, 
-                                    s3_filename, azure_filename, cloud_provider)
+                                    s3_filename, azure_filename, cloud_provider, AWS_AZURE_INSERT_FLAG)
             # # AWS - Azure에서 일반업로드 테스트 완료 후 다시.
             # if cloud_provider == "AWS" :
             # S3에 업로드
@@ -153,31 +155,32 @@ def register() :
                 print(f"{s3_filename} uploaded to Azure Blob Storage.")
 
             # DB 백업서버를 위한 DB Data JSON화
-            result = admin_DAO.dbToJson(cloud_provider)
-            objects = []
-            for item in result:
-                obj = {
-                    "product_name": item[0],
-                    "product_price": item[1],
-                    "product_stock": item[2],
-                    "product_description": item[3],
-                    "product_image_aws": item[4],
-                    "product_image_azure": item[5],
-                }
-                objects.append(obj)
+            if AWS_AZURE_INSERT_FLAG == False :
+                result = admin_DAO.dbToJson(cloud_provider)
+                objects = []
+                for item in result:
+                    obj = {
+                        "product_name": item[0],
+                        "product_price": item[1],
+                        "product_stock": item[2],
+                        "product_description": item[3],
+                        "product_image_aws": item[4],
+                        "product_image_azure": item[5],
+                    }
+                    objects.append(obj)
 
-            # 생성할 JSON 파일 설정
-            FILE_NAME = "./db_data.json"
-            f = open(FILE_NAME, 'w', encoding='utf-8')
-            f.write(json.dumps(objects, ensure_ascii=False))
-            f.close()
+                # 생성할 JSON 파일 설정
+                FILE_NAME = "./db_data.json"
+                f = open(FILE_NAME, 'w', encoding='utf-8')
+                f.write(json.dumps(objects, ensure_ascii=False))
+                f.close()
 
-            # GitHub Gist를 업데이트합니다.
-            file_content = read_json(FILE_NAME)
-            if uploadJsonToGist(GIST_ID, "db_data.json", str(file_content), GITHUB_TOKEN):
-                print("Updated GitHub Gist successfully.")
-            else:
-                print("Failed to update GitHub Gist.")
+                # GitHub Gist를 업데이트합니다.
+                file_content = read_json(FILE_NAME)
+                if uploadJsonToGist(GIST_ID, "db_data.json", str(file_content), GITHUB_TOKEN):
+                    print("Updated GitHub Gist successfully.")
+                else:
+                    print("Failed to update GitHub Gist.")
 
             return redirect(url_for('admin.product'))
 
@@ -222,7 +225,7 @@ def edit(num) :
             # DB 저장
             admin_DAO.updateProductByCode(productName, productPrice, 
                                           productStock, productDescription, 
-                                          s3_filename, azure_filename, num, cloud_provider)
+                                          s3_filename, azure_filename, num, cloud_provider, AWS_AZURE_INSERT_FLAG)
 
             # S3에 업로드
             s3_client.upload_fileobj(s3_file, S3_BUCKET,'ssgproduct/'+ s3_filename)
@@ -241,31 +244,32 @@ def edit(num) :
                 print(f"{s3_filename} uploaded to Azure Blob Storage.")
 
             # DB 백업서버를 위한 DB Data JSON화
-            result = admin_DAO.dbToJson(cloud_provider)
-            objects = []
-            for item in result:
-                obj = {
-                    "product_name": item[0],
-                    "product_price": item[1],
-                    "product_stock": item[2],
-                    "product_description": item[3],
-                    "product_image_aws": item[4],
-                    "product_image_azure": item[5]
-                }
-                objects.append(obj)
+            if AWS_AZURE_INSERT_FLAG == False :
+                result = admin_DAO.dbToJson(cloud_provider)
+                objects = []
+                for item in result:
+                    obj = {
+                        "product_name": item[0],
+                        "product_price": item[1],
+                        "product_stock": item[2],
+                        "product_description": item[3],
+                        "product_image_aws": item[4],
+                        "product_image_azure": item[5]
+                    }
+                    objects.append(obj)
 
-            # 생성할 JSON 파일 설정
-            FILE_NAME = "./db_data.json"
-            f = open(FILE_NAME, 'w', encoding='utf-8')
-            f.write(json.dumps(objects, ensure_ascii=False))
-            f.close()
+                # 생성할 JSON 파일 설정
+                FILE_NAME = "./db_data.json"
+                f = open(FILE_NAME, 'w', encoding='utf-8')
+                f.write(json.dumps(objects, ensure_ascii=False))
+                f.close()
 
-            # GitHub Gist를 업데이트합니다.
-            file_content = read_json(FILE_NAME)
-            if uploadJsonToGist(GIST_ID, "db_data.json", str(file_content), GITHUB_TOKEN):
-                print("Updated GitHub Gist successfully.")
-            else:
-                print("Failed to update GitHub Gist.")
+                # GitHub Gist를 업데이트합니다.
+                file_content = read_json(FILE_NAME)
+                if uploadJsonToGist(GIST_ID, "db_data.json", str(file_content), GITHUB_TOKEN):
+                    print("Updated GitHub Gist successfully.")
+                else:
+                    print("Failed to update GitHub Gist.")
 
             return redirect(url_for('admin.product'))
 
@@ -282,39 +286,40 @@ def delete(num) :
         userInfo = session.get('loginSessionInfo')
         if userInfo.get('user_role') == 'role_admin' :
 
-            admin_DAO.deleteProductByCode(num, cloud_provider)
+            admin_DAO.deleteProductByCode(num, cloud_provider, AWS_AZURE_INSERT_FLAG)
 
             # DB 백업서버를 위한 DB Data JSON화
-            result = admin_DAO.dbToJson(cloud_provider)
-            objects = []
-            for item in result:
-                obj = {
-                    "product_name": item[0],
-                    "product_price": item[1],
-                    "product_stock": item[2],
-                    "product_description": item[3],
-                    "product_image_aws": item[4],
-                    "product_image_azure": item[5]
-                }
-                objects.append(obj)
+            if AWS_AZURE_INSERT_FLAG == False :
+                result = admin_DAO.dbToJson(cloud_provider)
+                objects = []
+                for item in result:
+                    obj = {
+                        "product_name": item[0],
+                        "product_price": item[1],
+                        "product_stock": item[2],
+                        "product_description": item[3],
+                        "product_image_aws": item[4],
+                        "product_image_azure": item[5]
+                    }
+                    objects.append(obj)
 
-            # 생성할 JSON 파일 설정
-            FILE_NAME = "./db_data.json"
-            f = open(FILE_NAME, 'w', encoding='utf-8')
-            f.write(json.dumps(objects, ensure_ascii=False))
-            f.close()
+                # 생성할 JSON 파일 설정
+                FILE_NAME = "./db_data.json"
+                f = open(FILE_NAME, 'w', encoding='utf-8')
+                f.write(json.dumps(objects, ensure_ascii=False))
+                f.close()
 
-            # GitHub Gist를 업데이트합니다.
-            file_content = read_json(FILE_NAME)
-            if uploadJsonToGist(GIST_ID, "db_data.json", str(file_content), GITHUB_TOKEN):
-                print("Updated GitHub Gist successfully.")
-            else:
-                print("Failed to update GitHub Gist.")
+                # GitHub Gist를 업데이트합니다.
+                file_content = read_json(FILE_NAME)
+                if uploadJsonToGist(GIST_ID, "db_data.json", str(file_content), GITHUB_TOKEN):
+                    print("Updated GitHub Gist successfully.")
+                else:
+                    print("Failed to update GitHub Gist.")
 
-            if result:
-                return jsonify({'message': '상품이 성공적으로 삭제되었습니다.'}), 200
-            else:
-                return jsonify({'message': '상품 삭제에 실패했습니다.'}), 500
+                if result:
+                    return jsonify({'message': '상품이 성공적으로 삭제되었습니다.'}), 200
+                else:
+                    return jsonify({'message': '상품 삭제에 실패했습니다.'}), 500
         # 관리자가 아닐 경우    
         else :
             return redirect(url_for('login'))
@@ -348,6 +353,8 @@ def uploadJsonToGist(gist_id, file_name, file_content, github_token):
     else:
         # 요청이 실패하면 False를 반환합니다.
         print("Failed to update GitHub Gist.")
+        error_message = f"Failed to update GitHub Gist. Status code: {response.status_code}, Response body: {response.text}"
+        print(error_message)
         return False
 
 # JSON 파일 읽기

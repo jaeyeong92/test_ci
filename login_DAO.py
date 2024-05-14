@@ -1,11 +1,35 @@
 import pymysql
 
+# # DB 연결 - AWS
+# def db_connect() :
+#     db = pymysql.connect(
+#         user = 'root',
+#         password = 'admin12345',
+#         host = 'db-svc',
+#         db = 'ssgpang',
+#         charset = 'utf8',
+#         autocommit = True
+#     )
+#     return db
+
+# # DB 연결 - Azure
+# def db_connect_azure() :
+#     db = pymysql.connect(
+#         user = 'azureroot',
+#         password = 'admin12345!!',
+#         host = '10.1.2.101',
+#         db = 'ssgpang',
+#         charset = 'utf8',
+#         autocommit = True
+#     )
+#     return db
+
 # DB 연결 - AWS
 def db_connect() :
     db = pymysql.connect(
         user = 'root',
         password = 'admin12345',
-        host = 'db-svc',
+        host = 'ssgpangdb.cwshg6arkkpy.ap-northeast-1.rds.amazonaws.com',
         db = 'ssgpang',
         charset = 'utf8',
         autocommit = True
@@ -17,7 +41,7 @@ def db_connect_azure() :
     db = pymysql.connect(
         user = 'azureroot',
         password = 'admin12345!!',
-        host = '10.1.2.101',
+        host = 'ssgpang-db.mysql.database.azure.com',
         db = 'ssgpang',
         charset = 'utf8',
         autocommit = True

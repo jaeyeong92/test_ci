@@ -21,17 +21,17 @@ s3_client = session2.client('s3')
 S3_BUCKET = 'ssgpang-bucket'
 
 # Azure Blob Storage 연결 설정
-CONNECTION_STRING = os.environ.get("AZURE_CONNECTION_STRING")
-# CONNECTION_STRING = ""
+# CONNECTION_STRING = os.environ.get("AZURE_CONNECTION_STRING")
+CONNECTION_STRING = ""
 CONTAINER_NAME = "ssgpang-container"
 
 # Blob 서비스 클라이언트 생성
 blob_service_client = BlobServiceClient.from_connection_string(CONNECTION_STRING)
 container_client = blob_service_client.get_container_client(CONTAINER_NAME)
 
-# Git
-GIST_ID = "a9d6acbaf78e4d82a4dcf858ba3652ea"
-GITHUB_TOKEN = os.environ.get("GIST_TOKEN")
+# # Git
+# GIST_ID = "a9d6acbaf78e4d82a4dcf858ba3652ea"
+# GITHUB_TOKEN = os.environ.get("GIST_TOKEN")
 # GITHUB_TOKEN = ""
 
 # AWS S3 Image URL
@@ -53,9 +53,12 @@ def get_public_url_azure(container_name, blob_name):
     return url
 
 # 실행 환경 식별 ( AWS / Azure )
-cloud_provider = os.environ.get("CLOUD_PROVIDER")
-# cloud_provider = "AWS"
+# cloud_provider = os.environ.get("CLOUD_PROVIDER")
+cloud_provider = "AWS"
 # cloud_provider = "AZURE"
+
+# AWS/Azure DB 동기화
+AWS_AZURE_INSERT_FLAG = True
 
 @bp.route('/home')
 def home() :
@@ -72,13 +75,13 @@ def userRegister() :
         userId = request.form['userId']
         userPw = request.form['userPw']
         hashed_password = hashlib.sha256(userPw.encode()).hexdigest()
-        print('가입할 때 ', hashed_password)
         userName = request.form['userName']
         userEmail = request.form['userEmail']
         userPhone = request.form['userPhone']
         userAddress = request.form['userAddress']
 
-        user_DAO.insertUser(userId, hashed_password, userName, userEmail, userPhone, userAddress, cloud_provider)
+        user_DAO.insertUser(userId, hashed_password, userName, userEmail, userPhone, 
+                            userAddress, cloud_provider, AWS_AZURE_INSERT_FLAG)
 
         return redirect(url_for('user.product'))
 
@@ -146,8 +149,8 @@ def myPageEdit(num) :
             userPhone = request.form['userPhone']
             userAddress = request.form['userAddress']
 
-            user_DAO.updateUserById(userId, userPw, userName, 
-                                    userEmail, userPhone, userAddress, cloud_provider)
+            user_DAO.updateUserById(userId, userPw, userName, userEmail, 
+                                    userPhone, userAddress, cloud_provider, AWS_AZURE_INSERT_FLAG)
 
             # Session 갱신 후 user/home으로 redirect
             session['loginSessionInfo'] = login_DAO.selectUserById(userId, cloud_provider)
@@ -196,7 +199,7 @@ def add_to_cart():
     cartProductCode = request.form.get('cartProductCode')
     
     # 장바구니에 상품 추가
-    user_DAO.insertCartList(cartUserId, cartProductCode, cloud_provider)
+    user_DAO.insertCartList(cartUserId, cartProductCode, cloud_provider, AWS_AZURE_INSERT_FLAG)
     
     return '장바구니에 담았습니다.'
 
@@ -234,7 +237,7 @@ def cartList() :
 @bp.route('/deleteCartList/<int:num>', methods=['POST'])
 def deleteCartList(num) :
 
-    result = user_DAO.deleteCartListByCode(num, cloud_provider)
+    result = user_DAO.deleteCartListByCode(num, cloud_provider, AWS_AZURE_INSERT_FLAG)
     
     if result :
         return '200'
@@ -318,9 +321,9 @@ def pay():
                                    order_user_name, order_user_address, order_user_phone):
                 # 각 상품 코드와 수량에 대한 처리 수행
                 # 예: 주문 생성 및 데이터베이스에 저장
-                user_DAO.insertOrdersList(order_number, code, stock, 
-                                          price, userid, username, useraddress, userphone, cloud_provider)
-                user_DAO.deleteCartListAll(userId, cloud_provider)
+                user_DAO.insertOrdersList(order_number, code, stock, price, userid, 
+                                          username, useraddress, userphone, cloud_provider, AWS_AZURE_INSERT_FLAG)
+                user_DAO.deleteCartListAll(userId, cloud_provider, AWS_AZURE_INSERT_FLAG)
 
             # 결제 완료 후 처리
             return redirect(url_for('user.product'))
@@ -343,7 +346,7 @@ def updateCartList():
 
                 # 장바구니 업데이트 로직 수행
                 # 예: user_DAO.updateCart(product_code, new_quantity)
-                user_DAO.updateCartList(product_code, new_quantity, userId, cloud_provider)
+                user_DAO.updateCartList(product_code, new_quantity, userId, cloud_provider, AWS_AZURE_INSERT_FLAG)
                 
                 return '장바구니가 업데이트되었습니다.'
         else:

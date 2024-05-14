@@ -18,18 +18,8 @@ app.register_blueprint(user.bp)
 
 # 실행 환경 식별 ( AWS / Azure )
 # cloud_provider = os.environ.get("CLOUD_PROVIDER")
-# cloud_provider = "AWS"
+cloud_provider = "AWS"
 # cloud_provider = "AZURE"
-
-# AWS Metadata Service의 URL
-AWS_METADATA_URL = 'http://169.254.169.254/latest/meta-data/'
-# Azure Metadata Service의 URL
-# AZURE_METADATA_URL = 'http://169.254.169.254/metadata/instance?api-version=2019-06-01'
-response_aws = requests.get(AWS_METADATA_URL + 'instance-id', timeout=0.1)
-if response_aws.status_code == 200 :
-    cloud_provider = "AWS"
-else :
-    cloud_provider = "AZURE"
 
 # index 페이지
 @app.route('/')
@@ -48,7 +38,6 @@ def login() :
         # PW
         userPw = request.form['userPw']
         hashed_password = hashlib.sha256(userPw.encode()).hexdigest()
-        print('로그인할 때 ', hashed_password)
 
         # Form에서 입력한 id를 기반으로 DB 검색
         userResult = login_DAO.selectUserById(userId, cloud_provider)
