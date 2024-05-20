@@ -20,8 +20,8 @@ s3_client = session2.client('s3')
 S3_BUCKET = 'ssgpang-bucket'
 
 # Azure Blob Storage 연결 설정
-# CONNECTION_STRING = os.environ.get("AZURE_CONNECTION_STRING")
-CONNECTION_STRING = ""
+CONNECTION_STRING = os.environ.get("AZURE_CONNECTION_STRING")
+# CONNECTION_STRING = ""
 CONTAINER_NAME = "ssgpang-container"
 
 # Blob 서비스 클라이언트 생성
@@ -30,8 +30,8 @@ container_client = blob_service_client.get_container_client(CONTAINER_NAME)
 
 # Git
 GIST_ID = "a9d6acbaf78e4d82a4dcf858ba3652ea"
-# GITHUB_TOKEN = os.environ.get("GIST_TOKEN")
-GITHUB_TOKEN = ""
+GITHUB_TOKEN = os.environ.get("GIST_TOKEN")
+# GITHUB_TOKEN = ""
 
 # AWS S3 Image URL
 def get_public_url(bucket_name, key) :
@@ -52,8 +52,8 @@ def get_public_url_azure(container_name, blob_name):
     return url
 
 # 실행 환경 식별 ( AWS / Azure )
-# cloud_provider = os.environ.get("CLOUD_PROVIDER")
-cloud_provider = "AWS"
+cloud_provider = os.environ.get("CLOUD_PROVIDER")
+# cloud_provider = "AWS"
 # cloud_provider = "AZURE"
 
 # AWS/Azure DB 동기화
@@ -67,7 +67,7 @@ def home() :
         userInfo = session.get('loginSessionInfo')
         if userInfo.get('user_role') != 'role_admin' :
             return redirect(url_for('user.product'))
-        return render_template('admin/home.html')
+        return redirect(url_for('admin.product'))
     else :
         return redirect(url_for('login'))
 
@@ -130,6 +130,7 @@ def register() :
             s3_file = request.files['productImage']
             s3_filename = today_datetime + '_' + s3_file.filename
             azure_file = request.files['productImage']
+            azure_file_read = request.files['productImage'].read()
             azure_filename = today_datetime + '_' + azure_file.filename
             
             # DB 저장
@@ -146,12 +147,12 @@ def register() :
                 # Azure Blob Storage에 파일 업로드
                 # 현재 AWS S3에 업로드 한 파일을 Azure Blob Storage에 똑같이 복사
                 # S3 객체 다운로드
-                s3_obj = s3_client.get_object(Bucket=S3_BUCKET, Key=f'ssgproduct/{s3_filename}')
-                file_content = s3_obj['Body'].read()
-
+                # s3_obj = s3_client.get_object(Bucket=S3_BUCKET, Key=f'ssgproduct/{s3_filename}')
+                # file_content = s3_obj['Body'].read()
+                
                 # Azure Blob에 업로드
                 blob_client = container_client.get_blob_client(azure_filename)
-                blob_client.upload_blob(file_content)
+                blob_client.upload_blob(azure_file_read)
                 print(f"{s3_filename} uploaded to Azure Blob Storage.")
 
             # DB 백업서버를 위한 DB Data JSON화
@@ -220,6 +221,7 @@ def edit(num) :
             s3_file = request.files['productImage']
             s3_filename = today_datetime + '_' + s3_file.filename
             azure_file = request.files['productImage']
+            azure_file_read = request.files['productImage'].read()
             azure_filename = today_datetime + '_' + azure_file.filename
             
             # DB 저장
@@ -235,12 +237,12 @@ def edit(num) :
                 # Azure Blob Storage에 파일 업로드
                 # 현재 AWS S3에 업로드 한 파일을 Azure Blob Storage에 똑같이 복사
                 # S3 객체 다운로드
-                s3_obj = s3_client.get_object(Bucket=S3_BUCKET, Key=f'ssgproduct/{s3_filename}')
-                file_content = s3_obj['Body'].read()
+                # s3_obj = s3_client.get_object(Bucket=S3_BUCKET, Key=f'ssgproduct/{s3_filename}')
+                # file_content = s3_obj['Body'].read()
 
                 # Azure Blob에 업로드
                 blob_client = container_client.get_blob_client(azure_filename)
-                blob_client.upload_blob(file_content)
+                blob_client.upload_blob(azure_file_read)
                 print(f"{s3_filename} uploaded to Azure Blob Storage.")
 
             # DB 백업서버를 위한 DB Data JSON화
@@ -363,3 +365,43 @@ def read_json(file_path):
         data = json.load(f)
     return data
 
+# 고객 관리
+@bp.route('/userInfo', methods=['GET'])
+def userInfo() :
+    if 'loginSessionInfo' in session :
+        userInfo = session.get('loginSessionInfo')
+        # 관리자가 아닐 경우 user/home으로 redirect
+        if userInfo.get('user_role') != 'role_admin' :
+            return redirect(url_for('user.home'))
+        
+        if request.method == 'GET' :
+            users = []
+            users = admin_DAO.selectUsersAll(cloud_provider)
+
+            return render_template('admin/userInfo.html', users = users)
+
+        else :
+            return redirect(url_for('login'))
+    else :
+        return redirect(url_for('login'))
+    
+
+# 주문 관리
+@bp.route('/orderInfo', methods=['GET'])
+def orderInfo() :
+    if 'loginSessionInfo' in session :
+        userInfo = session.get('loginSessionInfo')
+        # 관리자가 아닐 경우 user/home으로 redirect
+        if userInfo.get('user_role') != 'role_admin' :
+            return redirect(url_for('user.home'))
+        
+        if request.method == 'GET' :
+            orders = []
+            orders = admin_DAO.selectOrdersAll(cloud_provider)
+
+            return render_template('admin/orderInfo.html', orders = orders)
+
+        else :
+            return redirect(url_for('login'))
+    else :
+        return redirect(url_for('login'))

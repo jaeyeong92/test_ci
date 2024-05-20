@@ -31,7 +31,7 @@ container_client = blob_service_client.get_container_client(CONTAINER_NAME)
 
 # # Git
 # GIST_ID = "a9d6acbaf78e4d82a4dcf858ba3652ea"
-# GITHUB_TOKEN = os.environ.get("GIST_TOKEN")
+GITHUB_TOKEN = os.environ.get("GIST_TOKEN")
 # GITHUB_TOKEN = ""
 
 # AWS S3 Image URL
@@ -53,8 +53,8 @@ def get_public_url_azure(container_name, blob_name):
     return url
 
 # 실행 환경 식별 ( AWS / Azure )
-# cloud_provider = os.environ.get("CLOUD_PROVIDER")
-cloud_provider = "AWS"
+cloud_provider = os.environ.get("CLOUD_PROVIDER")
+# cloud_provider = "AWS"
 # cloud_provider = "AZURE"
 
 # AWS/Azure DB 동기화
@@ -286,7 +286,6 @@ def searchProduct() :
             return redirect(url_for('login'))
     else :
         return redirect(url_for('login'))
-    
 
 # 결제
 @bp.route('/pay', methods=['POST'])
@@ -351,6 +350,24 @@ def updateCartList():
                 return '장바구니가 업데이트되었습니다.'
         else:
             return '잘못된 요청입니다.'
+    else :
+        return redirect(url_for('login'))
+    
+# 주문 내역
+@bp.route('/orderList', methods=['GET'])
+def orderList() :
+    if 'loginSessionInfo' in session :
+        
+        if request.method == 'GET' :
+            userInfo = session.get('loginSessionInfo')
+            userId = userInfo.get('user_id')
+            orders = []
+            orders = user_DAO.selectOrdersAll(userId, cloud_provider)
+
+            return render_template('user/orderList.html', orders = orders)
+
+        else :
+            return redirect(url_for('login'))
     else :
         return redirect(url_for('login'))
    

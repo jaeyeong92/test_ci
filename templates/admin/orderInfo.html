@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{{url_for('static', filename='fonts/icomoon/style.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/owl.carousel.min.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/font.css')}}" />
+    <title>주문 관리</title>
+    <style>
+      .jumbotron {
+        background-color: #f8f9fa;
+      }
+    </style>
+  </head>
+  <body>
+    <!--Top Side Bar -->
+    {% include 'admin/navbar/sidebar_top.html' %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <!--Left Side Bar -->
+            {% include 'admin/navbar/sidebar_left.html' %}
+        </div>
+    </div>
+    
+    <main role="main">
+      <section class="jumbotron" style="width: 100%;">
+        <div class="container">
+          <h1><span class="icon-clipboard"></span> 주문 관리</h1><p></p>
+          <div class="container">
+            <table class="table table-hover">
+              <thead class="thead-light">
+                <tr>
+                  <th>주문번호</th>
+                  <th style="width: 170px;">주문상품명</th>
+                  <th style="width: 70px;">수량</th>
+                  <th style="width: 70px;">가격</th>
+                  <th style="width: 110px;">주문자ID</th>
+                  <th style="width: 110px;">주문자</th>
+                  <th style="width: 150px;">주소</th>
+                  <th style="width: 150px;">전화번호</th>
+                  <th style="width: 150px;">주문일시</th>
+                  <th style="width: 110px;">상태</th>
+                </tr>
+              </thead>
+              
+              <tbody>
+                {% for order in orders %}
+                <tr>
+                  <td>{{ order['order_number'] }}</td>
+                  <td>{{ order['product_name'] }}</td>
+                  <td>{{ order['order_product_stock'] }}</td>
+                  <td>{{ order['order_product_price'] }}</td>
+                  <td>{{ order['order_user_id'] }}</td>
+                  <td>{{ order['order_user_name'] }}</td>
+                  <td>{{ order['order_user_address'] }}</td>
+                  <td>{{ order['order_user_phone'] }}</td>
+                  <td>{{ order['order_product_date'] }}</td>
+                  <td>{{ order['order_product_status'] }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    {% include 'admin/navbar/footer.html' %}
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/jquery-3.3.1.min.js"></script>
+    <script src="/static/js/popper.min.js"></script>
+    <script src="/static/js/main.js"></script>
+    <script src="/static/js/ajax.js"></script>
+    <script src="/static/js/navbarActive.js"></script>
+    <script src="/static/js/validation.js"></script>
+  </body>
+</html>

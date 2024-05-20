@@ -70,8 +70,8 @@ def insertProduct(productName, productPrice,
                 sql_insert_aws = "INSERT INTO product (product_name, product_price, product_stock, product_description, product_image_aws, product_image_azure) VALUES (%s, %s, %s, %s, %s, %s)"
                 sql_insert_azure = "INSERT INTO product (product_name, product_price, product_stock, product_description, product_image_aws, product_image_azure) VALUES (%s, %s, %s, %s, %s, %s)"
 
-                cursor.execute(sql_insert_aws, (productName, productPrice, productStock, productDescription, 'ssgproduct/'+ s3_filename, azure_filename))
-                cursor_azure.execute(sql_insert_azure, (productName, productPrice, productStock, productDescription, 'ssgproduct/'+ s3_filename, azure_filename))
+                result_num = cursor.execute(sql_insert_aws, (productName, productPrice, productStock, productDescription, 'ssgproduct/'+ s3_filename, azure_filename))
+                result_num = cursor_azure.execute(sql_insert_azure, (productName, productPrice, productStock, productDescription, 'ssgproduct/'+ s3_filename, azure_filename))
                 con.commit()
                 con_azure.commit()
 
@@ -82,7 +82,7 @@ def insertProduct(productName, productPrice,
 
                 sql_insert_azure = "INSERT INTO product (product_name, product_price, product_stock, product_description, product_image_aws, product_image_azure) VALUES (%s, %s, %s, %s, %s, %s)"
 
-                cursor.execute(sql_insert_azure, (productName, productPrice, productStock, productDescription, 'ssgproduct/'+ s3_filename, azure_filename))
+                result_num = cursor.execute(sql_insert_azure, (productName, productPrice, productStock, productDescription, 'ssgproduct/'+ s3_filename, azure_filename))
                 con.commit()
 
         # AWS_AZURE_INSERT_FLAG가 False인 경우
@@ -97,7 +97,7 @@ def insertProduct(productName, productPrice,
             cursor = con.cursor()
 
             sql_insert = "INSERT INTO product (product_name, product_price, product_stock, product_description, product_image_aws, product_image_azure) VALUES (%s, %s, %s, %s, %s, %s)"
-            cursor.execute(sql_insert, (productName, productPrice, productStock, productDescription, 'ssgproduct/'+ s3_filename, azure_filename))
+            result_num = cursor.execute(sql_insert, (productName, productPrice, productStock, productDescription, 'ssgproduct/'+ s3_filename, azure_filename))
             con.commit()
 
     except Exception as e:
@@ -193,8 +193,8 @@ def updateProductByCode(productName, productPrice,
                 sql_update_aws = "UPDATE product SET product_name = %s, product_price = %s, product_stock = %s, product_description = %s, product_image_aws = %s, product_image_azure = %s WHERE product_code = %s"
                 sql_update_azure = "UPDATE product SET product_name = %s, product_price = %s, product_stock = %s, product_description = %s, product_image_aws = %s, product_image_azure = %s WHERE product_code = %s"
 
-                cursor.execute(sql_update_aws, (productName, productPrice, productStock, productDescription, 'ssgproduct/'+ s3_filename, azure_filename, num))
-                cursor_azure.execute(sql_update_azure, (productName, productPrice, productStock, productDescription, 'ssgproduct/'+ s3_filename, azure_filename, num))
+                result_num = cursor.execute(sql_update_aws, (productName, productPrice, productStock, productDescription, 'ssgproduct/'+ s3_filename, azure_filename, num))
+                result_num = cursor_azure.execute(sql_update_azure, (productName, productPrice, productStock, productDescription, 'ssgproduct/'+ s3_filename, azure_filename, num))
                 con.commit()
                 con_azure.commit()
 
@@ -205,7 +205,7 @@ def updateProductByCode(productName, productPrice,
 
                 sql_update_azure = "UPDATE product SET product_name = %s, product_price = %s, product_stock = %s, product_description = %s, product_image_aws = %s, product_image_azure = %s WHERE product_code = %s"
 
-                cursor.execute(sql_update_azure, (productName, productPrice, productStock, productDescription, 'ssgproduct/'+ s3_filename, azure_filename, num))
+                result_num = cursor.execute(sql_update_azure, (productName, productPrice, productStock, productDescription, 'ssgproduct/'+ s3_filename, azure_filename, num))
                 con.commit()
 
         # AWS_AZURE_INSERT_FLAG가 False일 경우
@@ -254,8 +254,8 @@ def deleteProductByCode(num, cloud_provider, AWS_AZURE_INSERT_FLAG):
                 sql_delete_aws = "DELETE FROM product WHERE product_code = %s"
                 sql_delete_azure = "DELETE FROM product WHERE product_code = %s"
 
-                cursor.execute(sql_delete_aws, num)
-                cursor_azure.execute(sql_delete_azure, num)
+                result_num = cursor.execute(sql_delete_aws, num)
+                result_num = cursor_azure.execute(sql_delete_azure, num)
                 con.commit()
                 con_azure.commit()
 
@@ -266,7 +266,7 @@ def deleteProductByCode(num, cloud_provider, AWS_AZURE_INSERT_FLAG):
 
                 sql_delete_azure = "DELETE FROM product WHERE product_code = %s"
 
-                cursor.execute(sql_delete_azure, num)
+                result_num = cursor.execute(sql_delete_azure, num)
                 con.commit()
 
         # AWS_AZURE_INSERT_FLAG가 False일 경우
@@ -297,7 +297,67 @@ def deleteProductByCode(num, cloud_provider, AWS_AZURE_INSERT_FLAG):
 
     return result_num
 
+# 유저 정보
+def selectUsersAll(cloud_provider):
+    # AWS
+    if cloud_provider == 'AWS' :
+        con = db_connect()
+    # AZURE    
+    else :
+        con = db_connect_azure()
 
+    cursor = con.cursor(cursor=pymysql.cursors.DictCursor)
+    sql_select = "SELECT * FROM users WHERE user_role = 'role_user' ORDER BY user_idx ASC"
+    cursor.execute(sql_select)
+    
+    result = []
+    result = cursor.fetchall()
+    
+    cursor.close()
+    con.close()
+
+    return result
+
+# 주문 정보
+def selectOrdersAll(cloud_provider):
+    # AWS
+    if cloud_provider == 'AWS' :
+        con = db_connect()
+    # AZURE    
+    else :
+        con = db_connect_azure()
+
+    cursor = con.cursor(cursor=pymysql.cursors.DictCursor)
+    sql_select = """
+    SELECT 
+        o.order_number,
+        o.order_product_code,
+        p.product_name,
+        o.order_product_stock,
+        o.order_product_price,
+        o.order_product_status,
+        o.order_product_date,
+        o.order_user_id,
+        o.order_user_name,
+        o.order_user_address,
+        o.order_user_phone
+    FROM 
+        orders o
+    INNER JOIN 
+        product p
+    ON 
+        o.order_product_code = p.product_code
+    """
+    
+    cursor.execute(sql_select)
+    
+    result = []
+    result = cursor.fetchall()
+    
+    cursor.close()
+    con.close()
+
+    return result
 
 
 

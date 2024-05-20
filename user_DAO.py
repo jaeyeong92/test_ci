@@ -67,8 +67,8 @@ def updateUserById(userId, userPw, userName, userEmail, userPhone,
                 sql_update_aws = 'UPDATE users SET user_pw = %s, user_name = %s, user_email = %s, user_phone = %s, user_address = %s WHERE user_id = %s'
                 sql_update_azure = 'UPDATE users SET user_pw = %s, user_name = %s, user_email = %s, user_phone = %s, user_address = %s WHERE user_id = %s'
 
-                cursor.execute(sql_update_aws, (userPw, userName, userEmail, userPhone, userAddress, userId))
-                cursor_azure.execute(sql_update_azure, (userPw, userName, userEmail, userPhone, userAddress, userId))
+                result_num = cursor.execute(sql_update_aws, (userPw, userName, userEmail, userPhone, userAddress, userId))
+                result_num = cursor_azure.execute(sql_update_azure, (userPw, userName, userEmail, userPhone, userAddress, userId))
                 con.commit()
                 con_azure.commit()
 
@@ -79,7 +79,7 @@ def updateUserById(userId, userPw, userName, userEmail, userPhone,
 
                 sql_update_azure = 'UPDATE users SET user_pw = %s, user_name = %s, user_email = %s, user_phone = %s, user_address = %s WHERE user_id = %s'
 
-                cursor.execute(sql_update_azure, (userPw, userName, userEmail, userPhone, userAddress, userId))
+                result_num = cursor.execute(sql_update_azure, (userPw, userName, userEmail, userPhone, userAddress, userId))
                 con.commit()
 
         # AWS_AZURE_INSERT_FLAG가 False일 경우
@@ -192,8 +192,8 @@ def insertUser(userId, userPw, userName,
                 sql_insert_aws = 'INSERT INTO users (user_id, user_pw, user_name, user_email, user_phone, user_address) VALUES (%s, %s, %s, %s, %s, %s)'
                 sql_insert_azure = 'INSERT INTO users (user_id, user_pw, user_name, user_email, user_phone, user_address) VALUES (%s, %s, %s, %s, %s, %s)'
 
-                cursor.execute(sql_insert_aws, (userId, userPw, userName, userEmail, userPhone, userAddress))
-                cursor_azure.execute(sql_insert_azure, (userId, userPw, userName, userEmail, userPhone, userAddress))
+                result_num = cursor.execute(sql_insert_aws, (userId, userPw, userName, userEmail, userPhone, userAddress))
+                result_num = cursor_azure.execute(sql_insert_azure, (userId, userPw, userName, userEmail, userPhone, userAddress))
                 con.commit()
                 con_azure.commit()
 
@@ -204,7 +204,7 @@ def insertUser(userId, userPw, userName,
 
                 sql_insert_azure = 'INSERT INTO users (user_id, user_pw, user_name, user_email, user_phone, user_address) VALUES (%s, %s, %s, %s, %s, %s)'
 
-                cursor.execute(sql_insert_azure, (userId, userPw, userName, userEmail, userPhone, userAddress))
+                result_num = cursor.execute(sql_insert_azure, (userId, userPw, userName, userEmail, userPhone, userAddress))
                 con.commit()
 
         # AWS_AZURE_INSERT_FLAG가 False일 경우
@@ -219,7 +219,7 @@ def insertUser(userId, userPw, userName,
             cursor = con.cursor()
 
             sql_insert = 'INSERT INTO users (user_id, user_pw, user_name, user_email, user_phone, user_address) VALUES (%s, %s, %s, %s, %s, %s)'
-            result_num = cursor.execute(sql_insert, (userId, userPw, userName, userEmail, userPhone, userAddress))
+            result_num = result_num = cursor.execute(sql_insert, (userId, userPw, userName, userEmail, userPhone, userAddress))
             con.commit()
 
     except Exception as e:
@@ -687,3 +687,46 @@ def updateCartList(product_code, new_quantity, userId, cloud_provider, AWS_AZURE
             con.close()
 
     return result_num
+
+# 주문 내역 정보
+def selectOrdersAll(userId, cloud_provider):
+    # AWS
+    if cloud_provider == 'AWS' :
+        con = db_connect()
+    # AZURE    
+    else :
+        con = db_connect_azure()
+
+    cursor = con.cursor(cursor=pymysql.cursors.DictCursor)
+    sql_select = """
+    SELECT 
+        o.order_number,
+        o.order_product_code,
+        p.product_name,
+        o.order_product_stock,
+        o.order_product_price,
+        o.order_product_status,
+        o.order_product_date,
+        o.order_user_id,
+        o.order_user_name,
+        o.order_user_address,
+        o.order_user_phone
+    FROM 
+        orders o
+    INNER JOIN 
+        product p
+    ON 
+        o.order_product_code = p.product_code
+    WHERE
+        o.order_user_id = %s
+    """
+    
+    cursor.execute(sql_select, userId)
+    
+    result = []
+    result = cursor.fetchall()
+    
+    cursor.close()
+    con.close()
+
+    return result

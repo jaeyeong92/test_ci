@@ -5,6 +5,7 @@ import login_DAO
 import logging
 import hashlib
 import requests
+import os
 
 app = Flask(__name__)
 app.secret_key = 'secret_key'
@@ -17,8 +18,8 @@ app.register_blueprint(admin.bp)
 app.register_blueprint(user.bp)
 
 # 실행 환경 식별 ( AWS / Azure )
-# cloud_provider = os.environ.get("CLOUD_PROVIDER")
-cloud_provider = "AWS"
+cloud_provider = os.environ.get("CLOUD_PROVIDER")
+# cloud_provider = "AWS"
 # cloud_provider = "AZURE"
 
 # index 페이지

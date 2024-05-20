@@ -3,3 +3,10 @@ __pycache__/
 
 # JSON 파일
 db_data.json
+
+# secrets
+#secret-key
+*-secret.yaml
+
+# README
+README.md
