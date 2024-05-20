@@ -232,6 +232,7 @@ def edit(num) :
                                           s3_filename, azure_filename, num, cloud_provider, AWS_AZURE_INSERT_FLAG)
 
             # S3에 업로드
+            s3_file.seek(0)
             s3_client.upload_fileobj(s3_file, S3_BUCKET,'ssgproduct/'+ s3_filename)
 
             # AWS & AZURE
