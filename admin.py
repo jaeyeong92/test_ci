@@ -22,7 +22,7 @@ S3_BUCKET = 'ssgpang-bucket'
 # Azure Blob Storage 연결 설정
 CONNECTION_STRING = os.environ.get("AZURE_CONNECTION_STRING")
 # CONNECTION_STRING = ""
-CONTAINER_NAME = "ssgpang-container"
+CONTAINER_NAME = "ssgpangcontainer"
 
 # Blob 서비스 클라이언트 생성
 blob_service_client = BlobServiceClient.from_connection_string(CONNECTION_STRING)
@@ -52,8 +52,8 @@ def get_public_url_azure(container_name, blob_name):
     return url
 
 # 실행 환경 식별 ( AWS / Azure )
-# cloud_provider = os.environ.get("CLOUD_PROVIDER")
-cloud_provider = "AWS"
+cloud_provider = os.environ.get("CLOUD_PROVIDER")
+# cloud_provider = "AWS"
 # cloud_provider = "AZURE"
 
 # AWS/Azure DB 동기화
@@ -86,6 +86,7 @@ def product() :
         for product in products :
             # AWS
             if cloud_provider == "AWS":
+                print('역이')
                 imageName = product['product_image_aws']
                 newImageName = get_public_url(S3_BUCKET, imageName)
                 product['product_image_aws'] = newImageName
@@ -140,6 +141,7 @@ def register() :
             # # AWS - Azure에서 일반업로드 테스트 완료 후 다시.
             # if cloud_provider == "AWS" :
             # S3에 업로드
+            s3_file.seek(0)
             s3_client.upload_fileobj(s3_file, S3_BUCKET,'ssgproduct/' + s3_filename)
 
             # AWS & AZURE

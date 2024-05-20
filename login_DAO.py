@@ -27,7 +27,7 @@ def db_connect_azure() :
 # # DB 연결 - AWS
 # def db_connect() :
 #     db = pymysql.connect(
-#         user = 'root',
+#         user = 'admin',
 #         password = 'admin12345',
 #         host = 'ssgpangdb.cwshg6arkkpy.ap-northeast-1.rds.amazonaws.com',
 #         db = 'ssgpang',

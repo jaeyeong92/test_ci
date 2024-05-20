@@ -27,7 +27,7 @@ def db_connect_azure() :
 # # DB 연결 - AWS
 # def db_connect() :
 #     db = pymysql.connect(
-#         user = 'root',
+#         user = 'admin',
 #         password = 'admin12345',
 #         host = 'ssgpangdb.cwshg6arkkpy.ap-northeast-1.rds.amazonaws.com',
 #         db = 'ssgpang',
@@ -86,6 +86,7 @@ def insertProduct(productName, productPrice,
 
         # AWS_AZURE_INSERT_FLAG가 False인 경우
         else:
+            print('일단 하나', cloud_provider)
             # AWS
             if cloud_provider == 'AWS':
                 con = db_connect()

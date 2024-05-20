@@ -23,14 +23,14 @@ S3_BUCKET = 'ssgpang-bucket'
 # Azure Blob Storage 연결 설정
 CONNECTION_STRING = os.environ.get("AZURE_CONNECTION_STRING")
 # CONNECTION_STRING = ""
-CONTAINER_NAME = "ssgpang-container"
+CONTAINER_NAME = "ssgpangcontainer"
 
 # Blob 서비스 클라이언트 생성
 blob_service_client = BlobServiceClient.from_connection_string(CONNECTION_STRING)
 container_client = blob_service_client.get_container_client(CONTAINER_NAME)
 
 # # Git
-# GIST_ID = "a9d6acbaf78e4d82a4dcf858ba3652ea"
+GIST_ID = "a9d6acbaf78e4d82a4dcf858ba3652ea"
 GITHUB_TOKEN = os.environ.get("GIST_TOKEN")
 # GITHUB_TOKEN = ""
 
@@ -53,8 +53,8 @@ def get_public_url_azure(container_name, blob_name):
     return url
 
 # 실행 환경 식별 ( AWS / Azure )
-# cloud_provider = os.environ.get("CLOUD_PROVIDER")
-cloud_provider = "AWS"
+cloud_provider = os.environ.get("CLOUD_PROVIDER")
+# cloud_provider = "AWS"
 # cloud_provider = "AZURE"
 
 # AWS/Azure DB 동기화
