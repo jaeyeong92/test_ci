@@ -51,6 +51,8 @@ def db_connect_azure() :
 # 회원 정보 UPDATE
 def updateUserById(userId, userPw, userName, userEmail, userPhone, 
                    userAddress, cloud_provider, AWS_AZURE_INSERT_FLAG) :
+    result_num = 0
+
     try:
         # AWS_AZURE_INSERT_FLAG가 True일 경우
         if AWS_AZURE_INSERT_FLAG:
@@ -176,6 +178,7 @@ def checkUserPhoneNumber(userPhone, cloud_provider) :
 # 회원 정보 INSERT (회원가입)
 def insertUser(userId, userPw, userName, 
                userEmail, userPhone, userAddress, cloud_provider, AWS_AZURE_INSERT_FLAG) :
+    result_num = 0
     try:
         # AWS_AZURE_INSERT_FLAG가 True일 경우
         if AWS_AZURE_INSERT_FLAG:
@@ -258,6 +261,7 @@ def selectProductAll(cloud_provider):
 
 # 장바구니 Cart INSERT
 def insertCartList(cartUserId, cartProductCode, cloud_provider, AWS_AZURE_INSERT_FLAG):
+    result_num = 0
     try:
         # AWS_AZURE_INSERT_FLAG가 True일 경우
         if AWS_AZURE_INSERT_FLAG:
@@ -377,7 +381,6 @@ def insertCartList(cartUserId, cartProductCode, cloud_provider, AWS_AZURE_INSERT
 
     return result_num
 
-
 # 장바구니(Cart) 정보 SELECT
 def selectCartListByUserId(userId, cloud_provider):
     # AWS
@@ -405,6 +408,7 @@ def selectCartListByUserId(userId, cloud_provider):
 
 # 장바구니(Cart) 상품 삭제
 def deleteCartListByCode(num, cloud_provider, AWS_AZURE_INSERT_FLAG) :
+    result_num = 0
     try:
         # AWS_AZURE_INSERT_FLAG가 True일 경우
         if AWS_AZURE_INSERT_FLAG:
@@ -460,7 +464,6 @@ def deleteCartListByCode(num, cloud_provider, AWS_AZURE_INSERT_FLAG) :
 
     return result_num
 
-
 # 상품 검색
 def selectProductForSearch(searchQuery, cloud_provider) :
     # AWS
@@ -488,6 +491,7 @@ def insertOrdersList(order_number, order_product_code,
                      order_product_stock, order_product_price,
                      order_user_id, order_user_name,
                      order_user_address, order_user_phone, cloud_provider, AWS_AZURE_INSERT_FLAG) :
+    result_num = 0
     try:
         # AWS_AZURE_INSERT_FLAG가 True일 경우
         if AWS_AZURE_INSERT_FLAG:
@@ -576,9 +580,12 @@ def insertOrdersList(order_number, order_product_code,
             cursor.close()
         if con:
             con.close()
+            
+    return result_num
 
 # 결제 후 장바구니(Cart) 상품 전체 비우기
 def deleteCartListAll(userId, cloud_provider, AWS_AZURE_INSERT_FLAG) :
+    result_num = 0
     try:
         # AWS_AZURE_INSERT_FLAG가 True일 경우
         if AWS_AZURE_INSERT_FLAG:
@@ -635,6 +642,7 @@ def deleteCartListAll(userId, cloud_provider, AWS_AZURE_INSERT_FLAG) :
 
 # 장바구니 Cart List 상품수량 변경 시 UPDATE
 def updateCartList(product_code, new_quantity, userId, cloud_provider, AWS_AZURE_INSERT_FLAG) :
+    result_num = 0
     try:
         # AWS_AZURE_INSERT_FLAG가 True일 경우
         if AWS_AZURE_INSERT_FLAG:

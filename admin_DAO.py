@@ -52,6 +52,7 @@ def db_connect_azure() :
 def insertProduct(productName, productPrice,
                   productStock, productDescription,
                   s3_filename, azure_filename, cloud_provider, AWS_AZURE_INSERT_FLAG) :
+    result_num = 0
     try:
         # AWS_AZURE_INSERT_FLAG가 True인 경우
         if AWS_AZURE_INSERT_FLAG:
@@ -108,6 +109,7 @@ def insertProduct(productName, productPrice,
             cursor.close()
         if con:
             con.close()
+    return result_num
 
 # DB to JSON
 def dbToJson(cloud_provider) :
@@ -175,6 +177,8 @@ def selectProductByCode(num, cloud_provider) :
 def updateProductByCode(productName, productPrice, 
                         productStock, productDescription, 
                         s3_filename, azure_filename, num, cloud_provider, AWS_AZURE_INSERT_FLAG) :
+    result_num = 0
+
     try :
         # AWS_AZURE_INSERT_FLAG가 True일 경우
         if AWS_AZURE_INSERT_FLAG:
@@ -232,10 +236,13 @@ def updateProductByCode(productName, productPrice,
         if con:
             con.close()
 
-    # return result_num
+    return result_num
 
 # 상품 삭제
 def deleteProductByCode(num, cloud_provider, AWS_AZURE_INSERT_FLAG):
+
+    result_num = 0
+
     try:
         # AWS_AZURE_INSERT_FLAG가 True일 경우
         if AWS_AZURE_INSERT_FLAG:
