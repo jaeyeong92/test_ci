@@ -21,8 +21,8 @@ s3_client = session2.client('s3')
 S3_BUCKET = 'ssgpang-bucket'
 
 # Azure Blob Storage 연결 설정
-# CONNECTION_STRING = os.environ.get("AZURE_CONNECTION_STRING")
-CONNECTION_STRING = ""
+CONNECTION_STRING = os.environ.get("AZURE_CONNECTION_STRING")
+# CONNECTION_STRING = ""
 CONTAINER_NAME = "ssgpang-container"
 
 # Blob 서비스 클라이언트 생성
