@@ -53,8 +53,8 @@ def get_public_url_azure(container_name, blob_name):
     return url
 
 # 실행 환경 식별 ( AWS / Azure )
-cloud_provider = os.environ.get("CLOUD_PROVIDER")
-# cloud_provider = "AWS"
+# cloud_provider = os.environ.get("CLOUD_PROVIDER")
+cloud_provider = "AWS"
 # cloud_provider = "AZURE"
 
 # AWS/Azure DB 동기화
