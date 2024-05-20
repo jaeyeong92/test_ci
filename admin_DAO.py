@@ -232,7 +232,7 @@ def updateProductByCode(productName, productPrice,
         if con:
             con.close()
 
-    return result_num
+    # return result_num
 
 # 상품 삭제
 def deleteProductByCode(num, cloud_provider, AWS_AZURE_INSERT_FLAG):
