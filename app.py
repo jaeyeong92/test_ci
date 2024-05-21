@@ -18,9 +18,9 @@ app.register_blueprint(admin.bp)
 app.register_blueprint(user.bp)
 
 # 실행 환경 식별 ( AWS / Azure )
-cloud_provider = os.environ.get("CLOUD_PROVIDER")
-# cloud_provider = "AWS"
-# cloud_provider = "AZURE"
+CLOUD_PROVIDER = os.environ.get("CLOUD_PROVIDER")
+# CLOUD_PROVIDER = "AWS"
+# CLOUD_PROVIDER = "AZURE"
 
 # index 페이지
 @app.route('/')
@@ -41,7 +41,7 @@ def login() :
         hashed_password = hashlib.sha256(userPw.encode()).hexdigest()
 
         # Form에서 입력한 id를 기반으로 DB 검색
-        userResult = login_DAO.selectUserById(userId, cloud_provider)
+        userResult = login_DAO.selectUserById(userId, CLOUD_PROVIDER)
         
         if userResult is not None :
             # Form에서 입력한 정보와 DB 정보 비교 후 일치하면 유저의 모든 정보를 Session에 저장
@@ -63,13 +63,11 @@ def login() :
 # 로그아웃
 @app.route('/logout')
 def logout() :
-
     if 'loginSessionInfo' in session :
         session.pop('loginSessionInfo', None)
         return redirect(url_for('login'))
     else :
         return '<h2>User already logged out <a href="/login">Click here</a></h2>'
-        # return '<h2>User already logged out !!!!! <a href="/login">Click here</a></h2>'
         
 # main
 if __name__ == '__main__' :

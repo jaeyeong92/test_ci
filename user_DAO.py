@@ -1,35 +1,11 @@
 import pymysql
 
-# DB 연결 - AWS
-def db_connect() :
-    db = pymysql.connect(
-        user = 'root',
-        password = 'admin12345',
-        host = 'db-svc',
-        db = 'ssgpang',
-        charset = 'utf8',
-        autocommit = True
-    )
-    return db
-
-# DB 연결 - Azure
-def db_connect_azure() :
-    db = pymysql.connect(
-        user = 'azureroot',
-        password = 'admin12345!!',
-        host = '10.1.2.101',
-        db = 'ssgpang',
-        charset = 'utf8',
-        autocommit = True
-    )
-    return db
-
 # # DB 연결 - AWS
 # def db_connect() :
 #     db = pymysql.connect(
-#         user = 'admin',
+#         user = 'root',
 #         password = 'admin12345',
-#         host = 'ssgpangdb.cwshg6arkkpy.ap-northeast-1.rds.amazonaws.com',
+#         host = 'db-svc',
 #         db = 'ssgpang',
 #         charset = 'utf8',
 #         autocommit = True
@@ -41,74 +17,60 @@ def db_connect_azure() :
 #     db = pymysql.connect(
 #         user = 'azureroot',
 #         password = 'admin12345!!',
-#         host = 'ssgpang-db.mysql.database.azure.com',
+#         host = '10.1.2.101',
 #         db = 'ssgpang',
 #         charset = 'utf8',
 #         autocommit = True
 #     )
 #     return db
 
-# 회원 정보 UPDATE
-def updateUserById(userId, userPw, userName, userEmail, userPhone, 
-                   userAddress, cloud_provider, AWS_AZURE_INSERT_FLAG) :
-    result_num = 0
+# DB 연결 - AWS
+def db_connect() :
+    db = pymysql.connect(
+        user = 'admin',
+        password = 'admin12345',
+        host = 'ssgpangdb.cwshg6arkkpy.ap-northeast-1.rds.amazonaws.com',
+        db = 'ssgpang',
+        charset = 'utf8',
+        autocommit = True
+    )
+    return db
 
-    try:
-        # AWS_AZURE_INSERT_FLAG가 True일 경우
-        if AWS_AZURE_INSERT_FLAG:
-            con = None
-            cursor = None
-            # AWS
-            if cloud_provider == 'AWS':
-                con = db_connect()
-                con_azure = db_connect_azure()
+# DB 연결 - Azure
+def db_connect_azure() :
+    db = pymysql.connect(
+        user = 'azureroot',
+        password = 'admin12345!!',
+        host = 'ssgpang-db-server.mysql.database.azure.com',
+        db = 'ssgpang',
+        charset = 'utf8',
+        autocommit = True
+    )
+    return db
 
-                cursor = con.cursor()
-                cursor_azure = con_azure.cursor()
+# 회원정보 수정 - AWS
+def updateUserById(userId, userPw, userName, userEmail, userPhone, userAddress) :
+    con = db_connect()
+    cursor = con.cursor()
+    sql_update = 'UPDATE users SET user_pw = %s, user_name = %s, user_email = %s, user_phone = %s, user_address = %s WHERE user_id = %s'
 
-                sql_update_aws = 'UPDATE users SET user_pw = %s, user_name = %s, user_email = %s, user_phone = %s, user_address = %s WHERE user_id = %s'
-                sql_update_azure = 'UPDATE users SET user_pw = %s, user_name = %s, user_email = %s, user_phone = %s, user_address = %s WHERE user_id = %s'
+    result_num = cursor.execute(sql_update, (userPw, userName, userEmail, userPhone, userAddress, userId))
+    
+    cursor.close()
+    con.close()
 
-                result_num = cursor.execute(sql_update_aws, (userPw, userName, userEmail, userPhone, userAddress, userId))
-                result_num = cursor_azure.execute(sql_update_azure, (userPw, userName, userEmail, userPhone, userAddress, userId))
-                con.commit()
-                con_azure.commit()
+    return result_num
 
-            # AZURE
-            else:
-                con = db_connect_azure()
-                cursor = con.cursor()
+# 회원정보 수정 - Azure
+def updateUserByIdAzure(userId, userPw, userName, userEmail, userPhone, userAddress) :
+    con = db_connect_azure()
+    cursor = con.cursor()
+    sql_update = 'UPDATE users SET user_pw = %s, user_name = %s, user_email = %s, user_phone = %s, user_address = %s WHERE user_id = %s'
 
-                sql_update_azure = 'UPDATE users SET user_pw = %s, user_name = %s, user_email = %s, user_phone = %s, user_address = %s WHERE user_id = %s'
-
-                result_num = cursor.execute(sql_update_azure, (userPw, userName, userEmail, userPhone, userAddress, userId))
-                con.commit()
-
-        # AWS_AZURE_INSERT_FLAG가 False일 경우
-        else:
-            # AWS
-            if cloud_provider == 'AWS':
-                con = db_connect()
-            # AZURE
-            else:
-                con = db_connect_azure()
-
-            cursor = con.cursor()
-
-            sql_update = 'UPDATE users SET user_pw = %s, user_name = %s, user_email = %s, user_phone = %s, user_address = %s WHERE user_id = %s'
-            result_num = cursor.execute(sql_update, (userPw, userName, userEmail, userPhone, userAddress, userId))
-            con.commit()
-
-    except Exception as e:
-        print("Error:", e)
-        if con:
-            con.rollback()
-
-    finally:
-        if cursor:
-            cursor.close()
-        if con:
-            con.close()
+    result_num = cursor.execute(sql_update, (userPw, userName, userEmail, userPhone, userAddress, userId))
+    
+    cursor.close()
+    con.close()
 
     return result_num
 
@@ -175,66 +137,29 @@ def checkUserPhoneNumber(userPhone, cloud_provider) :
 
     return result
 
-# 회원 정보 INSERT (회원가입)
-def insertUser(userId, userPw, userName, 
-               userEmail, userPhone, userAddress, cloud_provider, AWS_AZURE_INSERT_FLAG) :
-    result_num = 0
-    try:
-        # AWS_AZURE_INSERT_FLAG가 True일 경우
-        if AWS_AZURE_INSERT_FLAG:
-            con = None
-            cursor = None
-            # AWS
-            if cloud_provider == 'AWS':
-                con = db_connect()
-                con_azure = db_connect_azure()
+# 회원가입 - AWS
+def insertUser(userId, userPw, userName, userEmail, userPhone, userAddress) :
+    con = db_connect()
+    cursor = con.cursor()
+    sql_insert = 'INSERT INTO users (user_id, user_pw, user_name, user_email, user_phone, user_address) VALUES (%s, %s, %s, %s, %s, %s)'
 
-                cursor = con.cursor()
-                cursor_azure = con_azure.cursor()
+    result_num = cursor.execute(sql_insert, (userId, userPw, userName, userEmail, userPhone, userAddress))
+    
+    cursor.close()
+    con.close()
 
-                sql_insert_aws = 'INSERT INTO users (user_id, user_pw, user_name, user_email, user_phone, user_address) VALUES (%s, %s, %s, %s, %s, %s)'
-                sql_insert_azure = 'INSERT INTO users (user_id, user_pw, user_name, user_email, user_phone, user_address) VALUES (%s, %s, %s, %s, %s, %s)'
+    return result_num
 
-                result_num = cursor.execute(sql_insert_aws, (userId, userPw, userName, userEmail, userPhone, userAddress))
-                result_num = cursor_azure.execute(sql_insert_azure, (userId, userPw, userName, userEmail, userPhone, userAddress))
-                con.commit()
-                con_azure.commit()
+# 회원가입 - Azure
+def insertUserAzure(userId, userPw, userName, userEmail, userPhone, userAddress) :
+    con = db_connect_azure()
+    cursor = con.cursor()
+    sql_insert = 'INSERT INTO users (user_id, user_pw, user_name, user_email, user_phone, user_address) VALUES (%s, %s, %s, %s, %s, %s)'
 
-            # AZURE
-            else:
-                con = db_connect_azure()
-                cursor = con.cursor()
-
-                sql_insert_azure = 'INSERT INTO users (user_id, user_pw, user_name, user_email, user_phone, user_address) VALUES (%s, %s, %s, %s, %s, %s)'
-
-                result_num = cursor.execute(sql_insert_azure, (userId, userPw, userName, userEmail, userPhone, userAddress))
-                con.commit()
-
-        # AWS_AZURE_INSERT_FLAG가 False일 경우
-        else:
-            # AWS
-            if cloud_provider == 'AWS':
-                con = db_connect()
-            # AZURE
-            else:
-                con = db_connect_azure()
-
-            cursor = con.cursor()
-
-            sql_insert = 'INSERT INTO users (user_id, user_pw, user_name, user_email, user_phone, user_address) VALUES (%s, %s, %s, %s, %s, %s)'
-            result_num = result_num = cursor.execute(sql_insert, (userId, userPw, userName, userEmail, userPhone, userAddress))
-            con.commit()
-
-    except Exception as e:
-        print("Error:", e)
-        if con:
-            con.rollback()
-
-    finally:
-        if cursor:
-            cursor.close()
-        if con:
-            con.close()
+    result_num = cursor.execute(sql_insert, (userId, userPw, userName, userEmail, userPhone, userAddress))
+    
+    cursor.close()
+    con.close()
 
     return result_num
 
@@ -259,125 +184,63 @@ def selectProductAll(cloud_provider):
 
     return result
 
-# 장바구니 Cart INSERT
-def insertCartList(cartUserId, cartProductCode, cloud_provider, AWS_AZURE_INSERT_FLAG):
-    result_num = 0
-    try:
-        # AWS_AZURE_INSERT_FLAG가 True일 경우
-        if AWS_AZURE_INSERT_FLAG:
-            con = None
-            cursor = None
-            # AWS
-            if cloud_provider == 'AWS':
-                con = db_connect()
-                con_azure = db_connect_azure()
+# 상품 장바구니에 담기
+def insertCartList(cartUserId, cartProductCode):
+    con = db_connect()
+    cursor = con.cursor()
+    # 해당 상품이 장바구니에 있는지 확인
+    sql_select = 'SELECT product_count FROM cart WHERE user_id = %s AND product_code = %s'
+    cursor.execute(sql_select, (cartUserId, cartProductCode))
+    existing_product = cursor.fetchone()
 
-                cursor = con.cursor()
-                cursor_azure = con_azure.cursor()
+    # 이미 장바구니에 있는 경우
+    if existing_product:
+        # 상품 수량 증가
+        new_count = existing_product[0] + 1
+        sql_update = 'UPDATE cart SET product_count = %s WHERE user_id = %s AND product_code = %s'
+        cursor.execute(sql_update, (new_count, cartUserId, cartProductCode))
+        result_num = new_count
 
-                # 해당 상품이 장바구니에 있는지 확인
-                sql_select_aws = 'SELECT product_count FROM cart WHERE user_id = %s AND product_code = %s'
-                cursor.execute(sql_select_aws, (cartUserId, cartProductCode))
-                existing_product_aws = cursor.fetchone()
+    # 장바구니에 없는 경우
+    else:  
+        # 장바구니에 새 상품 추가
+        sql_insert = 'INSERT INTO cart (user_id, product_code, product_count) VALUES (%s, %s, 1)'
+        cursor.execute(sql_insert, (cartUserId, cartProductCode))
+        result_num = 1
 
-                # 해당 상품이 장바구니에 있는지 확인
-                sql_select_azure = 'SELECT product_count FROM cart WHERE user_id = %s AND product_code = %s'
-                cursor_azure.execute(sql_select_azure, (cartUserId, cartProductCode))
-                existing_product_azure = cursor_azure.fetchone()
+    con.commit()
+    cursor.close()
+    con.close()
 
-                # 이미 장바구니에 있는 경우
-                if existing_product_aws or existing_product_azure:
-                    # 상품 수량 증가
-                    if existing_product_aws:
-                        new_count = existing_product_aws[0] + 1
-                        sql_update_aws = 'UPDATE cart SET product_count = %s WHERE user_id = %s AND product_code = %s'
-                        cursor.execute(sql_update_aws, (new_count, cartUserId, cartProductCode))
+    return result_num
 
-                    if existing_product_azure:
-                        new_count = existing_product_azure[0] + 1
-                        sql_update_azure = 'UPDATE cart SET product_count = %s WHERE user_id = %s AND product_code = %s'
-                        cursor_azure.execute(sql_update_azure, (new_count, cartUserId, cartProductCode))
-                    
-                    result_num = new_count
+# 상품 장바구니에 담기
+def insertCartListAzure(cartUserId, cartProductCode):
+    con = db_connect_azure()
+    cursor = con.cursor()
+    # 해당 상품이 장바구니에 있는지 확인
+    sql_select = 'SELECT product_count FROM cart WHERE user_id = %s AND product_code = %s'
+    cursor.execute(sql_select, (cartUserId, cartProductCode))
+    existing_product = cursor.fetchone()
 
-                # 장바구니에 없는 경우
-                else:
-                    # 장바구니에 새 상품 추가
-                    sql_insert_aws = 'INSERT INTO cart (user_id, product_code, product_count) VALUES (%s, %s, 1)'
-                    cursor.execute(sql_insert_aws, (cartUserId, cartProductCode))
-                    result_num = 1
+    # 이미 장바구니에 있는 경우
+    if existing_product:
+        # 상품 수량 증가
+        new_count = existing_product[0] + 1
+        sql_update = 'UPDATE cart SET product_count = %s WHERE user_id = %s AND product_code = %s'
+        cursor.execute(sql_update, (new_count, cartUserId, cartProductCode))
+        result_num = new_count
 
-                    sql_insert_azure = 'INSERT INTO cart (user_id, product_code, product_count) VALUES (%s, %s, 1)'
-                    cursor_azure.execute(sql_insert_azure, (cartUserId, cartProductCode))
-                    
-            # AZURE
-            else:
-                con = db_connect_azure()
-                cursor = con.cursor()
+    # 장바구니에 없는 경우
+    else:  
+        # 장바구니에 새 상품 추가
+        sql_insert = 'INSERT INTO cart (user_id, product_code, product_count) VALUES (%s, %s, 1)'
+        cursor.execute(sql_insert, (cartUserId, cartProductCode))
+        result_num = 1
 
-                # 해당 상품이 장바구니에 있는지 확인
-                sql_select = 'SELECT product_count FROM cart WHERE user_id = %s AND product_code = %s'
-                cursor.execute(sql_select, (cartUserId, cartProductCode))
-                existing_product = cursor.fetchone()
-
-                # 이미 장바구니에 있는 경우
-                if existing_product:
-                    # 상품 수량 증가
-                    new_count = existing_product[0] + 1
-                    sql_update = 'UPDATE cart SET product_count = %s WHERE user_id = %s AND product_code = %s'
-                    cursor.execute(sql_update, (new_count, cartUserId, cartProductCode))
-                    result_num = new_count
-
-                # 장바구니에 없는 경우
-                else:
-                    # 장바구니에 새 상품 추가
-                    sql_insert = 'INSERT INTO cart (user_id, product_code, product_count) VALUES (%s, %s, 1)'
-                    cursor.execute(sql_insert, (cartUserId, cartProductCode))
-                    result_num = 1
-
-        # AWS_AZURE_INSERT_FLAG가 False일 경우
-        else:
-            # AWS
-            if cloud_provider == 'AWS':
-                con = db_connect()
-            # AZURE
-            else:
-                con = db_connect_azure()
-
-            cursor = con.cursor()
-
-            # 해당 상품이 장바구니에 있는지 확인
-            sql_select = 'SELECT product_count FROM cart WHERE user_id = %s AND product_code = %s'
-            cursor.execute(sql_select, (cartUserId, cartProductCode))
-            existing_product = cursor.fetchone()
-
-            # 이미 장바구니에 있는 경우
-            if existing_product:
-                # 상품 수량 증가
-                new_count = existing_product[0] + 1
-                sql_update = 'UPDATE cart SET product_count = %s WHERE user_id = %s AND product_code = %s'
-                cursor.execute(sql_update, (new_count, cartUserId, cartProductCode))
-                result_num = new_count
-
-            # 장바구니에 없는 경우
-            else:
-                # 장바구니에 새 상품 추가
-                sql_insert = 'INSERT INTO cart (user_id, product_code, product_count) VALUES (%s, %s, 1)'
-                cursor.execute(sql_insert, (cartUserId, cartProductCode))
-                result_num = 1
-
-        con.commit()
-        
-    except Exception as e:
-        print("Error:", e)
-        if con:
-            con.rollback()
-
-    finally:
-        if cursor:
-            cursor.close()
-        if con:
-            con.close()
+    con.commit()
+    cursor.close()
+    con.close()
 
     return result_num
 
@@ -406,61 +269,29 @@ def selectCartListByUserId(userId, cloud_provider):
 
     return result
 
-# 장바구니(Cart) 상품 삭제
-def deleteCartListByCode(num, cloud_provider, AWS_AZURE_INSERT_FLAG) :
-    result_num = 0
-    try:
-        # AWS_AZURE_INSERT_FLAG가 True일 경우
-        if AWS_AZURE_INSERT_FLAG:
-            con = None
-            cursor = None
-            # AWS
-            if cloud_provider == 'AWS':
-                con = db_connect()
-                con_azure = db_connect_azure()
+# 장바구니(Cart) 삭제 - AWS
+def deleteCartListByCode(num) :
+    con = db_connect()
+    cursor = con.cursor()
 
-                cursor = con.cursor()
-                cursor_azure = con_azure.cursor()
+    sql_delete = 'DELETE FROM cart WHERE product_code = %s'
+    result_num = cursor.execute(sql_delete, num)
 
-                sql_delete_aws = 'DELETE FROM cart WHERE product_code = %s'
-                sql_delete_azure = 'DELETE FROM cart WHERE product_code = %s'
+    cursor.close()
+    con.close()
 
-                result_num = cursor.execute(sql_delete_aws, num)
-                cursor_azure.execute(sql_delete_azure, num)
+    return result_num
 
-            # AZURE
-            else:
-                con = db_connect_azure()
-                cursor = con.cursor()
+# 장바구니(Cart) 삭제 - AWS
+def deleteCartListByCodeAzure(num) :
+    con = db_connect_azure()
+    cursor = con.cursor()
 
-                sql_delete_azure = 'DELETE FROM cart WHERE product_code = %s'
+    sql_delete = 'DELETE FROM cart WHERE product_code = %s'
+    result_num = cursor.execute(sql_delete, num)
 
-                result_num = cursor.execute(sql_delete_azure, num)
-
-        # AWS_AZURE_INSERT_FLAG가 False일 경우        
-        else:
-            # AWS
-            if cloud_provider == 'AWS' :
-                con = db_connect()
-            # AZURE    
-            else :
-                con = db_connect_azure()
-
-            cursor = con.cursor()
-
-            sql_delete = 'DELETE FROM cart WHERE product_code = %s'
-            result_num = cursor.execute(sql_delete, num)
-
-    except Exception as e:
-        print("Error:", e)
-        if con:
-            con.rollback()
-
-    finally:
-        if cursor:
-            cursor.close()
-        if con:
-            con.close()
+    cursor.close()
+    con.close()
 
     return result_num
 
@@ -486,213 +317,97 @@ def selectProductForSearch(searchQuery, cloud_provider) :
 
     return result
 
-# 장바구니(Cart) -> 주문(Orders) 테이블로 INSERT
-def insertOrdersList(order_number, order_product_code, 
-                     order_product_stock, order_product_price,
-                     order_user_id, order_user_name,
-                     order_user_address, order_user_phone, cloud_provider, AWS_AZURE_INSERT_FLAG) :
-    result_num = 0
-    try:
-        # AWS_AZURE_INSERT_FLAG가 True일 경우
-        if AWS_AZURE_INSERT_FLAG:
-            con = None
-            cursor = None
-            # AWS
-            if cloud_provider == 'AWS':
-                con = db_connect()
-                con_azure = db_connect_azure()
+# 장바구니(Cart) -> 주문(Orders) 테이블로 INSERT - AWS
+def insertOrdersList(order_number, order_product_code, order_product_stock, 
+                     order_product_price, order_user_id, order_user_name,
+                     order_user_address, order_user_phone) :
+    
+    con = db_connect()
+    cursor = con.cursor()
 
-                cursor = con.cursor()
-                cursor_azure = con_azure.cursor()
+    sql_insert = '''INSERT INTO orders (order_number, order_product_code, 
+                    order_product_stock, order_product_price,
+                    order_user_id, order_user_name,
+                    order_user_address, order_user_phone) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)'''
+    
+    cursor.execute(sql_insert, (order_number, order_product_code, order_product_stock, 
+                                order_product_price, order_user_id, order_user_name, 
+                                order_user_address, order_user_phone))
 
-                sql_insert_aws = '''INSERT INTO orders (order_number, order_product_code, 
-                                    order_product_stock, order_product_price,
-                                    order_user_id, order_user_name,
-                                    order_user_address, order_user_phone) 
-                                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s)'''
+    con.commit()
+    cursor.close()
+    con.close()
 
-                sql_insert_azure = '''INSERT INTO orders (order_number, order_product_code, 
-                                    order_product_stock, order_product_price,
-                                    order_user_id, order_user_name,
-                                    order_user_address, order_user_phone) 
-                                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s)'''
+# 장바구니(Cart) -> 주문(Orders) 테이블로 INSERT - Azure
+def insertOrdersListAzure(order_number, order_product_code, order_product_stock, 
+                     order_product_price, order_user_id, order_user_name,
+                     order_user_address, order_user_phone) :
+    
+    con = db_connect_azure()
+    cursor = con.cursor()
 
-                cursor.execute(sql_insert_aws, (order_number, order_product_code, 
-                                                order_product_stock, order_product_price,
-                                                order_user_id, order_user_name,
-                                                order_user_address, order_user_phone))
-                cursor_azure.execute(sql_insert_azure, (order_number, order_product_code, 
-                                                          order_product_stock, order_product_price,
-                                                          order_user_id, order_user_name,
-                                                          order_user_address, order_user_phone))
+    sql_insert = '''INSERT INTO orders (order_number, order_product_code, 
+                    order_product_stock, order_product_price,
+                    order_user_id, order_user_name,
+                    order_user_address, order_user_phone) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)'''
+    
+    cursor.execute(sql_insert, (order_number, order_product_code, order_product_stock, 
+                                order_product_price, order_user_id, order_user_name, 
+                                order_user_address, order_user_phone))
 
-                con.commit()
-                con_azure.commit()
+    con.commit()
+    cursor.close()
+    con.close()    
 
-            # AZURE
-            else:
-                con = db_connect_azure()
-                cursor = con.cursor()
+# 결제 후 장바구니(Cart) 상품 전체 비우기 - AWS
+def deleteCartListAll(userId) :
+    con = db_connect()
+    cursor = con.cursor()
 
-                sql_insert_azure = '''INSERT INTO orders (order_number, order_product_code, 
-                                      order_product_stock, order_product_price,
-                                      order_user_id, order_user_name,
-                                      order_user_address, order_user_phone) 
-                                      VALUES (%s, %s, %s, %s, %s, %s, %s, %s)'''
+    sql_delete = 'DELETE FROM cart WHERE user_id = %s'
+    result_num = cursor.execute(sql_delete, userId)
 
-                cursor.execute(sql_insert_azure, (order_number, order_product_code, 
-                                                  order_product_stock, order_product_price,
-                                                  order_user_id, order_user_name,
-                                                  order_user_address, order_user_phone))
-
-                con.commit()
-
-        # AWS_AZURE_INSERT_FLAG가 False일 경우
-        else:
-            # AWS
-            if cloud_provider == 'AWS' :
-                con = db_connect()
-            # AZURE    
-            else :
-                con = db_connect_azure()     
-            
-            cursor = con.cursor()
-
-            # 장바구니에 새 상품 추가
-            sql_insert = '''INSERT INTO orders (order_number, order_product_code, 
-                            order_product_stock, order_product_price,
-                            order_user_id, order_user_name,
-                            order_user_address, order_user_phone) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)'''
-            
-            cursor.execute(sql_insert, (order_number, order_product_code, order_product_stock, 
-                                        order_product_price, order_user_id, order_user_name, 
-                                        order_user_address, order_user_phone))
-
-            con.commit()
-            
-    except Exception as e:
-        print("Error:", e)
-        if con:
-            con.rollback()
-
-    finally:
-        if cursor:  
-            cursor.close()
-        if con:
-            con.close()
-            
-    return result_num
-
-# 결제 후 장바구니(Cart) 상품 전체 비우기
-def deleteCartListAll(userId, cloud_provider, AWS_AZURE_INSERT_FLAG) :
-    result_num = 0
-    try:
-        # AWS_AZURE_INSERT_FLAG가 True일 경우
-        if AWS_AZURE_INSERT_FLAG:
-            con = None
-            cursor = None
-            # AWS
-            if cloud_provider == 'AWS':
-                con = db_connect()
-                con_azure = db_connect_azure()
-
-                cursor = con.cursor()
-                cursor_azure = con_azure.cursor()
-
-                sql_delete_aws = 'DELETE FROM cart WHERE user_id = %s'
-                sql_delete_azure = 'DELETE FROM cart WHERE user_id = %s'
-
-                result_num = cursor.execute(sql_delete_aws, userId)
-                cursor_azure.execute(sql_delete_azure, userId)
-
-            # AZURE
-            else:
-                con = db_connect_azure()
-                cursor = con.cursor()
-
-                sql_delete_azure = 'DELETE FROM cart WHERE user_id = %s'
-                result_num = cursor.execute(sql_delete_azure, userId)
-
-        # AWS_AZURE_INSERT_FLAG가 False일 경우
-        else:
-            # AWS
-            if cloud_provider == 'AWS' :
-                con = db_connect()
-            # AZURE    
-            else :
-                con = db_connect_azure()
-
-            cursor = con.cursor()
-
-            sql_delete = 'DELETE FROM cart WHERE user_id = %s'
-            result_num = cursor.execute(sql_delete, userId)
-
-    except Exception as e:
-        print("Error:", e)
-        if con:
-            con.rollback()
-
-    finally:
-        if cursor:
-            cursor.close()
-        if con:
-            con.close()
+    cursor.close()
+    con.close()
 
     return result_num
 
-# 장바구니 Cart List 상품수량 변경 시 UPDATE
-def updateCartList(product_code, new_quantity, userId, cloud_provider, AWS_AZURE_INSERT_FLAG) :
-    result_num = 0
-    try:
-        # AWS_AZURE_INSERT_FLAG가 True일 경우
-        if AWS_AZURE_INSERT_FLAG:
-            con = None
-            cursor = None
-            # AWS
-            if cloud_provider == 'AWS':
-                con = db_connect()
-                con_azure = db_connect_azure()
+# 결제 후 장바구니(Cart) 상품 전체 비우기 - Azure
+def deleteCartListAllAzure(userId) :
+    con = db_connect_azure()
+    cursor = con.cursor()
 
-                cursor = con.cursor()
-                cursor_azure = con_azure.cursor()
+    sql_delete = 'DELETE FROM cart WHERE user_id = %s'
+    result_num = cursor.execute(sql_delete, userId)
 
-                sql_update_aws = 'UPDATE cart SET product_count = %s WHERE user_id = %s AND product_code = %s'
-                sql_update_azure = 'UPDATE cart SET product_count = %s WHERE user_id = %s AND product_code = %s'
+    cursor.close()
+    con.close()
 
-                result_num = cursor.execute(sql_update_aws, (new_quantity, userId, product_code))
-                cursor_azure.execute(sql_update_azure, (new_quantity, userId, product_code))
+    return result_num
 
-            # AZURE
-            else:
-                con = db_connect_azure()
-                cursor = con.cursor()
+# 장바구니 Cart List 상품수량 변경 시 UPDATE - AWS
+def updateCartList(product_code, new_quantity, userId) :
+    con = db_connect()
+    cursor = con.cursor()
+    sql_update = 'UPDATE cart SET product_count = %s WHERE user_id = %s AND product_code = %s'
 
-                sql_update_azure = 'UPDATE cart SET product_count = %s WHERE user_id = %s AND product_code = %s'
-                result_num = cursor.execute(sql_update_azure, (new_quantity, userId, product_code))
+    result_num = cursor.execute(sql_update, (new_quantity, userId, product_code))
+    
+    cursor.close()
+    con.close()
 
-        # AWS_AZURE_INSERT_FLAG가 False일 경우
-        else:
-            # AWS
-            if cloud_provider == 'AWS' :
-                con = db_connect()
-            # AZURE    
-            else :
-                con = db_connect_azure()
+    return result_num
 
-            cursor = con.cursor()
-            sql_update = 'UPDATE cart SET product_count = %s WHERE user_id = %s AND product_code = %s'
-            result_num = cursor.execute(sql_update, (new_quantity, userId, product_code))
-        
-    except Exception as e:
-        print("Error:", e)
-        if con:
-            con.rollback()
+# 장바구니 Cart List 상품수량 변경 시 UPDATE - Azure
+def updateCartListAzure(product_code, new_quantity, userId) :
+    con = db_connect_azure()
+    cursor = con.cursor()
+    sql_update = 'UPDATE cart SET product_count = %s WHERE user_id = %s AND product_code = %s'
 
-    finally:
-        if cursor:
-            cursor.close()
-        if con:
-            con.close()
+    result_num = cursor.execute(sql_update, (new_quantity, userId, product_code))
+    
+    cursor.close()
+    con.close()
 
     return result_num
 

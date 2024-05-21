@@ -17,7 +17,7 @@ logging.basicConfig(filename='error.log', level=logging.ERROR)
 # AWS Role 및 S3 클라이언트 생성
 session2 = boto3.Session()
 s3_client = session2.client('s3')
-S3_BUCKET = 'ssgpang-bucket'
+S3_BUCKET = 'ssgpang-bucket2'
 
 # Azure Blob Storage 연결 설정
 CONNECTION_STRING = os.environ.get("AZURE_CONNECTION_STRING")
@@ -32,6 +32,14 @@ container_client = blob_service_client.get_container_client(CONTAINER_NAME)
 GIST_ID = "a9d6acbaf78e4d82a4dcf858ba3652ea"
 GITHUB_TOKEN = os.environ.get("GIST_TOKEN")
 # GITHUB_TOKEN = ""
+
+# 실행 환경 식별 ( AWS / Azure )
+CLOUD_PROVIDER = os.environ.get("CLOUD_PROVIDER")
+# CLOUD_PROVIDER = "AWS"
+# CLOUD_PROVIDER = "AZURE"
+
+# AWS/Azure DB 동기화
+AWS_AZURE_INSERT_FLAG = True
 
 # AWS S3 Image URL
 def get_public_url(bucket_name, key) :
@@ -50,14 +58,6 @@ def get_public_url_azure(container_name, blob_name):
     )
     url = blob_client.url
     return url
-
-# 실행 환경 식별 ( AWS / Azure )
-cloud_provider = os.environ.get("CLOUD_PROVIDER")
-# cloud_provider = "AWS"
-# cloud_provider = "AZURE"
-
-# AWS/Azure DB 동기화
-AWS_AZURE_INSERT_FLAG = True
 
 # main 관리 페이지
 @bp.route('/home')
@@ -81,12 +81,11 @@ def product() :
             return redirect(url_for('user.product'))
         
         products = []
-        products = admin_DAO.selectProductAll(cloud_provider)
+        products = admin_DAO.selectProductAll(CLOUD_PROVIDER)
 
         for product in products :
             # AWS
-            if cloud_provider == "AWS":
-                print('역이')
+            if CLOUD_PROVIDER == "AWS":
                 imageName = product['product_image_aws']
                 newImageName = get_public_url(S3_BUCKET, imageName)
                 product['product_image_aws'] = newImageName
@@ -96,7 +95,7 @@ def product() :
                 newImageName = get_public_url_azure(CONTAINER_NAME, imageName)
                 product['product_image_azure'] = newImageName
 
-        return render_template('admin/product.html', products = products, cloud_provider = cloud_provider)
+        return render_template('admin/product.html', products = products, cloud_provider = CLOUD_PROVIDER)
 
     else :
         return redirect(url_for('login'))
@@ -135,31 +134,43 @@ def register() :
             azure_filename = today_datetime + '_' + azure_file.filename
             
             # DB 저장
-            admin_DAO.insertProduct(productName, productPrice, 
-                                    productStock, productDescription, 
-                                    s3_filename, azure_filename, cloud_provider, AWS_AZURE_INSERT_FLAG)
-            # # AWS - Azure에서 일반업로드 테스트 완료 후 다시.
-            # if cloud_provider == "AWS" :
-            # S3에 업로드
-            s3_file.seek(0)
-            s3_client.upload_fileobj(s3_file, S3_BUCKET,'ssgproduct/' + s3_filename)
+            # AWS/AZURE 동시 저장
+            if AWS_AZURE_INSERT_FLAG :
+                # AWS
+                admin_DAO.insertProduct(productName, productPrice, 
+                                        productStock, productDescription, 
+                                        s3_filename, azure_filename)
+                # Azure
+                admin_DAO.insertProductAzure(productName, productPrice, 
+                                        productStock, productDescription, 
+                                        s3_filename, azure_filename)
+            # 단일 저장    
+            else :
+                # AWS
+                if CLOUD_PROVIDER == 'AWS' :
+                    admin_DAO.insertProduct(productName, productPrice, 
+                                            productStock, productDescription, 
+                                            s3_filename, azure_filename)
+                # AZURE    
+                else :
+                    admin_DAO.insertProductAzure(productName, productPrice, 
+                                            productStock, productDescription, 
+                                            s3_filename, azure_filename)
 
-            # AWS & AZURE
-            if cloud_provider in ["AWS", "AZURE"] :
-                # Azure Blob Storage에 파일 업로드
-                # 현재 AWS S3에 업로드 한 파일을 Azure Blob Storage에 똑같이 복사
-                # S3 객체 다운로드
-                # s3_obj = s3_client.get_object(Bucket=S3_BUCKET, Key=f'ssgproduct/{s3_filename}')
-                # file_content = s3_obj['Body'].read()
-                
-                # Azure Blob에 업로드
+            # "AWS"일 때, S3에 업로드
+            if CLOUD_PROVIDER == "AWS" :
+                s3_file.seek(0)
+                s3_client.upload_fileobj(s3_file, S3_BUCKET,'ssgproduct/' + s3_filename)
+
+            # "AWS" / "AZURE"일 때, Azure Blob에 업로드
+            if CLOUD_PROVIDER in ["AWS", "AZURE"] :
                 blob_client = container_client.get_blob_client(azure_filename)
                 blob_client.upload_blob(azure_file_read)
                 print(f"{s3_filename} uploaded to Azure Blob Storage.")
 
-            # DB 백업서버를 위한 DB Data JSON화
+            # AWS/AZURE 동시 저장이 "아닐" 경우 DB 백업서버를 위한 DB Data JSON화 
             if AWS_AZURE_INSERT_FLAG == False :
-                result = admin_DAO.dbToJson(cloud_provider)
+                result = admin_DAO.dbToJson(CLOUD_PROVIDER)
                 objects = []
                 for item in result:
                     obj = {
@@ -202,7 +213,7 @@ def edit(num) :
             return redirect(url_for('user.home'))
         
         if request.method == 'GET' :
-            selectResult = admin_DAO.selectProductByCode(num, cloud_provider)
+            selectResult = admin_DAO.selectProductByCode(num, CLOUD_PROVIDER)
             return render_template('admin/edit.html', selectResult = selectResult)
         
         elif request.method == 'POST' :
@@ -225,32 +236,44 @@ def edit(num) :
             azure_file = request.files['productImage']
             azure_file_read = request.files['productImage'].read()
             azure_filename = today_datetime + '_' + azure_file.filename
-            
-            # DB 저장
-            admin_DAO.updateProductByCode(productName, productPrice, 
-                                          productStock, productDescription, 
-                                          s3_filename, azure_filename, num, cloud_provider, AWS_AZURE_INSERT_FLAG)
 
-            # S3에 업로드
-            s3_file.seek(0)
-            s3_client.upload_fileobj(s3_file, S3_BUCKET,'ssgproduct/'+ s3_filename)
+            # AWS/AZURE 동시 업데이트
+            if AWS_AZURE_INSERT_FLAG :
+                # AWS
+                admin_DAO.updateProductByCode(productName, productPrice, 
+                                            productStock, productDescription, 
+                                            s3_filename, azure_filename, num)
+                # Azure
+                admin_DAO.updateProductByCodeAzure(productName, productPrice, 
+                                            productStock, productDescription, 
+                                            s3_filename, azure_filename, num)
+            # 단일 업데이트
+            else :
+                # AWS
+                if CLOUD_PROVIDER == 'AWS' :
+                    admin_DAO.updateProductByCode(productName, productPrice, 
+                                            productStock, productDescription, 
+                                            s3_filename, azure_filename, num)
+                # Azure
+                else :
+                    admin_DAO.updateProductByCodeAzure(productName, productPrice, 
+                                            productStock, productDescription, 
+                                            s3_filename, azure_filename, num)
 
-            # AWS & AZURE
-            if cloud_provider in ["AWS", "AZURE"] :
-                # Azure Blob Storage에 파일 업로드
-                # 현재 AWS S3에 업로드 한 파일을 Azure Blob Storage에 똑같이 복사
-                # S3 객체 다운로드
-                # s3_obj = s3_client.get_object(Bucket=S3_BUCKET, Key=f'ssgproduct/{s3_filename}')
-                # file_content = s3_obj['Body'].read()
+            # "AWS"일 때, S3에 업로드
+            if CLOUD_PROVIDER == "AWS" :
+                s3_file.seek(0)
+                s3_client.upload_fileobj(s3_file, S3_BUCKET,'ssgproduct/'+ s3_filename)
 
-                # Azure Blob에 업로드
+            # "AWS" / "AZURE"일 때, Azure Blob에 업로드
+            if CLOUD_PROVIDER in ["AWS", "AZURE"] :
                 blob_client = container_client.get_blob_client(azure_filename)
                 blob_client.upload_blob(azure_file_read)
                 print(f"{s3_filename} uploaded to Azure Blob Storage.")
 
-            # DB 백업서버를 위한 DB Data JSON화
+            # AWS/AZURE 동시 저장이 "아닐" 경우 DB 백업서버를 위한 DB Data JSON화
             if AWS_AZURE_INSERT_FLAG == False :
-                result = admin_DAO.dbToJson(cloud_provider)
+                result = admin_DAO.dbToJson(CLOUD_PROVIDER)
                 objects = []
                 for item in result:
                     obj = {
@@ -286,50 +309,70 @@ def edit(num) :
 # 상품 삭제
 @bp.route('/delete/<int:num>', methods=['POST'])
 def delete(num) :
-    if 'loginSessionInfo' in session :
-        # 관리자일 경우에만 상품 삭제 가능
-        userInfo = session.get('loginSessionInfo')
-        if userInfo.get('user_role') == 'role_admin' :
-
-            admin_DAO.deleteProductByCode(num, cloud_provider, AWS_AZURE_INSERT_FLAG)
-
-            # DB 백업서버를 위한 DB Data JSON화
-            if AWS_AZURE_INSERT_FLAG == False :
-                result = admin_DAO.dbToJson(cloud_provider)
-                objects = []
-                for item in result:
-                    obj = {
-                        "product_name": item[0],
-                        "product_price": item[1],
-                        "product_stock": item[2],
-                        "product_description": item[3],
-                        "product_image_aws": item[4],
-                        "product_image_azure": item[5]
-                    }
-                    objects.append(obj)
-
-                # 생성할 JSON 파일 설정
-                FILE_NAME = "./db_data.json"
-                f = open(FILE_NAME, 'w', encoding='utf-8')
-                f.write(json.dumps(objects, ensure_ascii=False))
-                f.close()
-
-                # GitHub Gist를 업데이트합니다.
-                file_content = read_json(FILE_NAME)
-                if uploadJsonToGist(GIST_ID, "db_data.json", str(file_content), GITHUB_TOKEN):
-                    print("Updated GitHub Gist successfully.")
-                else:
-                    print("Failed to update GitHub Gist.")
-
-                if result:
-                    return jsonify({'message': '상품이 성공적으로 삭제되었습니다.'}), 200
-                else:
-                    return jsonify({'message': '상품 삭제에 실패했습니다.'}), 500
-        # 관리자가 아닐 경우    
-        else :
-            return redirect(url_for('login'))
-    else :
+    if 'loginSessionInfo' not in session:
         return redirect(url_for('login'))
+    
+    # 관리자일 경우에만 상품 삭제 가능
+    userInfo = session.get('loginSessionInfo')
+    if userInfo.get('user_role') != 'role_admin':
+        return redirect(url_for('login'))
+    
+    # AWS/AZURE 동시 삭제
+    if AWS_AZURE_INSERT_FLAG :
+        # AWS
+        aws_result = admin_DAO.deleteProductByCode(num)
+        # Azure
+        azure_result = admin_DAO.deleteProductByCodeAzure(num)
+
+        if aws_result and azure_result:
+            return jsonify({'message': '상품이 성공적으로 삭제되었습니다.'}), 200
+        else:
+            return jsonify({'message': '상품 삭제에 실패했습니다.'}), 500
+
+    # AWS 삭제
+    else :
+        # AWS
+        if CLOUD_PROVIDER == 'AWS' :
+            result = admin_DAO.deleteProductByCode(num)
+        else :
+            result = admin_DAO.deleteProductByCodeAzure(num)
+        
+        # AWS/AZURE 동시 저장이 "아닐" 경우 DB 백업서버를 위한 DB Data JSON화 
+        if AWS_AZURE_INSERT_FLAG == False :
+            results = admin_DAO.dbToJson()
+            objects = []
+            for item in results:
+                obj = {
+                    "product_name": item[0],
+                    "product_price": item[1],
+                    "product_stock": item[2],
+                    "product_description": item[3],
+                    "product_image_aws": item[4],
+                    "product_image_azure": item[5]
+                }
+                objects.append(obj)
+
+            # 생성할 JSON 파일 설정
+            FILE_NAME = "./db_data.json"
+            f = open(FILE_NAME, 'w', encoding='utf-8')
+            f.write(json.dumps(objects, ensure_ascii=False))
+            f.close()
+
+            # JSON 파일을 읽어옵니다.
+            file_content = read_json(FILE_NAME)
+
+            # GitHub Gist를 업데이트합니다.
+            if uploadJsonToGist(GIST_ID, "db_data.json", str(file_content), GITHUB_TOKEN):
+                print("Updated GitHub Gist successfully.")
+            else:
+                print("Failed to update GitHub Gist.")
+
+        if result:
+            return jsonify({'message': '상품이 성공적으로 삭제되었습니다.'}), 200
+        else:
+            return jsonify({'message': '상품 삭제에 실패했습니다.'}), 500
+        
+    
     
 # JSON -> Github GIST 자동 업로드
 def uploadJsonToGist(gist_id, file_name, file_content, github_token):
@@ -379,7 +422,7 @@ def userInfo() :
         
         if request.method == 'GET' :
             users = []
-            users = admin_DAO.selectUsersAll(cloud_provider)
+            users = admin_DAO.selectUsersAll(CLOUD_PROVIDER)
 
             return render_template('admin/userInfo.html', users = users)
 
@@ -400,7 +443,7 @@ def orderInfo() :
         
         if request.method == 'GET' :
             orders = []
-            orders = admin_DAO.selectOrdersAll(cloud_provider)
+            orders = admin_DAO.selectOrdersAll(CLOUD_PROVIDER)
 
             return render_template('admin/orderInfo.html', orders = orders)
 

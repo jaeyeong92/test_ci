@@ -107,7 +107,7 @@ function checkSubmitForm(){
     }
 }
 
-// 회원 상품 담기
+// 상품 장바구니에 담기
 $(function(){
     $('.add-to-cart').on('click', function(event) {
         event.preventDefault();
