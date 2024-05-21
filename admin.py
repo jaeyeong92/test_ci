@@ -145,9 +145,9 @@ def register() :
                                         productStock, productDescription, 
                                         s3_filename, azure_filename)
                 # Azure
-                admin_DAO.insertProductAzure(productName, productPrice, 
-                                        productStock, productDescription, 
-                                        s3_filename, azure_filename)
+                # admin_DAO.insertProductAzure(productName, productPrice, 
+                #                         productStock, productDescription, 
+                #                         s3_filename, azure_filename)
             # 단일 저장    
             else :
                 # AWS
