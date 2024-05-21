@@ -2,53 +2,71 @@ import pymysql
 
 # DB 연결 - AWS
 def db_connect() :
-    db = pymysql.connect(
-        user = 'root',
-        password = 'admin12345',
-        host = 'db-svc',
-        db = 'ssgpang',
-        charset = 'utf8',
-        autocommit = True
-    )
-
-    return db
-
+    try:
+        db = pymysql.connect(
+            user = 'root',
+            password = 'admin12345',
+            host = 'db-svc',
+            db = 'ssgpang',
+            charset = 'utf8',
+            autocommit = True
+        )
+        return db
+    
+    except pymysql.MySQLError as e:
+            print("AWS DB Connection Failed: ", e)
+            return None
+    
 # DB 연결 - Azure
 def db_connect_azure() :
-    db = pymysql.connect(
-        user = 'azureroot',
-        password = 'admin12345!!',
-        host = '10.1.2.101',
-        db = 'ssgpang',
-        charset = 'utf8',
-        autocommit = True
-    )
-
-    return db
+    try:
+        db = pymysql.connect(
+            user = 'azureroot',
+            password = 'admin12345!!',
+            host = '10.1.2.101',
+            db = 'ssgpang',
+            charset = 'utf8',
+            autocommit = True
+        )
+        return db
+    
+    except pymysql.MySQLError as e:
+        print("Azure DB Connection Failed: ", e)
+        return None
 
 # # DB 연결 - AWS
 # def db_connect() :
-#     db = pymysql.connect(
-#         user = 'admin',
-#         password = 'admin12345',
-#         host = 'ssgpangdb.cwshg6arkkpy.ap-northeast-1.rds.amazonaws.com',
-#         db = 'ssgpang',
-#         charset = 'utf8',
-#         autocommit = True
-#     )
-#     return db
+#     try:
+#         db = pymysql.connect(
+#             user = 'admin',
+#             password = 'admin12345',
+#             host = 'ssgpangdb.cwshg6arkkpy.ap-northeast-1.rds.amazonaws.comgg',
+#             db = 'ssgpang',
+#             charset = 'utf8',
+#             autocommit = True
+#         )
+#         return db
+    
+#     except pymysql.MySQLError as e:
+#         print("AWS DB Connection Failed: ", e)
+#         return None
 
 # # DB 연결 - Azure
 # def db_connect_azure() :
-#     db = pymysql.connect(
-#         user = 'azureroot',
-#         password = 'admin12345!!',
-#         host = 'ssgpang-db-server.mysql.database.azure.com',
-#         db = 'ssgpang',
-#         charset = 'utf8',
-#         autocommit = True
-#     )
-#     return db
+#     try:
+#         db = pymysql.connect(
+#             user = 'azureroot',
+#             password = 'admin12345!!',
+#             host = 'ssgpang-db-server.mysql.database.azure.com',
+#             db = 'ssgpang',
+#             charset = 'utf8',
+#             autocommit = True
+#         )
+#         return db
+    
+#     except pymysql.MySQLError as e:
+#         print("Azure DB Connection Failed: ", e)
+#         return None
 
 # 회원정보 수정 - AWS
 def updateUserById(userId, userPw, userName, userEmail, userPhone, userAddress) :
@@ -77,10 +95,15 @@ def updateUserByIdAzure(userId, userPw, userName, userEmail, userPhone, userAddr
     return result_num
 
 # 회원가입 시 ID 중복확인
-def checkUserId(userId, cloud_provider) :
+def checkUserId(userId, CLOUD_PROVIDER) :
+    con = None
+
     # AWS
-    if cloud_provider == 'AWS' :
+    if CLOUD_PROVIDER == 'AWS' :
         con = db_connect()
+        if con is None:
+            print("Switching to Azure DB due to AWS connection failure.")
+            con = db_connect_azure()
     # AZURE    
     else :
         con = db_connect_azure()
@@ -98,10 +121,15 @@ def checkUserId(userId, cloud_provider) :
     return result
 
 # 회원가입 시 E-mail 중복확인
-def checkUserEmail(userEmail, cloud_provider) :
+def checkUserEmail(userEmail, CLOUD_PROVIDER) :
+    con = None
+
     # AWS
-    if cloud_provider == 'AWS' :
+    if CLOUD_PROVIDER == 'AWS' :
         con = db_connect()
+        if con is None:
+            print("Switching to Azure DB due to AWS connection failure.")
+            con = db_connect_azure()
     # AZURE    
     else :
         con = db_connect_azure()
@@ -119,10 +147,15 @@ def checkUserEmail(userEmail, cloud_provider) :
     return result
 
 # 회원가입 시 PhoneNumber 중복확인
-def checkUserPhoneNumber(userPhone, cloud_provider) :
+def checkUserPhoneNumber(userPhone, CLOUD_PROVIDER) :
+    con = None
+
     # AWS
-    if cloud_provider == 'AWS' :
+    if CLOUD_PROVIDER == 'AWS' :
         con = db_connect()
+        if con is None:
+            print("Switching to Azure DB due to AWS connection failure.")
+            con = db_connect_azure()
     # AZURE    
     else :
         con = db_connect_azure()
@@ -166,10 +199,15 @@ def insertUserAzure(userId, userPw, userName, userEmail, userPhone, userAddress)
     return result_num
 
 # 상품 등록 페이지 SELECT
-def selectProductAll(cloud_provider):
+def selectProductAll(CLOUD_PROVIDER):
+    con = None
+
     # AWS
-    if cloud_provider == 'AWS' :
+    if CLOUD_PROVIDER == 'AWS' :
         con = db_connect()
+        if con is None:
+            print("Switching to Azure DB due to AWS connection failure.")
+            con = db_connect_azure()
     # AZURE    
     else :
         con = db_connect_azure()
@@ -247,10 +285,15 @@ def insertCartListAzure(cartUserId, cartProductCode):
     return result_num
 
 # 장바구니(Cart) 정보 SELECT
-def selectCartListByUserId(userId, cloud_provider):
+def selectCartListByUserId(userId, CLOUD_PROVIDER):
+    con = None
+
     # AWS
-    if cloud_provider == 'AWS' :
+    if CLOUD_PROVIDER == 'AWS' :
         con = db_connect()
+        if con is None:
+            print("Switching to Azure DB due to AWS connection failure.")
+            con = db_connect_azure()
     # AZURE    
     else :
         con = db_connect_azure()
@@ -298,13 +341,18 @@ def deleteCartListByCodeAzure(num) :
     return result_num
 
 # 상품 검색
-def selectProductForSearch(searchQuery, cloud_provider) :
+def selectProductForSearch(searchQuery, CLOUD_PROVIDER) :
+    con = None
+
     # AWS
-    if cloud_provider == 'AWS' :
+    if CLOUD_PROVIDER == 'AWS' :
         con = db_connect()
+        if con is None:
+            print("Switching to Azure DB due to AWS connection failure.")
+            con = db_connect_azure()
     # AZURE    
     else :
-        con = db_connect_azure()    
+        con = db_connect_azure()
 
     result = []
     cursor = con.cursor(cursor=pymysql.cursors.DictCursor)
@@ -414,10 +462,15 @@ def updateCartListAzure(product_code, new_quantity, userId) :
     return result_num
 
 # 주문 내역 정보
-def selectOrdersAll(userId, cloud_provider):
+def selectOrdersAll(userId, CLOUD_PROVIDER):
+    con = None
+
     # AWS
-    if cloud_provider == 'AWS' :
+    if CLOUD_PROVIDER == 'AWS' :
         con = db_connect()
+        if con is None:
+            print("Switching to Azure DB due to AWS connection failure.")
+            con = db_connect_azure()
     # AZURE    
     else :
         con = db_connect_azure()

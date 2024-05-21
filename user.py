@@ -29,7 +29,7 @@ CONTAINER_NAME = "ssgpangcontainer"
 blob_service_client = BlobServiceClient.from_connection_string(CONNECTION_STRING)
 container_client = blob_service_client.get_container_client(CONTAINER_NAME)
 
-# # Git
+# Git
 GIST_ID = "a9d6acbaf78e4d82a4dcf858ba3652ea"
 GITHUB_TOKEN = os.environ.get("GIST_TOKEN")
 # GITHUB_TOKEN = ""
@@ -83,19 +83,26 @@ def userRegister() :
         # DB 저장
         # AWS/AZURE 동시 저장
         if AWS_AZURE_INSERT_FLAG :
-            # AWS
-            user_DAO.insertUser(userId, hashed_password, userName, userEmail, userPhone, userAddress)
-            # Azure
-            user_DAO.insertUserAzure(userId, hashed_password, userName, userEmail, userPhone, userAddress)
-
-        # 단일 저장
-        else :
-            # AWS
-            if CLOUD_PROVIDER == 'AWS' :
+            try :
+                # AWS
                 user_DAO.insertUser(userId, hashed_password, userName, userEmail, userPhone, userAddress)
-            # Azure    
-            else :
+            except Exception as e:
+                    print("AWS DB Insert Failed: ", e)
+            
+            try :
+                # Azure
                 user_DAO.insertUserAzure(userId, hashed_password, userName, userEmail, userPhone, userAddress)
+            except Exception as e:
+                    print("Azure DB Insert Failed: ", e)    
+
+        # # 단일 저장
+        # else :
+        #     # AWS
+        #     if CLOUD_PROVIDER == 'AWS' :
+        #         user_DAO.insertUser(userId, hashed_password, userName, userEmail, userPhone, userAddress)
+        #     # Azure    
+        #     else :
+        #         user_DAO.insertUserAzure(userId, hashed_password, userName, userEmail, userPhone, userAddress)
 
         return redirect(url_for('user.product'))
 
@@ -166,19 +173,26 @@ def myPageEdit(num) :
             # DB 업데이트
             # AWS/AZURE 동시 업데이트
             if AWS_AZURE_INSERT_FLAG :
-                # AWS
-                user_DAO.updateUserById(userId, userPw, userName, userEmail, userPhone, userAddress)
-                # Azure
-                user_DAO.updateUserByIdAzure(userId, userPw, userName, userEmail, userPhone, userAddress)
-
-            # 단일 업데이트
-            else :
-                # AWS
-                if CLOUD_PROVIDER == 'AWS' :
+                try :
+                    # AWS
                     user_DAO.updateUserById(userId, userPw, userName, userEmail, userPhone, userAddress)
-                # Azure
-                else :
+                except Exception as e:
+                    print("AWS DB Insert Failed: ", e)
+                
+                try :       
+                    # Azure
                     user_DAO.updateUserByIdAzure(userId, userPw, userName, userEmail, userPhone, userAddress)
+                except Exception as e:
+                    print("Azure DB Insert Failed: ", e)    
+
+            # # 단일 업데이트
+            # else :
+            #     # AWS
+            #     if CLOUD_PROVIDER == 'AWS' :
+            #         user_DAO.updateUserById(userId, userPw, userName, userEmail, userPhone, userAddress)
+            #     # Azure
+            #     else :
+            #         user_DAO.updateUserByIdAzure(userId, userPw, userName, userEmail, userPhone, userAddress)
 
             # Session 갱신 후 user/home으로 redirect
             session['loginSessionInfo'] = login_DAO.selectUserById(userId, CLOUD_PROVIDER)
@@ -228,19 +242,25 @@ def add_to_cart():
     # 장바구니에 상품 추가
     # AWS/AZURE 동시 저장
     if AWS_AZURE_INSERT_FLAG :
-        # AWS
-        user_DAO.insertCartList(cartUserId, cartProductCode)
-        # Azure
-        user_DAO.insertCartListAzure(cartUserId, cartProductCode)
-
-    # 단일 저장
-    else :
-        # AWS
-        if CLOUD_PROVIDER == 'AWS' :
+        try :
+            # AWS
             user_DAO.insertCartList(cartUserId, cartProductCode)
-        # Azure
-        else :
+        except Exception as e:
+                    print("AWS DB Insert Failed: ", e)
+        try :            
+            # Azure
             user_DAO.insertCartListAzure(cartUserId, cartProductCode)
+        except Exception as e:
+                    print("Azure DB Insert Failed: ", e)
+
+    # # 단일 저장
+    # else :
+    #     # AWS
+    #     if CLOUD_PROVIDER == 'AWS' :
+    #         user_DAO.insertCartList(cartUserId, cartProductCode)
+    #     # Azure
+    #     else :
+    #         user_DAO.insertCartListAzure(cartUserId, cartProductCode)
     
     return '장바구니에 담았습니다.'
 
@@ -280,19 +300,25 @@ def deleteCartList(num) :
     # 장바구니에 상품 삭제
     # AWS/AZURE 동시 삭제
     if AWS_AZURE_INSERT_FLAG :
-        # AWS
-        result = user_DAO.deleteCartListByCode(num)
-        # Azure
-        result = user_DAO.deleteCartListByCodeAzure(num)
-
-    # 단일 삭제
-    else :
-        # AWS
-        if CLOUD_PROVIDER == 'AWS' :
+        try :
+            # AWS
             result = user_DAO.deleteCartListByCode(num)
-        # Azure
-        else :
+        except Exception as e:
+                    print("AWS DB Insert Failed: ", e)
+        try :             
+            # Azure
             result = user_DAO.deleteCartListByCodeAzure(num)
+        except Exception as e:
+                    print("Azure DB Insert Failed: ", e)
+
+    # # 단일 삭제
+    # else :
+    #     # AWS
+    #     if CLOUD_PROVIDER == 'AWS' :
+    #         result = user_DAO.deleteCartListByCode(num)
+    #     # Azure
+    #     else :
+    #         result = user_DAO.deleteCartListByCodeAzure(num)
     
     if result :
         return '200'
@@ -379,28 +405,34 @@ def pay():
                 # 장바구니에 상품 삭제
                 # AWS/AZURE 동시 삭제
                 if AWS_AZURE_INSERT_FLAG :
-                    # AWS
-                    user_DAO.insertOrdersList(order_number, code, stock, price, userid, 
-                                          username, useraddress, userphone)
-                    user_DAO.deleteCartListAll(userId)
-
-                    # Azure
-                    user_DAO.insertOrdersListAzure(order_number, code, stock, price, userid, 
-                                          username, useraddress, userphone)
-                    user_DAO.deleteCartListAllAzure(userId)
-
-                # 단일 삭제
-                else :
-                    # AWS
-                    if CLOUD_PROVIDER == 'AWS' :
+                    try :
+                        # AWS
                         user_DAO.insertOrdersList(order_number, code, stock, price, userid, 
-                                          username, useraddress, userphone)
+                                            username, useraddress, userphone)
                         user_DAO.deleteCartListAll(userId)
-                    # Azure
-                    else :
+                    except Exception as e:
+                        print("AWS DB Insert Failed: ", e)
+
+                    try :
+                        # Azure
                         user_DAO.insertOrdersListAzure(order_number, code, stock, price, userid, 
-                                          username, useraddress, userphone)
+                                            username, useraddress, userphone)
                         user_DAO.deleteCartListAllAzure(userId)
+                    except Exception as e:
+                        print("Azure DB Insert Failed: ", e)
+
+                # # 단일 삭제
+                # else :
+                #     # AWS
+                #     if CLOUD_PROVIDER == 'AWS' :
+                #         user_DAO.insertOrdersList(order_number, code, stock, price, userid, 
+                #                           username, useraddress, userphone)
+                #         user_DAO.deleteCartListAll(userId)
+                #     # Azure
+                #     else :
+                #         user_DAO.insertOrdersListAzure(order_number, code, stock, price, userid, 
+                #                           username, useraddress, userphone)
+                #         user_DAO.deleteCartListAllAzure(userId)
 
             # 결제 완료 후 처리
             return redirect(url_for('user.product'))
@@ -424,21 +456,27 @@ def updateCartList():
                 # 장바구니에 상품 수량변경
                 # AWS/AZURE 동시 업데이트
                 if AWS_AZURE_INSERT_FLAG :
-                    # AWS
-                    user_DAO.updateCartList(product_code, new_quantity, userId)
-
-                    # Azure
-                    user_DAO.updateCartListAzure(product_code, new_quantity, userId)
-
-                # 단일 삭제
-                else :
-                    # AWS
-                    if CLOUD_PROVIDER == 'AWS' :
+                    try :
+                        # AWS
                         user_DAO.updateCartList(product_code, new_quantity, userId)
+                    except Exception as e:
+                        print("AWS DB Insert Failed: ", e)
 
-                    # Azure
-                    else :
+                    try :
+                        # Azure
                         user_DAO.updateCartListAzure(product_code, new_quantity, userId)
+                    except Exception as e:
+                     print("Azure DB Insert Failed: ", e)
+
+                # # 단일 삭제
+                # else :
+                #     # AWS
+                #     if CLOUD_PROVIDER == 'AWS' :
+                #         user_DAO.updateCartList(product_code, new_quantity, userId)
+
+                #     # Azure
+                #     else :
+                #         user_DAO.updateCartListAzure(product_code, new_quantity, userId)
                 
                 return '장바구니가 업데이트되었습니다.'
         else:

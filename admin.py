@@ -1,6 +1,7 @@
 from flask import *
 import admin_DAO
 import boto3
+from botocore.exceptions import NoCredentialsError, PartialCredentialsError, ClientError
 from datetime import datetime
 import json
 from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient
@@ -60,6 +61,16 @@ def get_public_url_azure(container_name, blob_name):
     url = blob_client.url
     return url
 
+# AWS S3 접근가능 테스트
+def can_access_s3(S3_BUCKET):
+    try:
+        # 버킷 리스트 요청을 통해 접근 가능 여부 확인
+        s3_client.head_bucket(Bucket=S3_BUCKET)
+        return True
+    except (NoCredentialsError, PartialCredentialsError, ClientError) as e:
+        print(f"Failed to access S3 bucket {S3_BUCKET}: {e}")
+        return False
+
 # main 관리 페이지
 @bp.route('/home')
 def home() :
@@ -90,14 +101,12 @@ def product() :
                 imageName = product['product_image_aws']
                 newImageName = get_public_url(S3_BUCKET, imageName)
                 product['product_image_aws'] = newImageName
-                logger.error(f"Generated AWS URL: {newImageName}")  # 로그 기록
             # Azure
             else :
                 imageName = product['product_image_azure']
                 newImageName = get_public_url_azure(CONTAINER_NAME, imageName)
                 product['product_image_azure'] = newImageName
                     
-
         return render_template('admin/product.html', products = products, cloud_provider = CLOUD_PROVIDER)
 
     else :
@@ -139,31 +148,45 @@ def register() :
             # DB 저장
             # AWS/AZURE 동시 저장
             if AWS_AZURE_INSERT_FLAG :
-                # AWS
-                admin_DAO.insertProduct(productName, productPrice, 
-                                        productStock, productDescription, 
-                                        s3_filename, azure_filename)
-                # Azure
-                admin_DAO.insertProductAzure(productName, productPrice, 
-                                        productStock, productDescription, 
-                                        s3_filename, azure_filename)
-            # 단일 저장    
-            else :
-                # AWS
-                if CLOUD_PROVIDER == 'AWS' :
+                try :
+                    # AWS
                     admin_DAO.insertProduct(productName, productPrice, 
                                             productStock, productDescription, 
                                             s3_filename, azure_filename)
-                # AZURE    
-                else :
-                    admin_DAO.insertProductAzure(productName, productPrice, 
+                except Exception as e:
+                    print("AWS DB Insert Failed: ", e)
+
+                try:
+                    # Azure
+                    admin_DAO.insertProductAzure(productName, productPrice,
                                             productStock, productDescription, 
                                             s3_filename, azure_filename)
+                except Exception as e:
+                    print("Azure DB Insert Failed: ", e)
+            # 단일 저장    
+            # else :
+            #     # AWS
+            #     if CLOUD_PROVIDER == 'AWS' :
+            #         admin_DAO.insertProduct(productName, productPrice, 
+            #                                 productStock, productDescription, 
+            #                                 s3_filename, azure_filename)
+            #     # AZURE    
+            #     else :
+            #         admin_DAO.insertProductAzure(productName, productPrice, 
+            #                                 productStock, productDescription, 
+            #                                 s3_filename, azure_filename)
 
             # "AWS"일 때, S3에 업로드
-            if CLOUD_PROVIDER == "AWS" :
-                s3_file.seek(0)
-                s3_client.upload_fileobj(s3_file, S3_BUCKET,'ssgproduct/' + s3_filename)
+            # if CLOUD_PROVIDER == "AWS" :
+            if can_access_s3(S3_BUCKET):
+                try:
+                    s3_file.seek(0)
+                    s3_client.upload_fileobj(s3_file, S3_BUCKET,'ssgproduct/' + s3_filename)
+                    print("File uploaded successfully.")
+                except ClientError as e:
+                    print(f"Failed to upload file to S3: {e}")
+            else:
+                print("S3 bucket is not accessible. File upload aborted.")
 
             # "AWS" / "AZURE"일 때, Azure Blob에 업로드
             if CLOUD_PROVIDER in ["AWS", "AZURE"] :
@@ -243,30 +266,44 @@ def edit(num) :
             # AWS/AZURE 동시 업데이트
             if AWS_AZURE_INSERT_FLAG :
                 # AWS
-                admin_DAO.updateProductByCode(productName, productPrice, 
-                                            productStock, productDescription, 
-                                            s3_filename, azure_filename, num)
-                # Azure
-                admin_DAO.updateProductByCodeAzure(productName, productPrice, 
-                                            productStock, productDescription, 
-                                            s3_filename, azure_filename, num)
-            # 단일 업데이트
-            else :
-                # AWS
-                if CLOUD_PROVIDER == 'AWS' :
+                try :
                     admin_DAO.updateProductByCode(productName, productPrice, 
-                                            productStock, productDescription, 
-                                            s3_filename, azure_filename, num)
+                                                productStock, productDescription, 
+                                                s3_filename, azure_filename, num)
+                except Exception as e:
+                    print("AWS DB Insert Failed: ", e)
+
                 # Azure
-                else :
+                try :
                     admin_DAO.updateProductByCodeAzure(productName, productPrice, 
-                                            productStock, productDescription, 
-                                            s3_filename, azure_filename, num)
+                                                productStock, productDescription, 
+                                                s3_filename, azure_filename, num)
+                except Exception as e:
+                    print("AWS DB Insert Failed: ", e)
+            # 단일 업데이트
+            # else :
+            #     # AWS
+            #     if CLOUD_PROVIDER == 'AWS' :
+            #         admin_DAO.updateProductByCode(productName, productPrice, 
+            #                                 productStock, productDescription, 
+            #                                 s3_filename, azure_filename, num)
+            #     # Azure
+            #     else :
+            #         admin_DAO.updateProductByCodeAzure(productName, productPrice, 
+            #                                 productStock, productDescription, 
+            #                                 s3_filename, azure_filename, num)
 
             # "AWS"일 때, S3에 업로드
-            if CLOUD_PROVIDER == "AWS" :
-                s3_file.seek(0)
-                s3_client.upload_fileobj(s3_file, S3_BUCKET,'ssgproduct/'+ s3_filename)
+            # if CLOUD_PROVIDER == "AWS" :
+            if can_access_s3(S3_BUCKET):
+                try:
+                    s3_file.seek(0)
+                    s3_client.upload_fileobj(s3_file, S3_BUCKET,'ssgproduct/' + s3_filename)
+                    print("File uploaded successfully.")
+                except ClientError as e:
+                    print(f"Failed to upload file to S3: {e}")
+            else:
+                print("S3 bucket is not accessible. File upload aborted.")
 
             # "AWS" / "AZURE"일 때, Azure Blob에 업로드
             if CLOUD_PROVIDER in ["AWS", "AZURE"] :
@@ -323,57 +360,63 @@ def delete(num) :
     # AWS/AZURE 동시 삭제
     if AWS_AZURE_INSERT_FLAG :
         # AWS
-        aws_result = admin_DAO.deleteProductByCode(num)
+        try :
+            aws_result = admin_DAO.deleteProductByCode(num, CLOUD_PROVIDER)
+        except Exception as e:
+                    print("AWS DB Insert Failed: ", e)    
         # Azure
-        azure_result = admin_DAO.deleteProductByCodeAzure(num)
+        try :
+            azure_result = admin_DAO.deleteProductByCodeAzure(num)
+        except Exception as e:
+                    print("AWS DB Insert Failed: ", e)    
 
         if aws_result and azure_result:
             return jsonify({'message': '상품이 성공적으로 삭제되었습니다.'}), 200
         else:
             return jsonify({'message': '상품 삭제에 실패했습니다.'}), 500
 
-    # AWS 삭제
-    else :
-        # AWS
-        if CLOUD_PROVIDER == 'AWS' :
-            result = admin_DAO.deleteProductByCode(num)
-        else :
-            result = admin_DAO.deleteProductByCodeAzure(num)
+    # # AWS 삭제
+    # else :
+    #     # AWS
+    #     if CLOUD_PROVIDER == 'AWS' :
+    #         result = admin_DAO.deleteProductByCode(num)
+    #     else :
+    #         result = admin_DAO.deleteProductByCodeAzure(num)
         
-        # AWS/AZURE 동시 저장이 "아닐" 경우 DB 백업서버를 위한 DB Data JSON화 
-        if AWS_AZURE_INSERT_FLAG == False :
-            results = admin_DAO.dbToJson()
-            objects = []
-            for item in results:
-                obj = {
-                    "product_name": item[0],
-                    "product_price": item[1],
-                    "product_stock": item[2],
-                    "product_description": item[3],
-                    "product_image_aws": item[4],
-                    "product_image_azure": item[5]
-                }
-                objects.append(obj)
+    #     # AWS/AZURE 동시 저장이 "아닐" 경우 DB 백업서버를 위한 DB Data JSON화 
+    #     if AWS_AZURE_INSERT_FLAG == False :
+    #         results = admin_DAO.dbToJson()
+    #         objects = []
+    #         for item in results:
+    #             obj = {
+    #                 "product_name": item[0],
+    #                 "product_price": item[1],
+    #                 "product_stock": item[2],
+    #                 "product_description": item[3],
+    #                 "product_image_aws": item[4],
+    #                 "product_image_azure": item[5]
+    #             }
+    #             objects.append(obj)
 
-            # 생성할 JSON 파일 설정
-            FILE_NAME = "./db_data.json"
-            f = open(FILE_NAME, 'w', encoding='utf-8')
-            f.write(json.dumps(objects, ensure_ascii=False))
-            f.close()
+    #         # 생성할 JSON 파일 설정
+    #         FILE_NAME = "./db_data.json"
+    #         f = open(FILE_NAME, 'w', encoding='utf-8')
+    #         f.write(json.dumps(objects, ensure_ascii=False))
+    #         f.close()
 
-            # JSON 파일을 읽어옵니다.
-            file_content = read_json(FILE_NAME)
+    #         # JSON 파일을 읽어옵니다.
+    #         file_content = read_json(FILE_NAME)
 
-            # GitHub Gist를 업데이트합니다.
-            if uploadJsonToGist(GIST_ID, "db_data.json", str(file_content), GITHUB_TOKEN):
-                print("Updated GitHub Gist successfully.")
-            else:
-                print("Failed to update GitHub Gist.")
+    #         # GitHub Gist를 업데이트합니다.
+    #         if uploadJsonToGist(GIST_ID, "db_data.json", str(file_content), GITHUB_TOKEN):
+    #             print("Updated GitHub Gist successfully.")
+    #         else:
+    #             print("Failed to update GitHub Gist.")
 
-        if result:
-            return jsonify({'message': '상품이 성공적으로 삭제되었습니다.'}), 200
-        else:
-            return jsonify({'message': '상품 삭제에 실패했습니다.'}), 500
+    #     if result:
+    #         return jsonify({'message': '상품이 성공적으로 삭제되었습니다.'}), 200
+    #     else:
+    #         return jsonify({'message': '상품 삭제에 실패했습니다.'}), 500
         
     
     
