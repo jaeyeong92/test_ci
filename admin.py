@@ -13,6 +13,7 @@ bp = Blueprint("admin", __name__, url_prefix="/admin")
 
 # Logging 설정
 logging.basicConfig(filename='error.log', level=logging.ERROR)
+logger = logging.getLogger()
 
 # AWS Role 및 S3 클라이언트 생성
 session2 = boto3.Session()
@@ -89,11 +90,14 @@ def product() :
                 imageName = product['product_image_aws']
                 newImageName = get_public_url(S3_BUCKET, imageName)
                 product['product_image_aws'] = newImageName
+                logger.debug(f"Generated AWS URL: {newImageName}")  # 로그 기록
+                print(f"Generated AWS URL: {newImageName}")  # 디버그 프린트
             # Azure
             else :
                 imageName = product['product_image_azure']
                 newImageName = get_public_url_azure(CONTAINER_NAME, imageName)
                 product['product_image_azure'] = newImageName
+                    
 
         return render_template('admin/product.html', products = products, cloud_provider = CLOUD_PROVIDER)
 
@@ -141,9 +145,9 @@ def register() :
                                         productStock, productDescription, 
                                         s3_filename, azure_filename)
                 # Azure
-                # admin_DAO.insertProductAzure(productName, productPrice, 
-                #                         productStock, productDescription, 
-                #                         s3_filename, azure_filename)
+                admin_DAO.insertProductAzure(productName, productPrice, 
+                                        productStock, productDescription, 
+                                        s3_filename, azure_filename)
             # 단일 저장    
             else :
                 # AWS
