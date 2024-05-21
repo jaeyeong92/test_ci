@@ -90,7 +90,7 @@ def product() :
                 imageName = product['product_image_aws']
                 newImageName = get_public_url(S3_BUCKET, imageName)
                 product['product_image_aws'] = newImageName
-                logger.debug(f"Generated AWS URL: {newImageName}")  # 로그 기록
+                logger.error(f"Generated AWS URL: {newImageName}")  # 로그 기록
                 print(f"Generated AWS URL: {newImageName}")  # 디버그 프린트
             # Azure
             else :
