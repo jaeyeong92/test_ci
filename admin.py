@@ -17,7 +17,7 @@ logging.basicConfig(filename='error.log', level=logging.ERROR)
 # AWS Role 및 S3 클라이언트 생성
 session2 = boto3.Session()
 s3_client = session2.client('s3')
-S3_BUCKET = 'ssgpang-bucket2'
+S3_BUCKET = 'ssgpang-bucket'
 
 # Azure Blob Storage 연결 설정
 CONNECTION_STRING = os.environ.get("AZURE_CONNECTION_STRING")
