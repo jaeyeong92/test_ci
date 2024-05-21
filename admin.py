@@ -18,7 +18,7 @@ logger = logging.getLogger()
 # AWS Role 및 S3 클라이언트 생성
 session2 = boto3.Session()
 s3_client = session2.client('s3')
-S3_BUCKET = 'ssgpang-bucket'
+S3_BUCKET = 'ssgpang-bucket2'
 
 # Azure Blob Storage 연결 설정
 CONNECTION_STRING = os.environ.get("AZURE_CONNECTION_STRING")
@@ -91,7 +91,6 @@ def product() :
                 newImageName = get_public_url(S3_BUCKET, imageName)
                 product['product_image_aws'] = newImageName
                 logger.error(f"Generated AWS URL: {newImageName}")  # 로그 기록
-                print(f"Generated AWS URL: {newImageName}")  # 디버그 프린트
             # Azure
             else :
                 imageName = product['product_image_azure']

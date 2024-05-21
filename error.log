@@ -201,3 +201,692 @@ WARNING:werkzeug: * Debugger is active!
 INFO:werkzeug: * Debugger PIN: 251-439-286
 INFO:werkzeug: * Detected change in 'c:\\final_project\\user.py', reloading
 INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:80
+ * Running on http://192.168.0.14:80
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 251-439-286
+ERROR:root:Generated AWS URL: https://ssgpang-bucket.s3.amazonaws.com/ssgproduct/202405210013_%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202024-03-04%20140730.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATAAJIQVALLBHOJMM%2F20240521%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Date=20240521T010719Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=be90fa09dd4dcc285deab5ca83880e8a58ad9fe62a99464f4ee218387147a241
+ERROR:root:Generated AWS URL: https://ssgpang-bucket.s3.amazonaws.com/ssgproduct/202405210234_test2.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATAAJIQVALLBHOJMM%2F20240521%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Date=20240521T010719Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=6df1ecbc0417ac432c28b627ddfbb9d4a1afffd79ab1fc34fd90b2779407ca98
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:19] "GET /admin/product HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:19] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:19] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:19] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:19] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:19] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:19] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:19] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:19] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:19] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:19] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:19] "[36mGET /static/images/coupang_logo.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:19] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:19] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:19] "[36mGET /static/fonts/Pretendard-Regular.woff HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:19] "[36mGET /static/fonts/icomoon/fonts/icomoon.ttf?10si43 HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in 'c:\\final_project\\admin.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 251-439-286
+INFO:werkzeug: * Detected change in 'c:\\final_project\\user.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 251-439-286
+ERROR:root:Generated AWS URL: https://ssgpang-bucket.s3.amazonaws.com/ssgproduct/202405210013_%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202024-03-04%20140730.png?AWSAccessKeyId=AKIATAAJIQVALLBHOJMM&Signature=5ge3FqnKGTXbYBlAXdeKrmK4ziU%3D&Expires=1716257257
+ERROR:root:Generated AWS URL: https://ssgpang-bucket.s3.amazonaws.com/ssgproduct/202405210234_test2.jpg?AWSAccessKeyId=AKIATAAJIQVALLBHOJMM&Signature=v4xTNimEWSiEMtitbWc4Fqa5ekg%3D&Expires=1716257257
+ERROR:root:Generated AWS URL: https://ssgpang-bucket.s3.amazonaws.com/ssgproduct/202405210234_test2.jpg?AWSAccessKeyId=AKIATAAJIQVALLBHOJMM&Signature=v4xTNimEWSiEMtitbWc4Fqa5ekg%3D&Expires=1716257257
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:37] "GET /admin/product HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:37] "GET /admin/product HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:37] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:37] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:37] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:37] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:37] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:37] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:37] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:37] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:37] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:37] "[36mGET /static/images/coupang_logo.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:37] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:37] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:37] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:37] "POST /admin/delete/5 HTTP/1.1" 200 -
+ERROR:root:Generated AWS URL: https://ssgpang-bucket.s3.amazonaws.com/ssgproduct/202405210234_test2.jpg?AWSAccessKeyId=AKIATAAJIQVALLBHOJMM&Signature=v4xTNimEWSiEMtitbWc4Fqa5ekg%3D&Expires=1716257257
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:37] "GET /admin/product HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:37] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:37] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:37] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:37] "[36mGET /static/images/coupang_logo.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:37] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:37] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:37] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:37] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:37] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:37] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:37] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:37] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:37] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+ERROR:root:Generated AWS URL: https://ssgpang-bucket.s3.amazonaws.com/ssgproduct/202405210234_test2.jpg?AWSAccessKeyId=AKIATAAJIQVALLBHOJMM&Signature=STcgvIdRQF3W49bMP5%2FbmcRhjuw%3D&Expires=1716257258
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "GET /admin/product HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "[36mGET /static/images/coupang_logo.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+ERROR:root:Generated AWS URL: https://ssgpang-bucket.s3.amazonaws.com/ssgproduct/202405210234_test2.jpg?AWSAccessKeyId=AKIATAAJIQVALLBHOJMM&Signature=STcgvIdRQF3W49bMP5%2FbmcRhjuw%3D&Expires=1716257258
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "GET /admin/product HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "[36mGET /static/images/coupang_logo.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+ERROR:root:Generated AWS URL: https://ssgpang-bucket.s3.amazonaws.com/ssgproduct/202405210234_test2.jpg?AWSAccessKeyId=AKIATAAJIQVALLBHOJMM&Signature=STcgvIdRQF3W49bMP5%2FbmcRhjuw%3D&Expires=1716257258
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "GET /admin/product HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "[36mGET /static/images/coupang_logo.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:38] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+ERROR:root:Generated AWS URL: https://ssgpang-bucket.s3.amazonaws.com/ssgproduct/202405210234_test2.jpg?AWSAccessKeyId=AKIATAAJIQVALLBHOJMM&Signature=d6BUI%2FsNAWhQhRTC3rp2%2Fbij84c%3D&Expires=1716257259
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "GET /admin/product HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "[36mGET /static/images/coupang_logo.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+ERROR:root:Generated AWS URL: https://ssgpang-bucket.s3.amazonaws.com/ssgproduct/202405210234_test2.jpg?AWSAccessKeyId=AKIATAAJIQVALLBHOJMM&Signature=d6BUI%2FsNAWhQhRTC3rp2%2Fbij84c%3D&Expires=1716257259
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "GET /admin/product HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "[36mGET /static/images/coupang_logo.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+ERROR:root:Generated AWS URL: https://ssgpang-bucket.s3.amazonaws.com/ssgproduct/202405210234_test2.jpg?AWSAccessKeyId=AKIATAAJIQVALLBHOJMM&Signature=d6BUI%2FsNAWhQhRTC3rp2%2Fbij84c%3D&Expires=1716257259
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "GET /admin/product HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "[36mGET /static/images/coupang_logo.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+ERROR:root:Generated AWS URL: https://ssgpang-bucket.s3.amazonaws.com/ssgproduct/202405210234_test2.jpg?AWSAccessKeyId=AKIATAAJIQVALLBHOJMM&Signature=d6BUI%2FsNAWhQhRTC3rp2%2Fbij84c%3D&Expires=1716257259
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:39] "GET /admin/product HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:40] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:40] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:40] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:40] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:40] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:40] "[36mGET /static/images/coupang_logo.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:40] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:40] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:40] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:40] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:40] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:40] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:40] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+ERROR:root:Generated AWS URL: https://ssgpang-bucket.s3.amazonaws.com/ssgproduct/202405210234_test2.jpg?AWSAccessKeyId=AKIATAAJIQVALLBHOJMM&Signature=shbUYsrC5ZfQnW94%2FbosTmhfLjo%3D&Expires=1716257268
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:48] "GET /admin/product HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:48] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:48] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:48] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:48] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:48] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:48] "[36mGET /static/images/coupang_logo.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:48] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:48] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:48] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:48] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:48] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:48] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:48] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:49] "GET /admin/register HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:49] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:49] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:49] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:49] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:49] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:49] "[36mGET /static/images/coupang_logo.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:49] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:49] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:49] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:49] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:49] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:49] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:49] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:57] "[32mPOST /admin/register HTTP/1.1[0m" 302 -
+ERROR:root:Generated AWS URL: https://ssgpang-bucket.s3.ap-northeast-2.amazonaws.com/ssgproduct/202405211007_test1.jpg?AWSAccessKeyId=AKIATAAJIQVALLBHOJMM&Signature=M6Uvn%2Ft0Q6inKGPnBh23LRUs7CE%3D&Expires=1716257277
+ERROR:root:Generated AWS URL: https://ssgpang-bucket.s3.ap-northeast-2.amazonaws.com/ssgproduct/202405210234_test2.jpg?AWSAccessKeyId=AKIATAAJIQVALLBHOJMM&Signature=D1baufceBgDYHscBI6IvAiiFPfI%3D&Expires=1716257277
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:57] "GET /admin/product HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:57] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:57] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:57] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:57] "[36mGET /static/images/coupang_logo.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:57] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:57] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:57] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:57] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:57] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:57] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:57] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:57] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:07:57] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in 'c:\\final_project\\admin.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 251-439-286
+INFO:werkzeug: * Detected change in 'c:\\final_project\\user.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 251-439-286
+ERROR:root:Generated AWS URL: https://ssgpang-bucket.s3.amazonaws.com/ssgproduct/202405211007_test1.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATAAJIQVALLBHOJMM%2F20240521%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Date=20240521T010818Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=b43f9982edb28e038f5c8df7a154c1c02b483a67e1cf61d5b3f8c05f6f159c7f
+ERROR:root:Generated AWS URL: https://ssgpang-bucket.s3.amazonaws.com/ssgproduct/202405210234_test2.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATAAJIQVALLBHOJMM%2F20240521%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Date=20240521T010818Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=03083c52e89b58904871404b2b9ff05f5d3e3266d6d81d9c14eb01f3782374a5
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:18] "GET /admin/product HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:19] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:19] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:19] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:19] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:19] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:19] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:19] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:19] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:19] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:19] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:19] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:19] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:19] "[36mGET /static/images/coupang_logo.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:19] "GET /admin/register HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:19] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:19] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:19] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:19] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:19] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:19] "[36mGET /static/images/coupang_logo.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:19] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:19] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:19] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:19] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:19] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:19] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:19] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:20] "GET /admin/register HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:20] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:20] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:20] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:20] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:20] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:20] "[36mGET /static/images/coupang_logo.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:20] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:20] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:20] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:20] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:20] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:20] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:20] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:28] "[32mPOST /admin/register HTTP/1.1[0m" 302 -
+ERROR:root:Generated AWS URL: https://ssgpang-bucket.s3.amazonaws.com/ssgproduct/202405211008_test2.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATAAJIQVALLBHOJMM%2F20240521%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Date=20240521T010828Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=8800d0b8417cfd2f0d7926ddac7d9b61dbe96005a2fdb17cec1cb06f1ada59ce
+ERROR:root:Generated AWS URL: https://ssgpang-bucket.s3.amazonaws.com/ssgproduct/202405211007_test1.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATAAJIQVALLBHOJMM%2F20240521%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Date=20240521T010828Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=b060792e3eb84a697adbf134d938f4d53c477ff1a83b981c12a5185e9e9bf33c
+ERROR:root:Generated AWS URL: https://ssgpang-bucket.s3.amazonaws.com/ssgproduct/202405210234_test2.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATAAJIQVALLBHOJMM%2F20240521%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Date=20240521T010828Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=ff5879ec6c75c2519746109cea9935abfa2f09e44a157e8f020f076424fcc44f
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:28] "GET /admin/product HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:28] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:28] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:28] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:28] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:28] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:28] "[36mGET /static/images/coupang_logo.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:28] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:28] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:28] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:28] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:28] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:28] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:28] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:34] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:34] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:34] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:34] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:34] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:34] "[33mGET /static/js/bootstrap.min.js.map HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:34] "[33mGET /static/js/popper.min.js.map HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:34] "GET /static/css/bootstrap.min.css.map HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:59] "[36mGET /static/css/bootstrap.min.css.map HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:59] "[33mGET /static/js/bootstrap.min.js.map HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:08:59] "[33mGET /static/js/popper.min.js.map HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:31] "[32mGET /logout HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:31] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:31] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:31] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:31] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:31] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:31] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:31] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:31] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:31] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:31] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:31] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:31] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:31] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:31] "[36mGET /static/images/main_backgroud.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:34] "[32mPOST /login HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:35] "GET /user/product HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:35] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:35] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:35] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:35] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:35] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:35] "[36mGET /static/css/footer.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:35] "[36mGET /static/css/top.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:35] "[36mGET /static/images/ssgpang_logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:35] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:35] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:35] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:35] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:35] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:35] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:35] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:35] "[36mGET /static/js/alert.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:37] "GET /user/specialBenefit HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:37] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:37] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:37] "[36mGET /static/css/top.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:37] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:37] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:37] "[36mGET /static/css/footer.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:37] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:37] "[36mGET /static/images/ssgpang_logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:37] "[36mGET /static/images/specialBenefit/specialBenefit02.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:37] "[36mGET /static/images/specialBenefit/specialBenefit01.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:37] "[36mGET /static/images/specialBenefit/specialBenefit03.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:37] "[36mGET /static/images/specialBenefit/specialBenefit04.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:37] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:37] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:37] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:37] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:37] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:37] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:37] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:37] "[36mGET /static/js/alert.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:37] "[36mGET /static/images/specialBenefit/specialBenefit05.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:37] "[36mGET /static/images/specialBenefit/specialBenefit06.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:37] "[36mGET /static/images/specialBenefit/specialBenefit07.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:37] "[36mGET /static/images/specialBenefit/specialBenefit08.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:37] "[36mGET /static/images/specialBenefit/specialBenefit09.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:37] "[36mGET /static/images/specialBenefit/specialBenefit10.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:38] "GET /user/product HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:38] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:38] "[36mGET /static/css/footer.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:38] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:38] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:38] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:38] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:38] "[36mGET /static/css/top.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:38] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:38] "[36mGET /static/images/ssgpang_logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:38] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:38] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:38] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:38] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:38] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:38] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:38] "[36mGET /static/js/alert.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:38] "GET /user/home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:38] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:38] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:38] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:38] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:38] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:38] "[36mGET /static/css/footer.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:38] "[36mGET /static/css/top.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:38] "[36mGET /static/images/ssgpang_logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:38] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:38] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:38] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:38] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:38] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:38] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:38] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:38] "[36mGET /static/js/alert.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:39] "GET /user/product HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:39] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:39] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:39] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:39] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:39] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:39] "[36mGET /static/css/footer.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:39] "[36mGET /static/css/top.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:39] "[36mGET /static/images/ssgpang_logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:39] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:39] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:39] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:39] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:39] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:39] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:39] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:39] "[36mGET /static/js/alert.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:41] "GET /user/cartList HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:41] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:41] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:41] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:41] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:41] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:41] "[36mGET /static/css/footer.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:41] "[36mGET /static/css/top.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:41] "[36mGET /static/images/ssgpang_logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:41] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:41] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:41] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:41] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:41] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:41] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:41] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:41] "[36mGET /static/js/alert.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:41] "[36mGET /static/js/cartList.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:41] "GET /user/product HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:41] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:42] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:42] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:42] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:42] "[36mGET /static/css/footer.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:42] "[36mGET /static/css/top.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:42] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:42] "[36mGET /static/images/ssgpang_logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:42] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:42] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:42] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:42] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:42] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:42] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:42] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:42] "[36mGET /static/js/alert.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:51] "[32mGET /logout HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:51] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:51] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:51] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:51] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:51] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:51] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:51] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:51] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:51] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:51] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:51] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:51] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:51] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:51] "[36mGET /static/images/main_backgroud.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:54] "[32mPOST /login HTTP/1.1[0m" 302 -
+ERROR:root:Generated AWS URL: https://ssgpang-bucket.s3.amazonaws.com/ssgproduct/202405211008_test2.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATAAJIQVALLBHOJMM%2F20240521%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Date=20240521T010954Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=2d357912e54e35ade02c4b0fb46d91eb47c8bab38b8c8a07c8f8d4b17c9e2a45
+ERROR:root:Generated AWS URL: https://ssgpang-bucket.s3.amazonaws.com/ssgproduct/202405211007_test1.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATAAJIQVALLBHOJMM%2F20240521%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Date=20240521T010954Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=c535fed2135595cfbb89c2ab5157926e1ebb0930278cb7d29d465865adb51690
+ERROR:root:Generated AWS URL: https://ssgpang-bucket.s3.amazonaws.com/ssgproduct/202405210234_test2.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATAAJIQVALLBHOJMM%2F20240521%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Date=20240521T010954Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=820aeaccb658fd3d9a9980e93a2699739ab095d52a6d69b75de3269334b56220
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:54] "GET /admin/product HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:54] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:54] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:54] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:54] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:54] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:54] "[36mGET /static/images/coupang_logo.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:54] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:54] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:54] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:54] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:54] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:54] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:54] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:57] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:57] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:57] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:57] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:57] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:57] "[33mGET /static/js/bootstrap.min.js.map HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:57] "[33mGET /static/js/popper.min.js.map HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:09:57] "[36mGET /static/css/bootstrap.min.css.map HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in 'c:\\final_project\\admin.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 251-439-286
+INFO:werkzeug: * Detected change in 'c:\\final_project\\user.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 251-439-286
+ERROR:root:Generated AWS URL: https://ssgpang-bucket2.s3.amazonaws.com/ssgproduct/202405211008_test2.jpg?AWSAccessKeyId=AKIATAAJIQVALLBHOJMM&Signature=cN9qXwKPuTgzBxV8YKgx63KEs%2FU%3D&Expires=1716257487
+ERROR:root:Generated AWS URL: https://ssgpang-bucket2.s3.amazonaws.com/ssgproduct/202405211007_test1.jpg?AWSAccessKeyId=AKIATAAJIQVALLBHOJMM&Signature=y9VKZ4noaZNoKlw9NC0mxwTMtjM%3D&Expires=1716257487
+ERROR:root:Generated AWS URL: https://ssgpang-bucket2.s3.amazonaws.com/ssgproduct/202405210234_test2.jpg?AWSAccessKeyId=AKIATAAJIQVALLBHOJMM&Signature=DC9UfBlxReof1HDM920S%2BIw7R3A%3D&Expires=1716257487
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:27] "GET /admin/product HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:28] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:28] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:28] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:28] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:28] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:28] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:28] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:28] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:28] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:28] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:28] "[36mGET /static/images/coupang_logo.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:28] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:28] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:28] "[36mGET /static/css/bootstrap.min.css.map HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:28] "[36mGET /static/fonts/Pretendard-Regular.woff HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:28] "[36mGET /static/fonts/icomoon/fonts/icomoon.ttf?10si43 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:28] "[33mGET /static/js/bootstrap.min.js.map HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:28] "[33mGET /static/js/popper.min.js.map HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:30] "GET /admin/register HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:30] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:30] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:30] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:30] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:30] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:30] "[36mGET /static/images/coupang_logo.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:30] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:30] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:30] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:30] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:30] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:30] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:30] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:30] "[36mGET /static/css/bootstrap.min.css.map HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:30] "[33mGET /static/js/bootstrap.min.js.map HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:30] "[33mGET /static/js/popper.min.js.map HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:39] "[32mPOST /admin/register HTTP/1.1[0m" 302 -
+ERROR:root:Generated AWS URL: https://ssgpang-bucket2.s3.amazonaws.com/ssgproduct/202405211011_test4.jpg?AWSAccessKeyId=AKIATAAJIQVALLBHOJMM&Signature=ixnN87UytxHxQ7kTUZ5PUYrEmsY%3D&Expires=1716257499
+ERROR:root:Generated AWS URL: https://ssgpang-bucket2.s3.amazonaws.com/ssgproduct/202405211008_test2.jpg?AWSAccessKeyId=AKIATAAJIQVALLBHOJMM&Signature=0Xa5hJ6C33g9KzqscvZFE47jtvA%3D&Expires=1716257499
+ERROR:root:Generated AWS URL: https://ssgpang-bucket2.s3.amazonaws.com/ssgproduct/202405211007_test1.jpg?AWSAccessKeyId=AKIATAAJIQVALLBHOJMM&Signature=02%2B6i%2FT%2BpdFJz0aTl2krlrxubM8%3D&Expires=1716257499
+ERROR:root:Generated AWS URL: https://ssgpang-bucket2.s3.amazonaws.com/ssgproduct/202405210234_test2.jpg?AWSAccessKeyId=AKIATAAJIQVALLBHOJMM&Signature=7UjY46QLuEhKITx%2FdNxkS7ZhN1U%3D&Expires=1716257499
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:39] "GET /admin/product HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:39] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:39] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:39] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:39] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:39] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:39] "[36mGET /static/images/coupang_logo.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:39] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:39] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:39] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:39] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:39] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:39] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:39] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:41] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:41] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:41] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:41] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:41] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:41] "[33mGET /static/js/bootstrap.min.js.map HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:41] "[33mGET /static/js/popper.min.js.map HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:11:41] "[36mGET /static/css/bootstrap.min.css.map HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in 'c:\\final_project\\user.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 251-439-286
+INFO:werkzeug: * Detected change in 'c:\\final_project\\admin.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 251-439-286
+INFO:werkzeug: * Detected change in 'c:\\final_project\\admin.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 251-439-286
+ERROR:root:Generated AWS URL: https://ssgpang-bucket.s3.amazonaws.com/ssgproduct/202405211011_test4.jpg?AWSAccessKeyId=AKIATAAJIQVALLBHOJMM&Signature=6Pycjyhgiw3s6hrXj347xXjmC%2B4%3D&Expires=1716257577
+ERROR:root:Generated AWS URL: https://ssgpang-bucket.s3.amazonaws.com/ssgproduct/202405211008_test2.jpg?AWSAccessKeyId=AKIATAAJIQVALLBHOJMM&Signature=n8n4S0BTU0vY9wIvhtPR2k%2FQp1M%3D&Expires=1716257577
+ERROR:root:Generated AWS URL: https://ssgpang-bucket.s3.amazonaws.com/ssgproduct/202405211007_test1.jpg?AWSAccessKeyId=AKIATAAJIQVALLBHOJMM&Signature=FE5ZnaV%2FrVyyly8dE3BRgyBWXQw%3D&Expires=1716257577
+ERROR:root:Generated AWS URL: https://ssgpang-bucket.s3.amazonaws.com/ssgproduct/202405210234_test2.jpg?AWSAccessKeyId=AKIATAAJIQVALLBHOJMM&Signature=sZRRhPsArdvwAimDnujZIyMzMbM%3D&Expires=1716257577
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:12:57] "GET /admin/product HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:12:57] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:12:57] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:12:57] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:12:57] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:12:57] "[36mGET /static/images/coupang_logo.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:12:57] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:12:57] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:12:57] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:12:57] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:12:57] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:12:57] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:12:57] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:12:57] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:12:57] "[36mGET /static/fonts/Pretendard-Regular.woff HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:12:57] "[36mGET /static/fonts/icomoon/fonts/icomoon.ttf?10si43 HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in 'c:\\final_project\\admin.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 251-439-286
+INFO:werkzeug: * Detected change in 'c:\\final_project\\user.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 251-439-286
+ERROR:root:Generated AWS URL: https://ssgpang-bucket.s3.amazonaws.com/ssgproduct/202405211011_test4.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATAAJIQVALLBHOJMM%2F20240521%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Date=20240521T011312Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=ecda24f2a0ba49d775fc93d7339e42b9fe16a958be1d1ac66632697035219f31
+ERROR:root:Generated AWS URL: https://ssgpang-bucket.s3.amazonaws.com/ssgproduct/202405211008_test2.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATAAJIQVALLBHOJMM%2F20240521%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Date=20240521T011312Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=284ff1a5655ffce5a5b0aeac1f4dc5bdbd8c98be7371163caca1798496a922ef
+ERROR:root:Generated AWS URL: https://ssgpang-bucket.s3.amazonaws.com/ssgproduct/202405211007_test1.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATAAJIQVALLBHOJMM%2F20240521%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Date=20240521T011312Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=9cf54e7b276894412b0feaf634f879695e21fb04889e4331b053a10e8da27494
+ERROR:root:Generated AWS URL: https://ssgpang-bucket.s3.amazonaws.com/ssgproduct/202405210234_test2.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATAAJIQVALLBHOJMM%2F20240521%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Date=20240521T011312Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=850d1ea18f2689270d146770e488962ab9dd46c06f0d049d5e302d7bb6575dfb
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:12] "GET /admin/product HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:12] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:12] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:12] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:12] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:12] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:12] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:12] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:12] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:12] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:12] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:12] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:12] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:12] "[36mGET /static/images/coupang_logo.jpg HTTP/1.1[0m" 304 -
+ERROR:root:Generated AWS URL: https://ssgpang-bucket.s3.amazonaws.com/ssgproduct/202405211011_test4.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATAAJIQVALLBHOJMM%2F20240521%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Date=20240521T011313Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=bff02c4a3d4132ee73b2bda9f8cbecfee137dde16ac3d7cd7d4882ec408562be
+ERROR:root:Generated AWS URL: https://ssgpang-bucket.s3.amazonaws.com/ssgproduct/202405211008_test2.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATAAJIQVALLBHOJMM%2F20240521%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Date=20240521T011313Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=d3fe47a2eb1ce4cfc463255fd0be32af02efd550df8aabab6c67969fbf733ee4
+ERROR:root:Generated AWS URL: https://ssgpang-bucket.s3.amazonaws.com/ssgproduct/202405211007_test1.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATAAJIQVALLBHOJMM%2F20240521%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Date=20240521T011313Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=46368b7d38dc92d6a431c6f19ed5c08877ef2e60f220abac5b5344b231c0603c
+ERROR:root:Generated AWS URL: https://ssgpang-bucket.s3.amazonaws.com/ssgproduct/202405210234_test2.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATAAJIQVALLBHOJMM%2F20240521%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Date=20240521T011313Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=eebd141cfd017d3872ed4eaa386263fca7883ce7a721c3cc33c905eef43a2f8d
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:13] "GET /admin/product HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:13] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:13] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:13] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:13] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:13] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:13] "[36mGET /static/images/coupang_logo.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:13] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:13] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:13] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:13] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:13] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:13] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:13] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:14] "GET /admin/register HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:14] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:14] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:14] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:14] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:14] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:14] "[36mGET /static/images/coupang_logo.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:14] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:14] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:14] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:14] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:14] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:14] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:14] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:19] "[32mPOST /admin/register HTTP/1.1[0m" 302 -
+ERROR:root:Generated AWS URL: https://ssgpang-bucket.s3.amazonaws.com/ssgproduct/202405211013_test7.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATAAJIQVALLBHOJMM%2F20240521%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Date=20240521T011320Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=a50b446d219ce5d5faef81aa97b8eedfa1b005c7e75886eb151704fa0a5f1bc1
+ERROR:root:Generated AWS URL: https://ssgpang-bucket.s3.amazonaws.com/ssgproduct/202405211011_test4.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATAAJIQVALLBHOJMM%2F20240521%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Date=20240521T011320Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=ecee3238cba94b7d77fcfdf7254a014ece7cdb15012011dc933fe7fa12b33e18
+ERROR:root:Generated AWS URL: https://ssgpang-bucket.s3.amazonaws.com/ssgproduct/202405211008_test2.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATAAJIQVALLBHOJMM%2F20240521%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Date=20240521T011320Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=603fdff4b6e9661181f83282497f540e662a60361d459b1c2df15002ecef6b35
+ERROR:root:Generated AWS URL: https://ssgpang-bucket.s3.amazonaws.com/ssgproduct/202405211007_test1.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATAAJIQVALLBHOJMM%2F20240521%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Date=20240521T011320Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=6a9429297d8800e9cab82b029321a30dfdfa2e9a6d77f09aa1c12022bcfa225a
+ERROR:root:Generated AWS URL: https://ssgpang-bucket.s3.amazonaws.com/ssgproduct/202405210234_test2.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATAAJIQVALLBHOJMM%2F20240521%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Date=20240521T011320Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=3fd4dadf0475b6ecbc1c7d60ac013194839c6356e0a96388545b2e9f69b084f3
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:20] "GET /admin/product HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:20] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:20] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:20] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:20] "[36mGET /static/images/coupang_logo.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:20] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:20] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:20] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:20] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:20] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:20] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:20] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:20] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 10:13:20] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in 'c:\\final_project\\admin.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 251-439-286
+INFO:werkzeug: * Detected change in 'c:\\final_project\\admin.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 251-439-286
+INFO:werkzeug: * Detected change in 'c:\\final_project\\user.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 251-439-286
+INFO:werkzeug: * Detected change in 'c:\\final_project\\admin.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 251-439-286
+INFO:werkzeug: * Detected change in 'c:\\final_project\\admin.py', reloading
+INFO:werkzeug: * Restarting with stat

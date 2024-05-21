@@ -23,7 +23,7 @@ def db_connect_azure() :
         charset = 'utf8',
         autocommit = True
     )
-    
+
     return db
 
 # # DB 연결 - AWS
