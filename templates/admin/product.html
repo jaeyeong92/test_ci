@@ -8,16 +8,15 @@
     <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}" />
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" />
     <link rel="stylesheet" href="{{url_for('static', filename='css/font.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/footer.css')}}" />
     <title>상품</title>
   </head>
 
   <body>
-    <!--Top Side Bar -->
     {% include 'admin/navbar/sidebar_top.html' %}
 
     <div class="container-fluid">
       <div class="row">
-        <!--Left Side Bar -->
         {% include 'admin/navbar/sidebar_left.html' %}
       </div>
     </div>
@@ -25,10 +24,11 @@
     <main role="main">
       <div class="album py-5 bg-light">
         <div class="container">
-          <h1><span class="icon-clipboard"></span> 상품</h1>
-          <p></p>
-          <div class="row">
-            <!-- Test div -->
+          <h3 style="font-weight: bold;" class="ml-1 mt-3">
+            <span data-feather="shopping-cart" style="width: 30px; height: 30px; color: black;" class="mb-1">
+            </span> &nbsp;판매중인 상품
+          </h3>
+          <div class="row mt-5">
             {% for product in products %}
             <div class="col-md-4">
               <div class="card mb-4 shadow-sm">
@@ -51,9 +51,13 @@
                   <div class="d-flex justify-content-between align-items-center">
                     <small class="text-muted">재고 {{ product['product_stock'] }}</small>
                     <div class="btn-group">
-                      <a href="/admin/edit/{{ product['product_code'] }}" class="btn btn-sm btn-outline-secondary">수정</a>
+                      <a href="/admin/edit/{{ product['product_code'] }}" class="btn btn-sm btn-outline-secondary">
+                        <span style="font-weight: bold;">수정</span>
+                      </a>
                       <a href="#" class="btn btn-sm btn-outline-secondary delete-product-btn"
-                        data-product-code="{{ product['product_code'] }}">삭제</a>
+                        data-product-code="{{ product['product_code'] }}">
+                        <span style="font-weight: bold; color: tomato;">삭제</span>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -66,7 +70,6 @@
     </main>
 
     {% include 'admin/navbar/footer.html' %}
-
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

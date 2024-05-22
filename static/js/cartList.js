@@ -74,7 +74,7 @@ $(function () {
             totalPriceSum += totalPrice;
         });
 
-        let deliveryPrice = 3500 + totalPriceSum;
+        let deliveryPrice = totalPriceSum;
         
         $("#productPrice").text("상품 금액   " + totalPriceSum.toLocaleString() + "원");
         $("#resultProductPrice").text("결제예정금액   " + deliveryPrice.toLocaleString() + "원");

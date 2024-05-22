@@ -14,8 +14,8 @@ def db_connect() :
         return db
     
     except pymysql.MySQLError as e:
-            print("AWS DB Connection Failed: ", e)
-            return None
+        print("AWS DB Connection Failed: ", e)
+        return None
     
 # DB 연결 - Azure
 def db_connect_azure() :
@@ -40,7 +40,7 @@ def db_connect_azure() :
 #         db = pymysql.connect(
 #             user = 'admin',
 #             password = 'admin12345',
-#             host = 'ssgpangdb.cwshg6arkkpy.ap-northeast-1.rds.amazonaws.comgg',
+#             host = 'ssgpangdb.cwshg6arkkpy.ap-northeast-1.rds.amazonaws.com',
 #             db = 'ssgpang',
 #             charset = 'utf8',
 #             autocommit = True
@@ -198,7 +198,7 @@ def insertUserAzure(userId, userPw, userName, userEmail, userPhone, userAddress)
 
     return result_num
 
-# 상품 등록 페이지 SELECT
+# 상품 목록 페이지 SELECT
 def selectProductAll(CLOUD_PROVIDER):
     con = None
 
@@ -375,13 +375,16 @@ def insertOrdersList(order_number, order_product_code, order_product_stock,
     con = db_connect()
     cursor = con.cursor()
 
+    # 가격을 수량 * 값으로 계산 후 INSERT
+    total_product_price = int(order_product_price) * int(order_product_stock)
+
     sql_insert = '''INSERT INTO orders (order_number, order_product_code, 
                     order_product_stock, order_product_price,
                     order_user_id, order_user_name,
                     order_user_address, order_user_phone) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)'''
     
     cursor.execute(sql_insert, (order_number, order_product_code, order_product_stock, 
-                                order_product_price, order_user_id, order_user_name, 
+                                total_product_price, order_user_id, order_user_name, 
                                 order_user_address, order_user_phone))
 
     con.commit()
@@ -396,13 +399,16 @@ def insertOrdersListAzure(order_number, order_product_code, order_product_stock,
     con = db_connect_azure()
     cursor = con.cursor()
 
+    # 가격을 수량 * 값으로 계산 후 INSERT
+    total_product_price = int(order_product_price) * int(order_product_stock)
+
     sql_insert = '''INSERT INTO orders (order_number, order_product_code, 
                     order_product_stock, order_product_price,
                     order_user_id, order_user_name,
                     order_user_address, order_user_phone) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)'''
     
     cursor.execute(sql_insert, (order_number, order_product_code, order_product_stock, 
-                                order_product_price, order_user_id, order_user_name, 
+                                total_product_price, order_user_id, order_user_name, 
                                 order_user_address, order_user_phone))
 
     con.commit()
@@ -497,6 +503,8 @@ def selectOrdersAll(userId, CLOUD_PROVIDER):
         o.order_product_code = p.product_code
     WHERE
         o.order_user_id = %s
+    ORDER BY
+        o.order_product_date DESC;
     """
     
     cursor.execute(sql_select, userId)

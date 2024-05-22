@@ -348,3 +348,7 @@ hr {
 .navbar-top.icon.active {
   color: purple;
 }
+
+.jumbotron {
+  background-color: #f8f9fa;
+}

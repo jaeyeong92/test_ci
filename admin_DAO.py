@@ -40,7 +40,7 @@ def db_connect_azure() :
 #         db = pymysql.connect(
 #             user = 'admin',
 #             password = 'admin12345',
-#             host = 'ssgpangdb.cwshg6arkkpy.ap-northeast-1.rds.amazonaws.comgg',
+#             host = 'ssgpangdb.cwshg6arkkpy.ap-northeast-1.rds.amazonaws.com',
 #             db = 'ssgpang',
 #             charset = 'utf8',
 #             autocommit = True
@@ -297,6 +297,8 @@ def selectOrdersAll(cloud_provider):
         product p
     ON 
         o.order_product_code = p.product_code
+    ORDER BY 
+    o.order_product_date DESC;    
     """
     
     cursor.execute(sql_select)

@@ -8,20 +8,15 @@
     <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}" />
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" />
     <link rel="stylesheet" href="{{url_for('static', filename='css/font.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/footer.css')}}" />
     <title>고객 관리</title>
-    <style>
-      .jumbotron {
-        background-color: #f8f9fa;
-      }
-    </style>
   </head>
+
   <body>
-    <!--Top Side Bar -->
     {% include 'admin/navbar/sidebar_top.html' %}
 
     <div class="container-fluid">
         <div class="row">
-            <!--Left Side Bar -->
             {% include 'admin/navbar/sidebar_left.html' %}
         </div>
     </div>
@@ -29,8 +24,10 @@
     <main role="main">
       <section class="jumbotron">
         <div class="container">
-          <h1><span class="icon-clipboard"></span> 고객 관리</h1><p></p>
-          <div class="container">
+          <h3 style="font-weight: bold;" class="ml-3">
+            <span class="icon-clipboard"></span> &nbsp;고객 관리
+          </h3>
+          <div class="container mt-5">
             <table class="table">
               <thead class="thead-dark">
                 <tr>
@@ -63,9 +60,12 @@
 
     {% include 'admin/navbar/footer.html' %}
 
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
     <script src="/static/js/jquery-3.3.1.min.js"></script>
     <script src="/static/js/popper.min.js"></script>

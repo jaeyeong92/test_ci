@@ -14,8 +14,8 @@ def db_connect() :
         return db
     
     except pymysql.MySQLError as e:
-            print("AWS DB Connection Failed: ", e)
-            return None
+        print("AWS DB Connection Failed: ", e)
+        return None
     
 # DB 연결 - Azure
 def db_connect_azure() :
@@ -40,7 +40,7 @@ def db_connect_azure() :
 #         db = pymysql.connect(
 #             user = 'admin',
 #             password = 'admin12345',
-#             host = 'ssgpangdb.cwshg6arkkpy.ap-northeast-1.rds.amazonaws.comgg',
+#             host = 'ssgpangdb.cwshg6arkkpy.ap-northeast-1.rds.amazonaws.com',
 #             db = 'ssgpang',
 #             charset = 'utf8',
 #             autocommit = True

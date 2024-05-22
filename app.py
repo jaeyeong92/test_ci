@@ -4,7 +4,6 @@ import user
 import login_DAO
 import logging
 import hashlib
-import requests
 import os
 
 app = Flask(__name__)

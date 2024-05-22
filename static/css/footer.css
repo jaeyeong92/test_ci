@@ -1,13 +1,13 @@
 @charset "UTF-8";
-body {
+/* body {
   display: -ms-grid;
   display: grid;
   box-sizing: border-box;
   margin: 0 200px;
-}
+} */
 footer {
-  width: 1050px;
-  margin: 100px auto 0;
+  width: 100%;
+  /* margin: 100px auto 0; */
   padding-bottom: 60px;
   font-weight: 400;
   letter-spacing: -0.2px;
