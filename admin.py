@@ -4,7 +4,7 @@ import boto3
 from botocore.exceptions import NoCredentialsError, PartialCredentialsError, ClientError
 from datetime import datetime
 import json
-from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient
+from azure.storage.blob import BlobServiceClient, BlobClient
 import requests
 import os
 import logging

@@ -5,7 +5,6 @@ import login_DAO
 import logging
 import hashlib
 import os
-import requests
 
 app = Flask(__name__)
 app.secret_key = 'secret_key'
