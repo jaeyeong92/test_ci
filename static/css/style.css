@@ -326,29 +326,30 @@ hr {
   color: black;
 }
 
-/* 유저 화면 상단 2번째 navbar active 설정 */
-.menu-item.top {
-  color: black;
-}
-
-.menu-item.top:hover {
-  color: purple;
-}
-
-.menu-item.top.active {
-  color: purple;
-  text-decoration: underline;
-}
-
 /* 유저 화면 상단 1번째 navbar active 설정 */
 .navbar-top.icon {
   color: black;
 }
 
 .navbar-top.icon.active {
-  color: purple;
+  color: tomato;
 }
 
 .jumbotron {
   background-color: #f8f9fa;
 }
+
+/* 유저 화면 상단 2번째 navbar active 설정 */
+.menu-item.top {
+  color: black;
+}
+
+.menu-item.top:hover {
+  color: tomato;
+}
+
+.menu-item.top.active {
+  color: tomato;
+  text-decoration: underline;
+}
+

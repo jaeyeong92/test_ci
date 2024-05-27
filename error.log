@@ -1,0 +1,393 @@
+INFO:werkzeug: * Detected change in 'c:\\Users\\jaeyeong\\Desktop\\vsCode\\Python\\final_project\\user.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 106-142-433
+INFO:werkzeug: * Detected change in 'c:\\Users\\jaeyeong\\Desktop\\vsCode\\Python\\final_project\\user.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 106-142-433
+INFO:werkzeug: * Detected change in 'c:\\Users\\jaeyeong\\Desktop\\vsCode\\Python\\final_project\\user.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 106-142-433
+INFO:werkzeug: * Detected change in 'c:\\Users\\jaeyeong\\Desktop\\vsCode\\Python\\final_project\\user.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 106-142-433
+INFO:werkzeug: * Detected change in 'c:\\Users\\jaeyeong\\Desktop\\vsCode\\Python\\final_project\\user.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 106-142-433
+INFO:werkzeug: * Detected change in 'c:\\Users\\jaeyeong\\Desktop\\vsCode\\Python\\final_project\\user.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 106-142-433
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:16:37] "[32mPOST /login HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:16:38] "GET /user/product HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:16:38] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:16:38] "[36mGET /static/css/footer.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:16:38] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:16:38] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:16:38] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:16:38] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:16:38] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:16:38] "GET /static/css/top.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:16:38] "GET /static/images/main_logo.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:16:38] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:16:38] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:16:38] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:16:38] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:16:38] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:16:38] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:16:38] "[33mGET /static/js/alert.js HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:16:38] "[36mGET /static/fonts/Pretendard-Regular.woff HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:16:38] "[36mGET /static/fonts/icomoon/fonts/icomoon.ttf?10si43 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:09] "GET /user/myPage HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:09] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:09] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:09] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:09] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:09] "[36mGET /static/css/top.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:09] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:09] "[36mGET /static/css/footer.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:09] "[36mGET /static/images/main_logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:09] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:09] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:09] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:09] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:09] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:09] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:09] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:09] "[36mGET /static/fonts/Pretendard-Regular.woff HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:09] "[33mGET /static/js/alert.js HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:09] "[36mGET /static/fonts/icomoon/fonts/icomoon.ttf?10si43 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:10] "GET /user/cartList HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:10] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:10] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:10] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:10] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:10] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:10] "[36mGET /static/css/footer.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:10] "[36mGET /static/css/top.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:10] "[36mGET /static/images/main_logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:10] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:10] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:10] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:10] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:10] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:10] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:10] "[33mGET /static/js/alert.js HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:10] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:10] "GET /static/js/cartList.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:11] "GET /user/product HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:11] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:11] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:11] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:11] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:11] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:11] "[36mGET /static/css/footer.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:11] "[36mGET /static/css/top.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:11] "[36mGET /static/images/main_logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:11] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:11] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:11] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:11] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:11] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:11] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:11] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:11] "[33mGET /static/js/alert.js HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:13] "POST /user/addToCart HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:14] "GET /user/cartList HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:14] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:15] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:15] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:15] "[36mGET /static/css/top.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:15] "[36mGET /static/css/footer.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:15] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:15] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:15] "[36mGET /static/images/main_logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:15] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:15] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:15] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:15] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:15] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:15] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:15] "[33mGET /static/js/alert.js HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:15] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:15] "[36mGET /static/js/cartList.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:17] "POST /user/deleteCartList/20 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:20] "GET /user/cartList HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:20] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:20] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:20] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:20] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:20] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:20] "[36mGET /static/css/footer.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:20] "[36mGET /static/css/top.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:20] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:20] "[36mGET /static/images/main_logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:20] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:20] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:20] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:20] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:20] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:20] "[33mGET /static/js/alert.js HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:20] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:20] "[36mGET /static/js/cartList.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "GET /user/product HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "[36mGET /static/css/footer.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "[36mGET /static/css/top.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "[36mGET /static/images/main_logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "[33mGET /static/js/alert.js HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "GET /user/specialBenefit HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "[36mGET /static/css/footer.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "[36mGET /static/css/top.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "[36mGET /static/images/main_logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "GET /static/images/specialBenefit/specialBenefit01.jpg HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "GET /static/images/specialBenefit/specialBenefit02.jpg HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "GET /static/images/specialBenefit/specialBenefit04.jpg HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "GET /static/images/specialBenefit/specialBenefit03.jpg HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "GET /static/images/specialBenefit/specialBenefit05.jpg HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "GET /static/images/specialBenefit/specialBenefit10.jpg HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "GET /static/images/specialBenefit/specialBenefit07.jpg HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "GET /static/images/specialBenefit/specialBenefit06.jpg HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "GET /static/images/specialBenefit/specialBenefit09.jpg HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "GET /static/images/specialBenefit/specialBenefit08.jpg HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "[33mGET /static/js/alert.js HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:22] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:23] "GET /user/product HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:23] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:23] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:23] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:23] "[36mGET /static/css/footer.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:23] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:23] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:23] "[36mGET /static/css/top.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:23] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:23] "[36mGET /static/images/main_logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:23] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:23] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:23] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:23] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:23] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:23] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:23] "[33mGET /static/js/alert.js HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:26] "POST /user/searchProduct HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:26] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:26] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:26] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:26] "[36mGET /static/css/footer.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:26] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:26] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:26] "[36mGET /static/css/top.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:26] "[36mGET /static/images/main_logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:26] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:26] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:26] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:26] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:26] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:26] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:26] "[33mGET /static/js/alert.js HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:26] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:28] "POST /user/searchProduct HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:28] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:28] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:28] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:28] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:28] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:28] "[36mGET /static/css/footer.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:28] "[36mGET /static/css/top.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:28] "[36mGET /static/images/main_logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:28] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:28] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:28] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:28] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:28] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:28] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:28] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:28] "[33mGET /static/js/alert.js HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:31] "GET /user/product HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:31] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:31] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:31] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:31] "[36mGET /static/css/top.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:31] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:31] "[36mGET /static/css/footer.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:31] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:31] "[36mGET /static/images/main_logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:31] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:31] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:31] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:31] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:31] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:31] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:31] "[33mGET /static/js/alert.js HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:17:31] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:44] "POST /user/addToCart HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:46] "GET /user/cartList HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:46] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:46] "[36mGET /static/css/footer.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:46] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:46] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:46] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:46] "[36mGET /static/css/top.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:46] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:46] "[36mGET /static/images/main_logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:46] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:46] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:46] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:46] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:46] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:46] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:46] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:46] "[33mGET /static/js/alert.js HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:46] "[36mGET /static/js/cartList.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:47] "POST /user/updateCartList HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:47] "POST /user/updateCartList HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:48] "POST /user/updateCartList HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:50] "[32mPOST /user/pay HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:50] "GET /user/product HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:50] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:50] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:50] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:50] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:50] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:50] "[36mGET /static/css/footer.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:50] "[36mGET /static/css/top.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:50] "[36mGET /static/images/main_logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:50] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:50] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:50] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:50] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:50] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:50] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:50] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:50] "[33mGET /static/js/alert.js HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:51] "GET /user/orderList HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:51] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:51] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:51] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:51] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:51] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:51] "[36mGET /static/css/footer.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:51] "[36mGET /static/css/top.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:51] "[36mGET /static/images/main_logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:51] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:51] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:51] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:51] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:51] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:51] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:51] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:51] "[33mGET /static/js/alert.js HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:19:51] "[36mGET /static/js/cartList.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:09] "[32mGET /logout HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:09] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:09] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:09] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:09] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:09] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:09] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:09] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:09] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:09] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:09] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:09] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:09] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:09] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:09] "[36mGET /static/images/main.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:12] "[32mPOST /login HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:12] "GET /admin/product HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:12] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:12] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:12] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:12] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:12] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:12] "[36mGET /static/css/footer.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:12] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:12] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:12] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:12] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:12] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:12] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:12] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:15] "GET /admin/userInfo HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:15] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:15] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:15] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:15] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:15] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:15] "[36mGET /static/css/footer.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:15] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:15] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:15] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:15] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:15] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:15] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:15] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:16] "GET /admin/orderInfo HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:16] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:16] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:16] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:16] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:16] "[36mGET /static/css/footer.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:16] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:16] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:16] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:16] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:16] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:16] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:16] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:16] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:23] "[32mGET /logout HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:23] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:23] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:23] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:23] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:23] "[36mGET /static/css/font.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:23] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:23] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:23] "[36mGET /static/js/jquery-3.3.1.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:23] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:23] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:23] "[36mGET /static/js/ajax.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:23] "[36mGET /static/js/navbarActive.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:23] "[36mGET /static/js/validation.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 00:20:23] "[36mGET /static/images/main.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in 'c:\\Users\\jaeyeong\\Desktop\\vsCode\\Python\\final_project\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 106-142-433
+INFO:werkzeug: * Detected change in 'c:\\Users\\jaeyeong\\Desktop\\vsCode\\Python\\final_project\\admin.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 106-142-433
+INFO:werkzeug: * Detected change in 'c:\\Users\\jaeyeong\\Desktop\\vsCode\\Python\\final_project\\admin.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 106-142-433
+INFO:werkzeug: * Detected change in 'c:\\Users\\jaeyeong\\Desktop\\vsCode\\Python\\final_project\\admin.py', reloading
+INFO:werkzeug: * Restarting with stat

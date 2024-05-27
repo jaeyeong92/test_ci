@@ -1,4 +1,4 @@
-// 왼쪽 Navbar Menu Active 처리 -> 활성화 된 메뉴 파란색으로 표시
+// 관리자 페이지 왼쪽 Navbar Menu Active 처리 -> 활성화 된 메뉴 파란색으로 표시
 document.addEventListener('DOMContentLoaded', function () {
     let navLinks = document.querySelectorAll('.nav-link');
 

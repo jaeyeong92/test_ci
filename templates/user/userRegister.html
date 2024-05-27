@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="{{url_for('static', filename='css/font.css')}}" />
   <link rel="stylesheet" href="{{url_for('static', filename='css/footer.css')}}" />
   <link rel="stylesheet" href="{{url_for('static', filename='css/top.css')}}" />
-  <title>내정보 수정</title>
+  <title>회원가입</title>
 
   <style>
     .btn-lg span {
@@ -24,15 +24,14 @@
 </head>
 
 <body class="main-content">
-  <!--Top Side Bar -->
   {% include 'user/navbar/navbar_header.html' %}
 
   <main role="main">
     <section class="mt-5">
       <div class="container col-md-5">
-        <h1><span class="icon-user"></span> 회원가입</h1>
-        <p></p>
-        <form method="post" id="userRegisterForm">
+        <h3><span class="icon-user"></span> 회원가입</h3>
+        
+        <form method="post" id="userRegisterForm" class="mt-5">
           <label><span class="icon-file-text"></span> ID</label>
           <div class="form-group d-flex align-items-center">
             <input type="text" class="form-control form-control-lg flex-grow-1" name="userId" id="userId" onkeyup="checkReg(event)">

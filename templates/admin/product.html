@@ -46,8 +46,9 @@
                 </svg>
 
                 <div class="card-body">
-                  <p class="card-text">{{ product['product_name'] }}</p>
-                  <p class="card-text">{{ product['product_description'] }}</p>
+                  <p class="card-text" style="font-size: 20px;">{{ product['product_name'] }}</p>
+                  <p class="card-text" style="color: grey;">{{ product['product_description'] }}</p>
+                  <p class="card-text" style="font-weight: bold;">{{ '{:,.0f}'.format(product['product_price']) }}원</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <small class="text-muted">재고 {{ product['product_stock'] }}</small>
                     <div class="btn-group">

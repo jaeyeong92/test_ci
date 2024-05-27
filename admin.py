@@ -5,9 +5,12 @@ from botocore.exceptions import NoCredentialsError, PartialCredentialsError, Cli
 from datetime import datetime
 import json
 from azure.storage.blob import BlobServiceClient, BlobClient
+from azure.core.exceptions import AzureError, ResourceNotFoundError
 import requests
 import os
 import logging
+import random
+import re
 
 # Blueprint 설정
 bp = Blueprint("admin", __name__, url_prefix="/admin")
@@ -30,11 +33,6 @@ CONTAINER_NAME = "ssgpangcontainer"
 blob_service_client = BlobServiceClient.from_connection_string(CONNECTION_STRING)
 container_client = blob_service_client.get_container_client(CONTAINER_NAME)
 
-# Git
-GIST_ID = "a9d6acbaf78e4d82a4dcf858ba3652ea"
-GITHUB_TOKEN = os.environ.get("GIST_TOKEN")
-# GITHUB_TOKEN = ""
-
 # 실행 환경 식별 ( AWS / Azure )
 CLOUD_PROVIDER = os.environ.get("CLOUD_PROVIDER")
 # CLOUD_PROVIDER = "AWS"
@@ -42,6 +40,18 @@ CLOUD_PROVIDER = os.environ.get("CLOUD_PROVIDER")
 
 # AWS/Azure DB 동기화
 AWS_AZURE_INSERT_FLAG = True
+
+# 샘플 상품 데이터
+script_dir = os.path.dirname(os.path.abspath(__file__))
+sample_products = [
+    {
+        "name": f"상품{i}",
+        "price": random.randint(500, 20000) * 100,
+        "stock": random.randint(1, 20),
+        "description": f"상품{i}에 대한 설명",
+        "image_path": os.path.join(script_dir, 'static', 'images', 'sampleImage', f'test{i}.png')
+    } for i in range(1, 21)
+]
 
 # AWS S3 Image URL
 def get_public_url(bucket_name, key) :
@@ -69,6 +79,26 @@ def can_access_s3(S3_BUCKET):
         return True
     except (NoCredentialsError, PartialCredentialsError, ClientError) as e:
         print(f"Failed to access S3 bucket {S3_BUCKET}: {e}")
+        return False
+
+# Azure Blob Storage 접근가능 테스트    
+def can_access_azure_blob(account_url, container_name):
+    try:
+        # BlobServiceClient를 생성하여 Blob Storage에 접속
+        blob_service_client = BlobServiceClient(account_url=account_url)
+
+        # 컨테이너가 존재하는지 확인
+        container_client = blob_service_client.get_container_client(container_name)
+        container_properties = container_client.get_container_properties()
+
+        # 컨테이너가 존재하면 접근 가능
+        return True
+    except ResourceNotFoundError:
+        # 컨테이너가 없으면 접근 불가능
+        return False
+    except Exception as e:
+        # 그 외의 예외 발생 시 처리
+        print(f"Failed to access Azure Blob Storage: {e}")
         return False
 
 # main 관리 페이지
@@ -163,18 +193,6 @@ def register() :
                                             s3_filename, azure_filename)
                 except Exception as e:
                     print("Azure DB Insert Failed: ", e)
-            # 단일 저장    
-            # else :
-            #     # AWS
-            #     if CLOUD_PROVIDER == 'AWS' :
-            #         admin_DAO.insertProduct(productName, productPrice, 
-            #                                 productStock, productDescription, 
-            #                                 s3_filename, azure_filename)
-            #     # AZURE    
-            #     else :
-            #         admin_DAO.insertProductAzure(productName, productPrice, 
-            #                                 productStock, productDescription, 
-            #                                 s3_filename, azure_filename)
 
             # "AWS"일 때, S3에 업로드
             # if CLOUD_PROVIDER == "AWS" :
@@ -182,45 +200,39 @@ def register() :
                 try:
                     s3_file.seek(0)
                     s3_client.upload_fileobj(s3_file, S3_BUCKET,'ssgproduct/' + s3_filename)
-                    print("File uploaded successfully.")
+                    print("File uploaded successfully to S3.")
                 except ClientError as e:
                     print(f"Failed to upload file to S3: {e}")
             else:
                 print("S3 bucket is not accessible. File upload aborted.")
 
             # "AWS" / "AZURE"일 때, Azure Blob에 업로드
-            if CLOUD_PROVIDER in ["AWS", "AZURE"] :
-                blob_client = container_client.get_blob_client(azure_filename)
-                blob_client.upload_blob(azure_file_read)
-                print(f"{s3_filename} uploaded to Azure Blob Storage.")
+            if CLOUD_PROVIDER in ["AWS", "AZURE"]:
+                try:
+                    # 연결 문자열에서 AccountName과 DefaultEndpointsProtocol 추출
+                    account_name_match = re.search(r"AccountName=([^;]+)", CONNECTION_STRING)
+                    protocol_match = re.search(r"DefaultEndpointsProtocol=([^;]+)", CONNECTION_STRING)
 
-            # AWS/AZURE 동시 저장이 "아닐" 경우 DB 백업서버를 위한 DB Data JSON화 
-            if AWS_AZURE_INSERT_FLAG == False :
-                result = admin_DAO.dbToJson(CLOUD_PROVIDER)
-                objects = []
-                for item in result:
-                    obj = {
-                        "product_name": item[0],
-                        "product_price": item[1],
-                        "product_stock": item[2],
-                        "product_description": item[3],
-                        "product_image_aws": item[4],
-                        "product_image_azure": item[5],
-                    }
-                    objects.append(obj)
+                    if account_name_match and protocol_match:
+                        account_name = account_name_match.group(1)
+                        protocol = protocol_match.group(1)
+                        azure_url = f"{protocol}://{account_name}.blob.core.windows.net"
+                    else:
+                        azure_url = None
 
-                # 생성할 JSON 파일 설정
-                FILE_NAME = "./db_data.json"
-                f = open(FILE_NAME, 'w', encoding='utf-8')
-                f.write(json.dumps(objects, ensure_ascii=False))
-                f.close()
+                    print("Azure Blob Storage URL:", azure_url)
+                    if not can_access_azure_blob(azure_url, CONTAINER_NAME):
+                        print("Azure Blob Storage is not accessible. File upload aborted.")
+                        # Azure Blob Storage에 접근할 수 없으면 더 이상 진행하지 않음
+                        raise Exception("Azure Blob Storage is not accessible.")
 
-                # GitHub Gist를 업데이트합니다.
-                file_content = read_json(FILE_NAME)
-                if uploadJsonToGist(GIST_ID, "db_data.json", str(file_content), GITHUB_TOKEN):
-                    print("Updated GitHub Gist successfully.")
-                else:
-                    print("Failed to update GitHub Gist.")
+                    blob_client = container_client.get_blob_client(azure_filename)
+                    blob_client.upload_blob(azure_file_read, timeout=1)
+                    print(f"{s3_filename} uploaded (UPDATE) to Azure Blob Storage.")
+                except AzureError as e:
+                    print(f"Failed to upload file to Azure Blob Storage: {e}")
+                except Exception as e:
+                    print(f"An unexpected error occurred: {e}")
 
             return redirect(url_for('admin.product'))
 
@@ -280,18 +292,6 @@ def edit(num) :
                                                 s3_filename, azure_filename, num)
                 except Exception as e:
                     print("AWS DB Insert Failed: ", e)
-            # 단일 업데이트
-            # else :
-            #     # AWS
-            #     if CLOUD_PROVIDER == 'AWS' :
-            #         admin_DAO.updateProductByCode(productName, productPrice, 
-            #                                 productStock, productDescription, 
-            #                                 s3_filename, azure_filename, num)
-            #     # Azure
-            #     else :
-            #         admin_DAO.updateProductByCodeAzure(productName, productPrice, 
-            #                                 productStock, productDescription, 
-            #                                 s3_filename, azure_filename, num)
 
             # "AWS"일 때, S3에 업로드
             # if CLOUD_PROVIDER == "AWS" :
@@ -299,45 +299,39 @@ def edit(num) :
                 try:
                     s3_file.seek(0)
                     s3_client.upload_fileobj(s3_file, S3_BUCKET,'ssgproduct/' + s3_filename)
-                    print("File uploaded successfully.")
+                    print("File uploaded (UPDATE) successfully to S3.")
                 except ClientError as e:
                     print(f"Failed to upload file to S3: {e}")
             else:
                 print("S3 bucket is not accessible. File upload aborted.")
 
             # "AWS" / "AZURE"일 때, Azure Blob에 업로드
-            if CLOUD_PROVIDER in ["AWS", "AZURE"] :
-                blob_client = container_client.get_blob_client(azure_filename)
-                blob_client.upload_blob(azure_file_read)
-                print(f"{s3_filename} uploaded to Azure Blob Storage.")
+            if CLOUD_PROVIDER in ["AWS", "AZURE"]:
+                try:
+                    # 연결 문자열에서 AccountName과 DefaultEndpointsProtocol 추출
+                    account_name_match = re.search(r"AccountName=([^;]+)", CONNECTION_STRING)
+                    protocol_match = re.search(r"DefaultEndpointsProtocol=([^;]+)", CONNECTION_STRING)
 
-            # AWS/AZURE 동시 저장이 "아닐" 경우 DB 백업서버를 위한 DB Data JSON화
-            if AWS_AZURE_INSERT_FLAG == False :
-                result = admin_DAO.dbToJson(CLOUD_PROVIDER)
-                objects = []
-                for item in result:
-                    obj = {
-                        "product_name": item[0],
-                        "product_price": item[1],
-                        "product_stock": item[2],
-                        "product_description": item[3],
-                        "product_image_aws": item[4],
-                        "product_image_azure": item[5]
-                    }
-                    objects.append(obj)
+                    if account_name_match and protocol_match:
+                        account_name = account_name_match.group(1)
+                        protocol = protocol_match.group(1)
+                        azure_url = f"{protocol}://{account_name}.blob.core.windows.net"
+                    else:
+                        azure_url = None
 
-                # 생성할 JSON 파일 설정
-                FILE_NAME = "./db_data.json"
-                f = open(FILE_NAME, 'w', encoding='utf-8')
-                f.write(json.dumps(objects, ensure_ascii=False))
-                f.close()
+                    print("Azure Blob Storage URL:", azure_url)
+                    if not can_access_azure_blob(azure_url, CONTAINER_NAME):
+                        print("Azure Blob Storage is not accessible. File upload aborted.")
+                        # Azure Blob Storage에 접근할 수 없으면 더 이상 진행하지 않음
+                        raise Exception("Azure Blob Storage is not accessible.")
 
-                # GitHub Gist를 업데이트합니다.
-                file_content = read_json(FILE_NAME)
-                if uploadJsonToGist(GIST_ID, "db_data.json", str(file_content), GITHUB_TOKEN):
-                    print("Updated GitHub Gist successfully.")
-                else:
-                    print("Failed to update GitHub Gist.")
+                    blob_client = container_client.get_blob_client(azure_filename)
+                    blob_client.upload_blob(azure_file_read, timeout=1)
+                    print(f"{s3_filename} uploaded (UPDATE) to Azure Blob Storage.")
+                except AzureError as e:
+                    print(f"Failed to upload file to Azure Blob Storage: {e}")
+                except Exception as e:
+                    print(f"An unexpected error occurred: {e}")
 
             return redirect(url_for('admin.product'))
 
@@ -357,105 +351,28 @@ def delete(num) :
     if userInfo.get('user_role') != 'role_admin':
         return redirect(url_for('login'))
     
+    aws_result = False
+    azure_result = False
+
     # AWS/AZURE 동시 삭제
     if AWS_AZURE_INSERT_FLAG :
         # AWS
         try :
             aws_result = admin_DAO.deleteProductByCode(num, CLOUD_PROVIDER)
         except Exception as e:
-                    print("AWS DB Insert Failed: ", e)    
+                    print("AWS DB Insert Failed: ", e)
         # Azure
         try :
             azure_result = admin_DAO.deleteProductByCodeAzure(num)
         except Exception as e:
-                    print("AWS DB Insert Failed: ", e)    
+                    print("AWS DB Insert Failed: ", e)
 
-        if aws_result and azure_result:
-            return jsonify({'message': '상품이 성공적으로 삭제되었습니다.'}), 200
+        if aws_result or azure_result:
+            message = '상품이 성공적으로 삭제되었습니다.' if aws_result and azure_result else '상품이 일부만 삭제되었습니다.'
+            print(message)
+            return jsonify({'message': message}), 200
         else:
             return jsonify({'message': '상품 삭제에 실패했습니다.'}), 500
-
-    # # AWS 삭제
-    # else :
-    #     # AWS
-    #     if CLOUD_PROVIDER == 'AWS' :
-    #         result = admin_DAO.deleteProductByCode(num)
-    #     else :
-    #         result = admin_DAO.deleteProductByCodeAzure(num)
-        
-    #     # AWS/AZURE 동시 저장이 "아닐" 경우 DB 백업서버를 위한 DB Data JSON화 
-    #     if AWS_AZURE_INSERT_FLAG == False :
-    #         results = admin_DAO.dbToJson()
-    #         objects = []
-    #         for item in results:
-    #             obj = {
-    #                 "product_name": item[0],
-    #                 "product_price": item[1],
-    #                 "product_stock": item[2],
-    #                 "product_description": item[3],
-    #                 "product_image_aws": item[4],
-    #                 "product_image_azure": item[5]
-    #             }
-    #             objects.append(obj)
-
-    #         # 생성할 JSON 파일 설정
-    #         FILE_NAME = "./db_data.json"
-    #         f = open(FILE_NAME, 'w', encoding='utf-8')
-    #         f.write(json.dumps(objects, ensure_ascii=False))
-    #         f.close()
-
-    #         # JSON 파일을 읽어옵니다.
-    #         file_content = read_json(FILE_NAME)
-
-    #         # GitHub Gist를 업데이트합니다.
-    #         if uploadJsonToGist(GIST_ID, "db_data.json", str(file_content), GITHUB_TOKEN):
-    #             print("Updated GitHub Gist successfully.")
-    #         else:
-    #             print("Failed to update GitHub Gist.")
-
-    #     if result:
-    #         return jsonify({'message': '상품이 성공적으로 삭제되었습니다.'}), 200
-    #     else:
-    #         return jsonify({'message': '상품 삭제에 실패했습니다.'}), 500
-        
-    
-    
-# JSON -> Github GIST 자동 업로드
-def uploadJsonToGist(gist_id, file_name, file_content, github_token):
-    # 업데이트할 Gist의 URL을 생성합니다.
-    gist_url = f"https://api.github.com/gists/{gist_id}"
-
-    # GitHub API를 사용하여 Gist를 업데이트합니다.
-    data = {
-        "files": {
-            file_name: {
-                "content": file_content
-            }
-        }
-    }
-
-    # GitHub API를 사용하여 Gist를 업데이트합니다.
-    response = requests.patch(
-        gist_url,
-        headers={"Authorization": f"token {github_token}"},
-        json=data
-    )
-
-    # 요청이 성공하면 True를 반환합니다.
-    if response.status_code == 200:
-        return True
-    else:
-        # 요청이 실패하면 False를 반환합니다.
-        print("Failed to update GitHub Gist.")
-        error_message = f"Failed to update GitHub Gist. Status code: {response.status_code}, Response body: {response.text}"
-        print(error_message)
-        return False
-
-# JSON 파일 읽기
-def read_json(file_path):
-    with open(file_path, 'r', encoding='utf-8') as f:
-        data = json.load(f)
-    return data
 
 # 고객 관리
 @bp.route('/userInfo', methods=['GET'])
@@ -476,7 +393,6 @@ def userInfo() :
             return redirect(url_for('login'))
     else :
         return redirect(url_for('login'))
-    
 
 # 주문 관리
 @bp.route('/orderInfo', methods=['GET'])
@@ -497,3 +413,50 @@ def orderInfo() :
             return redirect(url_for('login'))
     else :
         return redirect(url_for('login'))
+
+# 더미데이터 Setup
+@bp.route('/setup', methods=['GET'])
+def setup():
+    try:
+        for product in sample_products:
+            # 이미지 파일 이름 준비
+            today_datetime = datetime.now().strftime("%Y%m%d%H%M")
+            s3_filename = f"{today_datetime}_{product['name']}.png"
+            azure_filename = s3_filename
+
+            # AWS S3에 업로드
+            try:
+                with open(product['image_path'], 'rb') as f:
+                    s3_client.upload_fileobj(f, S3_BUCKET, f"ssgproduct/{s3_filename}")
+                print(f"{s3_filename}을(를) S3에 업로드했습니다.")
+            except (NoCredentialsError, PartialCredentialsError, ClientError) as e:
+                print(f"{s3_filename}을(를) S3에 업로드하는 데 실패했습니다:", e)
+
+            # Azure Blob Storage에 업로드
+            try:
+                with open(product['image_path'], 'rb') as f:
+                    blob_client = container_client.get_blob_client(azure_filename)
+                    blob_client.upload_blob(f, overwrite=True)
+                print(f"{azure_filename}을(를) Azure Blob Storage에 업로드했습니다.")
+            except AzureError as e:
+                print(f"{azure_filename}을(를) Azure Blob Storage에 업로드하는 데 실패했습니다:", e)
+
+            # DB INSERT
+            # AWS
+            try:
+                admin_DAO.insertProduct(product['name'], product['price'], product['stock'], product['description'], s3_filename, azure_filename)
+                print(f"{product['name']}을(를) 데이터베이스에 삽입했습니다.")
+            except Exception as e:
+                print(f"{product['name']}을(를) 데이터베이스에 삽입하는 데 실패했습니다:", e)
+
+            # Azure
+            try:
+                admin_DAO.insertProductAzure(product['name'], product['price'], product['stock'], product['description'], s3_filename, azure_filename)
+                print(f"{product['name']}을(를) 데이터베이스에 삽입했습니다.")
+            except Exception as e:
+                print(f"{product['name']}을(를) 데이터베이스에 삽입하는 데 실패했습니다:", e)
+
+        return jsonify({"message": "샘플 상품 데이터 설정이 완료되었습니다."}), 200
+
+    except Exception as e:
+        return jsonify({"error g": str(e)}), 500      

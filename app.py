@@ -30,7 +30,7 @@ def home() :
 @app.route('/login', methods=['GET', 'POST'])
 def login() :
     if request.method == 'GET' :
-        return render_template('index.html')
+        return render_template('index.html', CLOUD_PROVIDER = CLOUD_PROVIDER)
     
     elif request.method == 'POST' :
         # ID
